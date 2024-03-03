@@ -18,7 +18,8 @@ import Project17 from './assets/project17.png';
 import Project18 from './assets/project18.png';
 import Project19 from './assets/project19.png';
 import Project20 from './assets/project20.png';
-
+import Project21 from './assets/project21.png';
+import Project22 from './assets/project22.png';
 
 import Testimonial1 from './assets/testimonial1.jpg';
 import Testimonial2 from './assets/testimonial2.jpg';
@@ -119,7 +120,7 @@ export const skills = [
   {
     id: 2,
     name: 'JavaScript',
-    percentage: 75,
+    percentage: 80,
     description:
       'In addition to JavaScript, I have knowledge about jQuery, the Document Object Model (DOM), and APIs, including RESTful APIs.',
   },
@@ -127,27 +128,27 @@ export const skills = [
   {
     id: 3,
     name: 'React',
-    percentage: 75,
+    percentage: 80,
     description:
-      'I create responsive user interfaces using React and specialize in innovative and modern design. Additionally, I am taking courses in Three.js.',
- },
+      'I create responsive user interfaces using React and specialize in innovative and modern design. I am using Mui, Sass, Jquery, MongoDB in my projects.',
+  },
 
   {
     id: 4,
     name: 'Back-end Technologies  ',
     percentage: 50,
     description:
-      'I have a beginner to intermediate level of knowledge in the backend field, including PHP, SQL, PostgreSQL, Node.js, and Express.js.',  
-   },
+      'I have a beginner to intermediate level of knowledge in the backend field, including PHP, SQL, PostgreSQL, Node.js, and Express.js.',
+  },
 
   {
-    id: 5,   
+    id: 5,
 
     name: 'C#',
     percentage: 75,
     description:
       'I can develop desktop applications, console applications and I have intermediate-level knowledge in .NET projects.',
-    },
+  },
 
   {
     id: 6,
@@ -156,7 +157,23 @@ export const skills = [
     description:
       'I dedicated a significant amount of time to these areas during my high school years and even obtained a teaching certificate.',
   },
-  
+
+  {
+    id: 7,
+    name: 'React Native',
+    percentage: 70,
+    description:
+      'I have intermediate knowledge in React Native and I have developed a few mobile applications.',
+  },
+
+  {
+    id: 8,
+    name: 'TypeScript',
+    percentage: 70,
+    description:
+      'I have intermediate knowledge in TypeScript and I am using it in my projects.',
+  },
+
 ];
 
 export const projects = [
@@ -166,7 +183,7 @@ export const projects = [
     category: 'CSS',
     title: 'Ticket With Hologram Efect',
     description:
-      'A ticket card profile project. I made it with Html, Css and a little Javascript.',   
+      'A ticket card profile project. I made it with Html, Css and a little Javascript.',
     projectLink: "https://github.com/berkantkarakayis/Ticket_With_Hologram_Effect",
   },
   {
@@ -176,7 +193,7 @@ export const projects = [
     title: 'Portfolio Website 2',
     description:
       'My second website. This is a portfolio website and I made it with Html, Css, Javascript.',
-    projectLink:"https://github.com/berkantkarakayis/PortfolioWebsite2"
+    projectLink: "https://github.com/berkantkarakayis/PortfolioWebsite2"
   },
   {
     id: 3,
@@ -185,7 +202,7 @@ export const projects = [
     title: 'Portfolio Website 1',
     description:
       'My first website. This is a portfolio website and I made it with Html, Css, Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/WebsitePortfolio"
+    projectLink: "https://github.com/berkantkarakayis/WebsitePortfolio"
   },
   {
     id: 4,
@@ -194,7 +211,7 @@ export const projects = [
     title: 'Portfolio Website (React)',
     description:
       'My first React website. This is a portfolio website and I made it with React.',
-      projectLink:""
+    projectLink: ""
   },
   {
     id: 5,
@@ -203,7 +220,7 @@ export const projects = [
     title: '3D Room',
     description:
       'My Room as a 3D project. I made it with Html, Css and a little Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/3D_Room"
+    projectLink: "https://github.com/berkantkarakayis/3D_Room"
   },
   {
     id: 6,
@@ -212,7 +229,7 @@ export const projects = [
     title: '3D Calculator',
     description:
       'A 3D calculator project. I made it with Html, Css and a little Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/Calculator"
+    projectLink: "https://github.com/berkantkarakayis/Calculator"
   },
   {
     id: 7,
@@ -221,7 +238,7 @@ export const projects = [
     title: 'Voyage Slider',
     description:
       'A voyage slider project. I made it with Html, Css and mostly Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/Voyage_Slider"
+    projectLink: "https://github.com/berkantkarakayis/Voyage_Slider"
   },
   {
     id: 8,
@@ -230,7 +247,7 @@ export const projects = [
     title: 'Data Add/Delete',
     description:
       'A data table with adding and deleting selections. Practicing with Axios and react-router-dom.',
-      projectLink:"https://github.com/berkantkarakayis/Techcareer-Full-Stack-Homeworks/tree/main/Ders-Odev-4"
+    projectLink: "https://github.com/berkantkarakayis/Techcareer-Full-Stack-Homeworks/tree/main/Ders-Odev-4"
   },
   {
     id: 9,
@@ -239,7 +256,7 @@ export const projects = [
     title: 'Resume Website',
     description:
       'My second Bootstrap website. This is a resume website and I made it with Html, Css.',
-      projectLink:"https://github.com/berkantkarakayis/Techcareer_Bootcamp-Resume_Website"
+    projectLink: "https://github.com/berkantkarakayis/Techcareer_Bootcamp-Resume_Website"
   },
   {
     id: 10,
@@ -248,7 +265,7 @@ export const projects = [
     title: 'Chess Board',
     description:
       'A simple chess board project. I made it with C# console app.',
-      projectLink:"https://github.com/berkantkarakayis/ChessBoard"
+    projectLink: "https://github.com/berkantkarakayis/ChessBoard"
   },
   {
     id: 11,
@@ -257,7 +274,7 @@ export const projects = [
     title: 'Blog Website',
     description:
       'My first Bootstrap website. This is a blog website and I made it with Html, Css.',
-      projectLink:"https://github.com/berkantkarakayis/Blog_Website-Techcareer_Bootcamp"
+    projectLink: "https://github.com/berkantkarakayis/Blog_Website-Techcareer_Bootcamp"
   },
   {
     id: 12,
@@ -266,7 +283,7 @@ export const projects = [
     title: 'Particles',
     description:
       'A particles effect on text project. I made it with Html, Css and mostly Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/Particles"
+    projectLink: "https://github.com/berkantkarakayis/Particles"
   },
   {
     id: 13,
@@ -275,7 +292,7 @@ export const projects = [
     title: 'Expanding Flex Card',
     description:
       'An expanding flex card project. I made it with Html, Css and a little Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/Expanding_Flex_Card"
+    projectLink: "https://github.com/berkantkarakayis/Expanding_Flex_Card"
   },
   {
     id: 14,
@@ -293,7 +310,7 @@ export const projects = [
     title: 'Rock-Paper-Scissors',
     description:
       'A simple rock-paper-scissors game project. I made it with C# console app.',
-      projectLink:"https://github.com/berkantkarakayis/Rock_paper_scissors"
+    projectLink: "https://github.com/berkantkarakayis/Rock_paper_scissors"
   },
   {
     id: 16,
@@ -302,7 +319,7 @@ export const projects = [
     title: 'Data Table',
     description:
       'A data table with react. Practicing with Axios and DataGrid.',
-      projectLink:"https://github.com/berkantkarakayis/Techcareer-Full-Stack-Homeworks/tree/main/Homework%206%20-%20DataGrid"
+    projectLink: "https://github.com/berkantkarakayis/Techcareer-Full-Stack-Homeworks/tree/main/Homework%206%20-%20DataGrid"
   },
   {
     id: 17,
@@ -311,7 +328,7 @@ export const projects = [
     title: 'Countdown Timer',
     description:
       'A birthday countdown timer project. I made it with Html, Css and a little Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/Countdown_Timer"
+    projectLink: "https://github.com/berkantkarakayis/Countdown_Timer"
   },
   {
     id: 18,
@@ -320,7 +337,7 @@ export const projects = [
     title: 'Simple Arduino Projects',
     description:
       'My all arduino projects for all levels. This project have many small project. You can use it for improve yourself.',
-      projectLink:"https://github.com/berkantkarakayis/Arduino-Projects"
+    projectLink: "https://github.com/berkantkarakayis/Arduino-Projects"
   },
   {
     id: 19,
@@ -329,7 +346,7 @@ export const projects = [
     title: 'Drum Kit',
     description:
       'A drum kit project. I made it with Html, Css and mostly Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/Drum_Kit"
+    projectLink: "https://github.com/berkantkarakayis/Drum_Kit"
   },
   {
     id: 20,
@@ -338,8 +355,24 @@ export const projects = [
     title: 'Dice Game',
     description:
       'A dice game project. Refresh the page for throw. I made it with Html, Css and mostly Javascript.',
-      projectLink:"https://github.com/berkantkarakayis/Dice_Game"
+    projectLink: "https://github.com/berkantkarakayis/Dice_Game"
   },
+  {
+    id: 21,
+    img: Project21,
+    category: 'React.js',
+    title: 'Private Doctor Admin Panel',
+    description:
+      'A private doctor admin panel project. A group project with my company. This project have a react native mobile app for patients and doctors.',
+  },
+  {
+    id: 22,
+    img: Project22,
+    category: 'React.js',
+    title: 'Private Admin Panel',
+    description:
+      'A private admin panel project for company. A group project with my company. This project have a react native mobile app for users.',
+  }
 
 ];
 

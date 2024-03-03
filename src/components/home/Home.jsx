@@ -25,7 +25,7 @@ const Home = () => {
         </h1>
 
         <p className='home__job'>
-          <span className='text-cs'>I Am</span> <b>Web Developer</b>
+          <span className='text-cs'>I Am</span> <b>Software Developer</b>
         </p>
 
         <div className="home__img-wrapper">
@@ -99,7 +99,7 @@ const Home = () => {
     </div>
 
     <div className="section__bg-wrapper">
-      <span className="bg__title">Web Developer</span>
+      <span className="bg__title">Jr. Developer</span>
     </div>
   </section>
 )};
