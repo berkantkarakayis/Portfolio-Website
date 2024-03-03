@@ -1,10 +1,10 @@
 # === LIVE DEMO ===
 
-https://berkantkarakayis.netlify.app
+[https://berkantkarakayis.netlify.app](https://portfolio-website-wmdg-berkants-projects.vercel.app/#home)
 
-![image](https://github.com/berkantkarakayis/React_Portfolio_Website/assets/102322084/df36b83c-c903-4cda-b22b-daaa524e8f6f)
+![image](https://github.com/berkantkarakayis/Portfolio-Website/assets/102322084/3f4bb289-2f9f-4cc3-aae2-e8c4e37dcee2)
 
-![image](https://github.com/berkantkarakayis/React_Portfolio_Website/assets/102322084/2d7f1d00-c646-4583-ae4b-2178f3a64a9b)
+![image](https://github.com/berkantkarakayis/Portfolio-Website/assets/102322084/cb3bdd0d-6387-4ef6-855e-46805770dc14)
 
 # React + Vite
 
