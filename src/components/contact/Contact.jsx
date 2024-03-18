@@ -56,7 +56,7 @@ const Contact = () => {
                     </span>
 
                     <h3 className="contact__card-title">Freelance</h3>
-                    <p className="contact__card-data">Available Right Now</p>
+                    <p className="contact__card-data">Available Right Now!</p>
                 </div>
 
                 <div className="contact__card">
