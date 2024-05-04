@@ -99,7 +99,7 @@ const Home = () => {
     </div>
 
     <div className="section__bg-wrapper">
-      <span className="bg__title">Jr. Developer</span>
+      <span className="bg__title">F.E Developer</span>
     </div>
   </section>
 )};
