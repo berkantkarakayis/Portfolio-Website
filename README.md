@@ -1,6 +1,6 @@
 # === LIVE DEMO ===
 
-[https://portfolio-website-wmdg-berkants-projects.vercel.app/#home](https://berkant.vercel.app)
+[https://berkant.vercel.app](https://berkant.vercel.app)
 
 ![image](https://github.com/berkantkarakayis/Portfolio-Website/assets/102322084/3f4bb289-2f9f-4cc3-aae2-e8c4e37dcee2)
 
