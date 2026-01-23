@@ -43,7 +43,7 @@ const Home = () => {
 
             <p className="home__data home__data-two">
               <span className="text-lg">
-                100 <b>+</b>
+                99 <b>+</b>
               </span>
 
               <span className="text-sm text-cs">
