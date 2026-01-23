@@ -143,7 +143,6 @@ export const skills = [
 
   {
     id: 5,
-
     name: 'C#',
     percentage: 75,
     description:
@@ -491,9 +490,19 @@ export const cv = [
     id: 12,
     title: 'Software Developer',
     subtitle: 'Nevera Tech',
-    date: '2023 - PRESENT',
+    date: '2023 - 2024',
     description:
-      'I am currently working as a software developer at Nevera Tech. I am responsible for developing and maintaining software applications, creating and maintaining databases, and ensuring the best performance and responsiveness of applications. I am also working on the design and implementation of data storage solutions.',
+      'Collaborated with design and product teams to implement responsive design, resulting in a 30% increase in mobile traffic and improved user engagement. Reduced page load time by 50% by implementing caching strategies and minimizing HTTP requests, resulting in higher search engine rankings and improved SEO performance. Collaborated with UX/Ul team to enhance user experience, resulting in a 40% improvement in user satisfaction and a 20% decrease in support tickets. Improved website performance by 40% through optimizing code and implementing responsive design, resulting in a 20% increase in user engagement and a 15% decrease in bounce rate. Collaborated with cross-functional teams to implement new Ul features, resulting in a 20% increase in user interactions and a 15% decrease in bounce rate, ultimately improving user retention and satisfaction.',
+    category: 'experience',
+  },
+
+    {
+    id: 13,
+    title: 'Full-Stack Developer',
+    subtitle: 'PixupPlay',
+    date: '2024 - PRESENT',
+    description:
+      'Developed real-time Tracker modules for Football, Basketball, Volleyball, and Ice Hockey with 3D animations, shot paths, and live event overlays. Built scalable interfaces using React, TypeScript, Tailwind. Implemented role-based access control, dynamic filtering, and config-driven UI systems for multi-brand support. Integrated real-time data and optimized animations for cross-browser stability. Collaborated with backend and design teams to align UX/UI, improve performance, and enhance visual consistency. Contributed to architecture, refactoring, and reusable component design, ensuring scalability and maintainability across modules.',
     category: 'experience',
   }
 ];
