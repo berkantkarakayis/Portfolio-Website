@@ -4,7 +4,6 @@ import {
   SiAndroid,
   SiArduino,
   SiBootstrap,
-  SiCsharp,
   SiCss3,
   SiGit,
   SiGithub,
