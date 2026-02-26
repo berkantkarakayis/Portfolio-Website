@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { flushSync } from 'react-dom';
 import { links } from "../../Data";
 import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram,  } from 'react-icons/fa';
 import {BsSun, BsMoon} from 'react-icons/bs';
@@ -12,12 +13,14 @@ const getStorageTheme = () =>{
     if(localStorage.getItem('theme')){
         theme = localStorage.getItem('theme');
     }
+    return theme;
 }
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
   const [theme, setTheme] = useState(getStorageTheme());
+  const themeToggleRef = useRef(null);
 
   const scrollTop = () => {
     animateScroll.scrollToTop();
@@ -32,13 +35,45 @@ const Header = () => {
     }
   };
 
-  const toggleTheme = () => {
-    if(theme === 'light-theme'){
-        setTheme('dark-theme');
+  const toggleTheme = async () => {
+    if (!themeToggleRef.current) {
+      setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme');
+      return;
     }
-    else{
-        setTheme('light-theme');
+
+    if (!document.startViewTransition) {
+      setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme');
+      return;
     }
+
+    const { top, left, width, height } =
+      themeToggleRef.current.getBoundingClientRect();
+    const x = left + width / 2;
+    const y = top + height / 2;
+    const maxRadius = Math.hypot(
+      Math.max(left, window.innerWidth - left),
+      Math.max(top, window.innerHeight - top)
+    );
+
+    await document.startViewTransition(() => {
+      flushSync(() => {
+        setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme');
+      });
+    }).ready;
+
+    document.documentElement.animate(
+      {
+        clipPath: [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${maxRadius}px at ${x}px ${y}px)`,
+        ],
+      },
+      {
+        duration: 400,
+        easing: 'ease-in-out',
+        pseudoElement: '::view-transition-new(root)',
+      }
+    );
   };
 
   useEffect(() => {
@@ -111,7 +146,11 @@ const Header = () => {
             </div>
 
             <div className="nav__btns">
-                <div className="theme__toggler" onClick={toggleTheme}>
+                <div
+                    ref={themeToggleRef}
+                    className="theme__toggler"
+                    onClick={toggleTheme}
+                >
                     {theme === 'light-theme' ? <BsMoon /> : <BsSun />}
                 </div>
 

@@ -29,6 +29,7 @@ import { skills } from "../../Data";
 import shapeOne from "../../assets/shape-1.png";
 import LogoLoop from "./LogoLoop";
 import "./skills.css";
+import { TbBrandCSharp } from "react-icons/tb";
 
 const Skills = () => {
   const techLogos = [
@@ -74,7 +75,7 @@ const Skills = () => {
     { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
     { node: <SiRedis />, title: "Redis", href: "https://redis.io" },
     {
-      node: <SiCsharp />,
+      node: <TbBrandCSharp />,
       title: "C#",
       href: "https://learn.microsoft.com/dotnet/csharp",
     },

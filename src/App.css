@@ -238,6 +238,12 @@ img{
     opacity: 0.6;
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
 .shape{
     position: absolute;
     filter: invert(1);
