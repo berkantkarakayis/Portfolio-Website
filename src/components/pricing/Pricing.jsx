@@ -2,6 +2,7 @@ import React from "react";
 import shapeOne from "../../assets/shape-1.png";
 import shapeTwo from "../../assets/shape-2.png";
 import { FaCheck, FaArrowRight } from "react-icons/fa";
+import GlareHover from "./GlareHover";
 import "./pricing.css";
 
 const Pricing = () => {
@@ -13,10 +14,18 @@ const Pricing = () => {
       </p>
 
       <div className="pricing__container container grid">
-        <div className="pricing__item card card-one">
+        <GlareHover
+          className="pricing__item card card-one"
+          glareColor="#ffffff"
+          glareOpacity={0.3}
+          glareAngle={-30}
+          glareSize={300}
+          transitionDuration={800}
+          playOnce={false}
+        >
           <span className="pricing__subtitle text-cs">Hourly Basis</span>
           <h3 className="pricing__price">
-            20 <span>$</span> <em>Hour</em>
+            22 <span>$</span> <em>Hour</em>
           </h3>
 
           <p className="pricing__description">
@@ -54,12 +63,20 @@ const Pricing = () => {
           </a>
 
           <img src={shapeTwo} alt="" className="shape c__shape" />
-        </div>
+        </GlareHover>
 
-        <div className="pricing__item card card-one">
+        <GlareHover
+          className="pricing__item card card-one"
+          glareColor="#ffffff"
+          glareOpacity={0.3}
+          glareAngle={-30}
+          glareSize={300}
+          transitionDuration={800}
+          playOnce={false}
+        >
           <span className="pricing__subtitle text-cs">Freelancing</span>
           <h3 className="pricing__price">
-            750 <span>$</span> <em>Week</em>
+            875 <span>$</span> <em>Week</em>
           </h3>
 
           <p className="pricing__description">
@@ -98,12 +115,20 @@ const Pricing = () => {
           </a>
 
           <img src={shapeTwo} alt="" className="shape c__shape" />
-        </div>
+        </GlareHover>
 
-        <div className="pricing__item card card-one">
+        <GlareHover
+          className="pricing__item card card-one"
+          glareColor="#ffffff"
+          glareOpacity={0.3}
+          glareAngle={-30}
+          glareSize={300}
+          transitionDuration={800}
+          playOnce={false}
+        >
           <span className="pricing__subtitle text-cs">Full Time</span>
           <h3 className="pricing__price">
-            3000 <span>$</span> <em>Month</em>
+            3500 <span>$</span> <em>Month</em>
           </h3>
 
           <p className="pricing__description">
@@ -143,7 +168,7 @@ const Pricing = () => {
           </a>
 
           <img src={shapeTwo} alt="" className="shape c__shape" />
-        </div>
+        </GlareHover>
       </div>
 
       <div className="section__deco deco__right">
