@@ -99,18 +99,6 @@
     --shadow: 5px 5px rgb(0 0 0  / 20%);
 }
 
-.light-theme .skills__bar{
-    background: rgba(0, 0, 0, 0.1);
-}
-
-.light-theme .skills__percentage{
-    background: var(--border-color);
-}
-
-.light-theme .skills__percentage span{
-    background-color: var(--primary-color);
-}
-
 .light-theme .shape{
     filter: invert(0);
     opacity: 1;

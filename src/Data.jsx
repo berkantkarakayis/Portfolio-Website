@@ -112,65 +112,231 @@ export const skills = [
   {
     id: 1,
     name: "HTML & CSS",
-    percentage: 85,
+    category: "frontend",
     description:
-      "My knowledge of HTML and CSS is at an advanced level, and I have completed numerous projects. I also have expertise in Sass, SCSS, and Bootstrap.",
+      "Advanced semantic HTML and modern CSS architecture. Strong layout systems (Flexbox & Grid), responsive design, accessibility awareness, and scalable styling using Sass/SCSS and Bootstrap. Production-ready UI mindset.",
   },
 
   {
     id: 2,
-    name: "JavaScript",
-    percentage: 80,
+    name: "JavaScript (ES6+)",
+    category: "frontend",
     description:
-      "In addition to JavaScript, I have knowledge about jQuery, the Document Object Model (DOM), and APIs, including RESTful APIs.",
+      "Strong understanding of core JavaScript concepts including asynchronous programming, closures, DOM manipulation, API integrations, and performance optimization. Confident working with RESTful architectures and complex UI logic.",
   },
 
   {
     id: 3,
     name: "React",
-    percentage: 80,
+    category: "frontend",
     description:
-      "I create responsive user interfaces using React and specialize in innovative and modern design. I am using Mui, Sass, Jquery, MongoDB in my projects.",
+      "Building scalable and reusable interfaces with React. Strong hook patterns, render optimization, component composition, and clean architectural structure for medium-to-large applications.",
   },
 
   {
     id: 4,
-    name: "Back-end Technologies  ",
-    percentage: 50,
+    name: "TypeScript",
+    category: "frontend",
     description:
-      "I have a beginner to intermediate level of knowledge in the backend field, including PHP, SQL, PostgreSQL, Node.js, and Express.js.",
+      "Using TypeScript in production projects to ensure type safety, maintainability, and scalability. Comfortable with generics, utility types, strict typing, and structured codebases.",
   },
 
   {
     id: 5,
-    name: "C#",
-    percentage: 75,
+    name: "Redux Toolkit",
+    category: "frontend",
     description:
-      "I can develop desktop applications, console applications and I have intermediate-level knowledge in .NET projects.",
+      "Advanced state management using Redux Toolkit. Experience with normalized state structures, selector-based rendering, state synchronization (e.g., betslip logic), and performance-aware architecture.",
   },
 
   {
     id: 6,
-    name: "Arduino & Vex",
-    percentage: 90,
+    name: "Tailwind CSS",
+    category: "frontend",
     description:
-      "I dedicated a significant amount of time to these areas during my high school years and even obtained a teaching certificate.",
+      "Comfortable building utility-first, responsive UI with Tailwind CSS. Able to structure scalable design tokens, manage component patterns, and rapidly prototype modern interfaces.",
   },
 
   {
     id: 7,
-    name: "React Native",
-    percentage: 70,
+    name: "WebSocket & Real-Time Systems",
+    category: "frontend",
     description:
-      "I have intermediate knowledge in React Native and I have developed a few mobile applications.",
+      "Experience building real-time UI modules (live trackers, dynamic overlays, event streams). Focused on stable rendering, animation safety, and maintaining UI consistency under live data updates.",
   },
 
   {
     id: 8,
-    name: "TypeScript",
-    percentage: 70,
+    name: "Component-Driven Architecture",
+    category: "frontend",
     description:
-      "I have intermediate knowledge in TypeScript and I am using it in my projects.",
+      "Designing scalable frontend architectures based on reusable, modular components. Strong separation of concerns, maintainable folder structures, and clean code principles.",
+  },
+
+  {
+    id: 9,
+    name: "Design System Engineering",
+    category: "frontend",
+    description:
+      "Building token-based theming systems and dynamic configuration structures. Experienced in multi-brand UI setups, CSS variable systems, and scalable design system implementation.",
+  },
+
+  {
+    id: 10,
+    name: "Node.js",
+    category: "backend",
+    description:
+      "Contributing to backend logic including REST APIs, middleware architecture, JWT-based authentication flows, and integrating frontend requirements end-to-end.",
+  },
+
+  {
+    id: 11,
+    name: "MongoDB",
+    category: "backend",
+    description:
+      "Experience modeling structured data, connecting databases to APIs, and handling production-oriented data flows.",
+  },
+
+  {
+    id: 12,
+    name: "Redis",
+    category: "backend",
+    description:
+      "Used Redis for caching strategies and real-time data flow optimization. Focused on improving performance, reducing redundant API calls, and maintaining UI responsiveness.",
+  },
+
+  {
+    id: 13,
+    name: "Strapi CMS",
+    category: "backend",
+    description:
+      "Built and integrated Strapi-based CMS services, including content modeling, API integration, and config-driven UI logic for scalable content management systems.",
+  },
+
+  {
+    id: 14,
+    name: "React Native",
+    category: "frontend",
+    description:
+      "Intermediate experience building cross-platform mobile applications with React Native, including navigation systems, API integration, and UI structuring.",
+  },
+
+  {
+    id: 15,
+    name: "C# & .NET",
+    category: "backend",
+    description:
+      "Developed desktop and console applications using C#. Strong object-oriented programming foundation and structured application development experience.",
+  },
+
+  {
+    id: 16,
+    name: "AI Tools & Prompt Engineering",
+    category: "tools",
+    description:
+      "Highly effective use of AI services for accelerating development, generating UI concepts, refactoring complex logic, optimizing workflows, and producing production-ready outputs. Strong quality control and architectural awareness while leveraging AI.",
+  },
+];
+
+export const cv = [
+  {
+    id: 1,
+    title: "Computer Programming",
+    subtitle: "Tekirdag Namik Kemal University",
+    date: "2021 - 2023",
+    description:
+      "Focused on core programming concepts, algorithms, and software development fundamentals.",
+    category: "education",
+  },
+
+  {
+    id: 2,
+    title: "The Complete 2023 Web Development Bootcamp",
+    subtitle: "Udemy - Dr. Angela Yu",
+    date: "2023",
+    description:
+      "Comprehensive training covering full-stack web development including frontend, backend, and database fundamentals.",
+    category: "education",
+  },
+
+  {
+    id: 3,
+    title: "Full-Stack Development Bootcamp",
+    subtitle: "Techcareer.net",
+    date: "2023",
+    description:
+      "Hands-on full-stack development training with practical real-world projects and API integrations.",
+    category: "education",
+  },
+
+  {
+    id: 4,
+    title: "Learn C# by Developing Applications: A to Z",
+    subtitle: "Udemy - Murat Yücedağ",
+    date: "2023",
+    description:
+      "Advanced C# and .NET training focused on structured application development.",
+    category: "education",
+  },
+
+  {
+    id: 5,
+    title: "Cyber Security 101 Certificate",
+    subtitle: "Cisco Networking Academy",
+    date: "2022",
+    description:
+      "Introduction to cybersecurity fundamentals, network security, and risk awareness.",
+    category: "education",
+  },
+
+  {
+    id: 9,
+    title: "IT Intern",
+    subtitle: "Meridyen Games",
+    date: "July 2023 - August 2023",
+    description:
+      "Diagnosed and resolved hardware and software issues in gaming machines and bowling systems. Maintained system stability, monitored performance, and provided structured reporting to management.",
+    category: "experience",
+  },
+
+  {
+    id: 10,
+    title: "Front-end Developer Intern",
+    subtitle: "Meridyen Games",
+    date: "August 2023 - September 2023",
+    description:
+      "Improved and maintained web interfaces, ensured system compatibility, and supported database operations. Contributed to website enhancements and technical optimizations.",
+    category: "experience",
+  },
+
+  {
+    id: 11,
+    title: "Front-end Developer",
+    subtitle: "Freelancer",
+    date: "2023 - PRESENT",
+    description:
+      "Designed and developed responsive user interfaces for web applications. Delivered small-scale commercial projects and continuously improved performance, usability, and scalability. Leveraged AI tools to accelerate UI ideation, refactoring, and production efficiency.",
+    category: "experience",
+  },
+
+  {
+    id: 12,
+    title: "Front-end Developer",
+    subtitle: "Nevera Tech",
+    date: "2023 - 2024",
+    description:
+      "Collaborated with cross-functional teams to deliver responsive, high-performance interfaces. Improved page load times by optimizing requests and caching strategies. Enhanced UX/UI quality, increasing user engagement and reducing support tickets. Contributed to scalable feature implementations and performance-focused refactoring.",
+    category: "experience",
+  },
+
+  {
+    id: 13,
+    title: "Full-Stack Developer",
+    subtitle: "PixupPlay",
+    date: "2024 - PRESENT",
+    description:
+      "Developed advanced real-time Tracker modules for Football, Basketball, Volleyball, and Ice Hockey with dynamic overlays and performance-safe animations. Built scalable interfaces using React, TypeScript, and Tailwind. Implemented role-based access control, dynamic filtering systems, and config-driven multi-brand UI architecture. Contributed to backend logic using Node.js and integrated Strapi CMS for content and configuration management. Utilized Redis for real-time data flow and caching strategies. Frequently owned the full UI lifecycle from concept design to pixel-perfect implementation. Leveraged AI services strategically to accelerate development, optimize architecture, and enhance creative production quality.",
+    category: "experience",
   },
 ];
 
@@ -373,130 +539,6 @@ export const projects = [
     title: "Private Admin Panel",
     description:
       "A private admin panel project for company. A group project with my company. This project have a react native mobile app for users.",
-  },
-];
-
-export const cv = [
-  {
-    id: 1,
-    title: "Computer Programming",
-    subtitle: "Tekirdag Namik Kemal University",
-    date: "2021 - 2023",
-    description: "",
-    category: "education",
-  },
-
-  {
-    id: 2,
-    title: "The Complate 2023 Web Development Bootcamp",
-    subtitle: "Udemy - Dr. Angela Yu",
-    date: "2023",
-    description: "",
-    category: "education",
-  },
-
-  {
-    id: 3,
-    title: "Full-Stack Development Bootcamp",
-    subtitle: "Techcareer.net",
-    date: "2023",
-    description: "",
-    category: "education",
-  },
-
-  {
-    id: 4,
-    title: "Learn C# by Developing Applications: A to Z",
-    subtitle: "Udemy - Murat Yücedağ",
-    date: "2023",
-    description: "",
-    category: "education",
-  },
-
-  {
-    id: 5,
-    title: "Cyber Security 101 Certificate",
-    subtitle: "Cisco Networking Academy",
-    date: "2022",
-    description: "",
-    category: "education",
-  },
-
-  {
-    id: 6,
-    title: "Introduction to Artificial Intelligence and Algorithms",
-    subtitle: "BTK Akademi",
-    date: "2022",
-    description: "",
-    category: "education",
-  },
-
-  {
-    id: 7,
-    title: "Introduction to Python Certificate",
-    subtitle: "DataCamp",
-    date: "2022",
-    description: "",
-    category: "education",
-  },
-
-  {
-    id: 8,
-    title: "Robotic Coding Educator Training",
-    subtitle: "Tubitak",
-    date: "2018",
-    description: "",
-    category: "education",
-  },
-
-  {
-    id: 9,
-    title: "IT Intern",
-    subtitle: "Meridyen Games",
-    date: "July 2023 - August 2023",
-    description:
-      "I diagnosed and fixed issues in gaming machines. I addressed software glitches in both gaming machines and bowling alleys. I created and submitted job reports to keep management informed about progress and updates. I monitored desktop performance and speed to maintain a robust infrastructure.",
-    category: "experience",
-  },
-
-  {
-    id: 10,
-    title: "Front-end Developer Intern",
-    subtitle: "Meridyen Games",
-    date: "August 2023 - September 2023",
-    description:
-      "I conducted computer, internet, and software installations in bowling alleys and gaming arcades. I kept operating systems and computer software up to date to ensure compatibility with programs. I made improvements and enhancements to the website. I ensured database management.",
-    category: "experience",
-  },
-
-  {
-    id: 11,
-    title: "Front-end Developer",
-    subtitle: "Freelancer",
-    date: "2023 - PRESENT",
-    description:
-      "I created user interface designs for websites and web-based applications, tested these designs, and improved the performance of existing interfaces. I also developed various small-scale projects and offered them for sale. In my projects, I primarily used Html, Css, Javascript, React.js, MsSQL, and C#. Additionally, I continue to enhance my skills in these areas by taking courses.",
-    category: "experience",
-  },
-
-  {
-    id: 12,
-    title: "Front-end Developer",
-    subtitle: "Nevera Tech",
-    date: "2023 - 2024",
-    description:
-      "Collaborated with design and product teams to implement responsive design, resulting in a 30% increase in mobile traffic and improved user engagement. Reduced page load time by 50% by implementing caching strategies and minimizing HTTP requests, resulting in higher search engine rankings and improved SEO performance. Collaborated with UX/Ul team to enhance user experience, resulting in a 40% improvement in user satisfaction and a 20% decrease in support tickets. Improved website performance by 40% through optimizing code and implementing responsive design, resulting in a 20% increase in user engagement and a 15% decrease in bounce rate. Collaborated with cross-functional teams to implement new Ul features, resulting in a 20% increase in user interactions and a 15% decrease in bounce rate, ultimately improving user retention and satisfaction.",
-    category: "experience",
-  },
-
-  {
-    id: 13,
-    title: "Full-Stack Developer",
-    subtitle: "PixupPlay",
-    date: "2024 - PRESENT",
-    description:
-      "Developed real-time Tracker modules for Football, Basketball, Volleyball, and Ice Hockey with 3D animations, shot paths, and live event overlays. Built scalable interfaces using React, TypeScript, Tailwind. Implemented role-based access control, dynamic filtering, and config-driven UI systems for multi-brand support. Integrated real-time data and optimized animations for cross-browser stability. Collaborated with backend and design teams to align UX/UI, improve performance, and enhance visual consistency. Contributed to architecture, refactoring, and reusable component design, ensuring scalability and maintainability across modules.",
-    category: "experience",
   },
 ];
 
