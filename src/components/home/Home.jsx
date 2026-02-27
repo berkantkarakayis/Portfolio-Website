@@ -23,7 +23,7 @@ const Home = () => {
           <h1 className="home__title text-cs">KARAKAYIŞ</h1>
 
           <p className="home__job">
-            <span className="text-cs">I Am</span> <b>Front-end Developer</b>
+            <span className="text-cs">I Am</span> <b>Full-Stack Developer</b>
           </p>
 
           <div className="home__img-wrapper">
@@ -57,9 +57,8 @@ const Home = () => {
           </div>
 
           <p className="home__text">
-            From Turkiye, Istanbul. A passionate developer. I am an impatient
-            fast learner. Eager to achieve great things. I’m ready to give you
-            my best.
+            Istanbul-based. Building scalable, real-time systems with precision
+            and speed. Focused on long-term impact, not short-term fixes.
           </p>
 
           <div className="home__socials">

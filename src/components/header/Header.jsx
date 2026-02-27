@@ -145,6 +145,11 @@ const Header = () => {
                 </div>
             </div>
 
+            <div
+                className={`nav__overlay ${showMenu ? 'show-overlay' : ''}`}
+                onClick={() => setShowMenu(false)}
+            />
+
             <div className="nav__btns">
                 <div
                     ref={themeToggleRef}

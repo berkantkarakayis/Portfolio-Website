@@ -32,10 +32,10 @@ export const links = [
     name: "Home",
     path: "home",
   },
-  {
-    name: "Services",
-    path: "services",
-  },
+  // {
+  //   name: "Services",
+  //   path: "services",
+  // },
   {
     name: "Skills",
     path: "skills",
