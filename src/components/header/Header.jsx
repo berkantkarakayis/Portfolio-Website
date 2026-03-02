@@ -76,7 +76,8 @@ const Header = ({ introDone, logoRef }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", changeNav);
+    window.addEventListener("scroll", changeNav, { passive: true });
+    return () => window.removeEventListener("scroll", changeNav);
   }, []);
 
   useEffect(() => {

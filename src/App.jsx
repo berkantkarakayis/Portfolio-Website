@@ -26,6 +26,7 @@ function App() {
 
     let holdTimer;
     let moveTimer;
+    let resizeRaf = 0;
 
     const updateDelta = () => {
       const logoEl = logoRef.current;
@@ -39,8 +40,13 @@ function App() {
       setIntroDelta({ x: targetX - centerX, y: targetY - centerY });
     };
 
+    const scheduleDelta = () => {
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      resizeRaf = requestAnimationFrame(updateDelta);
+    };
+
     const startMove = () => {
-      updateDelta();
+      scheduleDelta();
       requestAnimationFrame(() => {
         setIntroMoving(true);
       });
@@ -52,7 +58,7 @@ function App() {
     holdTimer = setTimeout(startMove, 550);
 
     const handleResize = () => {
-      if (!introDone) updateDelta();
+      if (!introDone) scheduleDelta();
     };
 
     window.addEventListener("resize", handleResize);
@@ -60,6 +66,7 @@ function App() {
     return () => {
       clearTimeout(holdTimer);
       clearTimeout(moveTimer);
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
       window.removeEventListener("resize", handleResize);
     };
   }, [introDone, prefersReducedMotion]);

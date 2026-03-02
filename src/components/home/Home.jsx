@@ -1,5 +1,4 @@
 import React from "react";
-import profileImg from "../../assets/profile-img-2.webp";
 import shapeOne from "../../assets/shape-1.webp";
 import shapeTwo from "../../assets/shape-2.webp";
 import resume from "../../assets/Resume/resume.pdf";
@@ -33,7 +32,16 @@ const Home = ({ introDone }) => {
 
           <div className="home__img-wrapper home__reveal home__reveal--5 home__reveal--img">
             <div className="home__banner">
-              <img src={profileImg} alt="" className="home__profile" />
+              <img
+                src="/profile-img-2.webp"
+                alt=""
+                className="home__profile"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width="687"
+                height="800"
+              />
             </div>
 
             <p className="home__data home__data-one home__reveal home__reveal--7">
@@ -56,9 +64,27 @@ const Home = ({ introDone }) => {
               </span>
             </p>
 
-            <img src={shapeOne} alt="" className="shape shape__1" />
-            <img src={shapeTwo} alt="" className="shape shape__2" />
-            <img src={shapeTwo} alt="" className="shape shape__3" />
+            <img
+              src={shapeOne}
+              alt=""
+              className="shape shape__1"
+              loading="lazy"
+              decoding="async"
+            />
+            <img
+              src={shapeTwo}
+              alt=""
+              className="shape shape__2"
+              loading="lazy"
+              decoding="async"
+            />
+            <img
+              src={shapeTwo}
+              alt=""
+              className="shape shape__3"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           <p className="home__text home__reveal home__reveal--6">
@@ -113,7 +139,13 @@ const Home = ({ introDone }) => {
         </div>
 
         <div className="section__deco deco__left">
-          <img src={shapeOne} alt="" className="shape"></img>
+          <img
+            src={shapeOne}
+            alt=""
+            className="shape"
+            loading="lazy"
+            decoding="async"
+          ></img>
         </div>
       </div>
 

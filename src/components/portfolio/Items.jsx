@@ -19,7 +19,13 @@ const Items = ({ projectItems }) => {
             key={id}
           >
             <div className="portfolio_img-wrapper">
-              <img src={img} alt="" className="portfolio__img" />
+              <img
+                src={img}
+                alt=""
+                className="portfolio__img"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
 
             <span className="portfolio__category text-cs">{category}</span>
