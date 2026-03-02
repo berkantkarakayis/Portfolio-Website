@@ -16,7 +16,7 @@ const getStorageTheme = () =>{
     return theme;
 }
 
-const Header = () => {
+const Header = ({ introDone, logoRef }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
   const [theme, setTheme] = useState(getStorageTheme());
@@ -93,9 +93,15 @@ const Header = () => {
     <header className={`${scrollNav ? 'scroll-header': ''}
     header`}>
         <nav className="nav">
-            <Link to='/' onClick={scrollTop} className="nav__logo text-cs">
-                Berkant
-            </Link>
+            <span ref={logoRef} className="nav__logo-wrap">
+                <Link
+                    to='/'
+                    onClick={scrollTop}
+                    className={`nav__logo text-cs ${introDone ? '' : 'is-hidden'}`}
+                >
+                    Berkant
+                </Link>
+            </span>
 
             <div className={`${showMenu ? 'nav__menu show-menu' :
             'nav__menu'}`}>

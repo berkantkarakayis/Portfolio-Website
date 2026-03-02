@@ -27,11 +27,22 @@
   justify-content: space-between;
 }
 
+.nav__logo-wrap {
+  display: inline-flex;
+}
+
 .nav__logo {
   color: var(--title-color);
   font-size: var(--h4-font-size);
   font-weight: 700;
   cursor: pointer;
+  transition: opacity 0.5s var(--transition), transform 0.5s var(--transition);
+}
+
+.nav__logo.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
 }
 
 .nav__menu {

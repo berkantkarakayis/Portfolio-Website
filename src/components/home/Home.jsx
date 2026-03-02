@@ -1,5 +1,5 @@
 import React from "react";
-import profileImg from "../../assets/profile-img.png";
+import profileImg from "../../assets/profile-img-2.png";
 import shapeOne from "../../assets/shape-1.png";
 import shapeTwo from "../../assets/shape-2.png";
 import resume from "../../assets/Resume/resume.pdf";
@@ -7,31 +7,36 @@ import resume from "../../assets/Resume/resume.pdf";
 import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import "./home.css";
 
-const Home = () => {
+const Home = ({ introDone }) => {
   return (
-    <section className="home" id="home">
+    <section
+      className={`home ${introDone ? "is-intro-ready" : "is-intro-wait"}`}
+      id="home"
+    >
       <div className="home__wrapper">
         <div className="home__container container">
-          <p className="home__subtitle text-cs">
+          <p className="home__subtitle text-cs home__reveal home__reveal--1">
             Hello, <span> My Name Is</span>
           </p>
 
-          <h1 className="home__title text-cs">
+          <h1 className="home__title text-cs home__reveal home__reveal--2">
             <span>BERKANT</span>
           </h1>
 
-          <h1 className="home__title text-cs">KARAKAYIŞ</h1>
+          <h1 className="home__title text-cs home__reveal home__reveal--3">
+            KARAKAYIŞ
+          </h1>
 
-          <p className="home__job">
+          <p className="home__job home__reveal home__reveal--4">
             <span className="text-cs">I Am</span> <b>Full-Stack Developer</b>
           </p>
 
-          <div className="home__img-wrapper">
+          <div className="home__img-wrapper home__reveal home__reveal--5 home__reveal--img">
             <div className="home__banner">
               <img src={profileImg} alt="" className="home__profile" />
             </div>
 
-            <p className="home__data home__data-one">
+            <p className="home__data home__data-one home__reveal home__reveal--7">
               <span className="text-lg">
                 3 <b>+</b>
               </span>
@@ -41,7 +46,7 @@ const Home = () => {
               </span>
             </p>
 
-            <p className="home__data home__data-two">
+            <p className="home__data home__data-two home__reveal home__reveal--8">
               <span className="text-lg">
                 99 <b>+</b>
               </span>
@@ -56,12 +61,12 @@ const Home = () => {
             <img src={shapeTwo} alt="" className="shape shape__3" />
           </div>
 
-          <p className="home__text">
+          <p className="home__text home__reveal home__reveal--6">
             Istanbul-based. Building scalable, real-time systems with precision
             and speed. Focused on long-term impact, not short-term fixes.
           </p>
 
-          <div className="home__socials">
+          <div className="home__socials home__reveal home__reveal--9">
             <a
               href="https://twitter.com/berkantkrkyss"
               className="home__social-link"
@@ -91,7 +96,7 @@ const Home = () => {
             </a>
           </div>
 
-          <div className="home__btns">
+          <div className="home__btns home__reveal home__reveal--10">
             <a
               href={resume}
               download="Berkant-Karakayış"

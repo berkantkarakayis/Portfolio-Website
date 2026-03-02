@@ -9,7 +9,7 @@
 
   .home__img-wrapper {
     max-width: 600px;
-    transform: translateY(-6%);
+    --img-ty: -6%;
   }
 
   .home__profile {
@@ -17,7 +17,7 @@
   }
 
   .home__data {
-    transform: scale(0.9);
+    --card-scale: 0.9;
   }
 
   .shape__1 {
@@ -58,7 +58,7 @@
 
   .home__img-wrapper {
     position: relative;
-    transform: initial;
+    --img-ty: 0%;
     right: initial;
     margin-inline: auto;
     margin-top: 140px;
@@ -198,7 +198,7 @@
   }
 
   .home__data {
-    transform: scale(0.6);
+    --card-scale: 0.6;
   }
 
   .home__data-one {
@@ -297,7 +297,7 @@
   }
 
   .home__data {
-    transform: scale(0.5);
+    --card-scale: 0.5;
   }
 
   .home__data-one {
