@@ -344,86 +344,84 @@ export const projects = [
   {
     id: 1,
     img: Project4,
-    category: "CSS",
+    category: "CSS/JS",
     title: "Ticket With Hologram Efect",
     description:
       "A ticket card profile project. I made it with Html, Css and a little Javascript.",
     projectLink:
-      "https://github.com/berkantkarakayis/Ticket_With_Hologram_Effect",
+      "https://berkantkarakayis.github.io/Ticket_With_Hologram_Effect/",
   },
   {
     id: 2,
     img: Project1,
-    category: "UI UX Design",
-    title: "Portfolio Website 2",
+    category: "CSS/JS",
+    title: "Portfolio Website II",
     description:
       "My second website. This is a portfolio website and I made it with Html, Css, Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/PortfolioWebsite2",
+    projectLink: "https://berkantkarakayis.github.io/PortfolioWebsite2/",
   },
   {
     id: 3,
     img: Project2,
-    category: "UI UX Design",
-    title: "Portfolio Website 1",
+    category: "CSS/JS",
+    title: "Portfolio Website I",
     description:
       "My first website. This is a portfolio website and I made it with Html, Css, Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/WebsitePortfolio",
+    projectLink: "https://berkantkarakayis.github.io/WebsitePortfolio/",
   },
   {
     id: 4,
     img: Project3,
-    category: "UI UX Design",
-    title: "Portfolio Website (React)",
+    category: "React.js",
+    title: "Portfolio Website",
     description:
       "My first React website. This is a portfolio website and I made it with React.",
-    projectLink: "",
+    projectLink: "#",
   },
   {
     id: 5,
     img: Project5,
-    category: "CSS",
+    category: "CSS/JS",
     title: "3D Room",
     description:
       "My Room as a 3D project. I made it with Html, Css and a little Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/3D_Room",
+    projectLink: "https://berkantkarakayis.github.io/3D_Room/",
   },
   {
     id: 6,
     img: Project6,
-    category: "CSS",
+    category: "CSS/JS",
     title: "3D Calculator",
     description:
       "A 3D calculator project. I made it with Html, Css and a little Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/Calculator",
+    projectLink: "https://berkantkarakayis.github.io/Calculator/",
   },
   {
     id: 7,
     img: Project7,
-    category: "Javascript",
+    category: "CSS/JS",
     title: "Voyage Slider",
     description:
       "A voyage slider project. I made it with Html, Css and mostly Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/Voyage_Slider",
+    projectLink: "https://berkantkarakayis.github.io/Voyage_Slider/",
   },
   {
     id: 8,
     img: Project8,
     category: "React.js",
-    title: "Data Add/Delete",
+    title: "Live Odds Feeds",
     description:
-      "A data table with adding and deleting selections. Practicing with Axios and react-router-dom.",
-    projectLink:
-      "https://github.com/berkantkarakayis/Techcareer-Full-Stack-Homeworks/tree/main/Ders-Odev-4",
+      "A live odds feeds project. I made it with React and Tailwind.",
+    projectLink: "https://geniusfeeds.com/",
   },
   {
     id: 9,
     img: Project9,
-    category: "UI UX Design",
-    title: "Resume Website",
+    category: "React.js",
+    title: "Live Match Tracker",
     description:
-      "My second Bootstrap website. This is a resume website and I made it with Html, Css.",
-    projectLink:
-      "https://github.com/berkantkarakayis/Techcareer_Bootcamp-Resume_Website",
+      "A live match tracker project. I made it with React and Tailwind.",
+    projectLink: "https://tracker.geniusfeeds.live/",
   },
   {
     id: 10,
@@ -434,41 +432,31 @@ export const projects = [
     projectLink: "https://github.com/berkantkarakayis/ChessBoard",
   },
   {
-    id: 11,
-    img: Project11,
-    category: "UI UX Design",
-    title: "Blog Website",
-    description:
-      "My first Bootstrap website. This is a blog website and I made it with Html, Css.",
-    projectLink:
-      "https://github.com/berkantkarakayis/Blog_Website-Techcareer_Bootcamp",
-  },
-  {
     id: 12,
     img: Project12,
-    category: "Javascript",
+    category: "CSS/JS",
     title: "Particles",
     description:
       "A particles effect on text project. I made it with Html, Css and mostly Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/Particles",
+    projectLink: "https://berkantkarakayis.github.io/Particles/",
   },
   {
     id: 13,
     img: Project13,
-    category: "CSS",
+    category: "CSS/JS",
     title: "Expanding Flex Card",
     description:
       "An expanding flex card project. I made it with Html, Css and a little Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/Expanding_Flex_Card",
+    projectLink: "https://berkantkarakayis.github.io/Expanding_Flex_Card/",
   },
   {
     id: 14,
     img: Project14,
-    category: "Javascript",
+    category: "CSS/JS",
     title: "Simon Game",
     description:
       "A simon game project. Watch-Remember-Repeat. I made it with Html, Css and mostly Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/Simon_Game",
+    projectLink: "https://berkantkarakayis.github.io/Simon_Game/",
   },
   {
     id: 15,
@@ -480,22 +468,13 @@ export const projects = [
     projectLink: "https://github.com/berkantkarakayis/Rock_paper_scissors",
   },
   {
-    id: 16,
-    img: Project16,
-    category: "React.js",
-    title: "Data Table",
-    description: "A data table with react. Practicing with Axios and DataGrid.",
-    projectLink:
-      "https://github.com/berkantkarakayis/Techcareer-Full-Stack-Homeworks/tree/main/Homework%206%20-%20DataGrid",
-  },
-  {
     id: 17,
     img: Project17,
-    category: "CSS",
+    category: "CSS/JS",
     title: "Countdown Timer",
     description:
       "A birthday countdown timer project. I made it with Html, Css and a little Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/Countdown_Timer",
+    projectLink: "https://berkantkarakayis.github.io/Countdown_Timer/",
   },
   {
     id: 18,
@@ -509,20 +488,20 @@ export const projects = [
   {
     id: 19,
     img: Project19,
-    category: "Javascript",
+    category: "CSS/JS",
     title: "Drum Kit",
     description:
       "A drum kit project. I made it with Html, Css and mostly Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/Drum_Kit",
+    projectLink: "https://berkantkarakayis.github.io/Drum_Kit/",
   },
   {
     id: 20,
     img: Project20,
-    category: "Javascript",
+    category: "CSS/JS",
     title: "Dice Game",
     description:
       "A dice game project. Refresh the page for throw. I made it with Html, Css and mostly Javascript.",
-    projectLink: "https://github.com/berkantkarakayis/Dice_Game",
+    projectLink: "https://berkantkarakayis.github.io/Dice_Game/",
   },
   {
     id: 21,
