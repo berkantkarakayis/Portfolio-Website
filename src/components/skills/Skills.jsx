@@ -26,7 +26,7 @@ import {
   SiRedis,
 } from "react-icons/si";
 import { skills } from "../../Data";
-import shapeOne from "../../assets/shape-1.png";
+import shapeOne from "../../assets/shape-1.webp";
 import LogoLoop from "./LogoLoop";
 import "./skills.css";
 import { TbBrandCSharp } from "react-icons/tb";

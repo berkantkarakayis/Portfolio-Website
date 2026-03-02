@@ -1,6 +1,6 @@
 import React from "react";
-import shapeOne from "../../assets/shape-1.png";
-import shapeTwo from "../../assets/shape-2.png";
+import shapeOne from "../../assets/shape-1.webp";
+import shapeTwo from "../../assets/shape-2.webp";
 import { FaCheck, FaArrowRight } from "react-icons/fa";
 import GlareHover from "./GlareHover";
 import "./pricing.css";

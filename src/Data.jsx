@@ -1,31 +1,23 @@
-import Project1 from "./assets/project1.png";
-import Project2 from "./assets/project2.png";
-import Project3 from "./assets/project3.png";
-import Project4 from "./assets/project4.jpeg";
-import Project5 from "./assets/project5.jpeg";
-import Project6 from "./assets/project6.jpeg";
-import Project7 from "./assets/project7.jpg";
-import Project8 from "./assets/project8.png";
-import Project9 from "./assets/project9.png";
-import Project10 from "./assets/project10.png";
-import Project11 from "./assets/project11.png";
-import Project12 from "./assets/project12.png";
-import Project13 from "./assets/project13.png";
-import Project14 from "./assets/project14.png";
-import Project15 from "./assets/project15.png";
-import Project16 from "./assets/project16.png";
-import Project17 from "./assets/project17.png";
-import Project18 from "./assets/project18.png";
-import Project19 from "./assets/project19.png";
-import Project20 from "./assets/project20.png";
-import Project21 from "./assets/project21.png";
-import Project22 from "./assets/project22.png";
-
-import Testimonial1 from "./assets/testimonial1.jpg";
-import Testimonial2 from "./assets/testimonial2.jpg";
-import Testimonial3 from "./assets/testimonial3.jpg";
-import Testimonial4 from "./assets/testimonial4.jpg";
-import Testimonial5 from "./assets/testimonial5.jpg";
+import Project1 from "./assets/project1.webp";
+import Project2 from "./assets/project2.webp";
+import Project3 from "./assets/project3.webp";
+import Project4 from "./assets/project4.webp";
+import Project5 from "./assets/project5.webp";
+import Project6 from "./assets/project6.webp";
+import Project7 from "./assets/project7.webp";
+import Project8 from "./assets/project8.webp";
+import Project9 from "./assets/project9.webp";
+import Project10 from "./assets/project10.webp";
+import Project12 from "./assets/project12.webp";
+import Project13 from "./assets/project13.webp";
+import Project14 from "./assets/project14.webp";
+import Project15 from "./assets/project15.webp";
+import Project17 from "./assets/project17.webp";
+import Project18 from "./assets/project18.webp";
+import Project19 from "./assets/project19.webp";
+import Project20 from "./assets/project20.webp";
+import Project21 from "./assets/project21.webp";
+import Project22 from "./assets/project22.webp";
 
 export const links = [
   {
@@ -521,45 +513,45 @@ export const projects = [
   },
 ];
 
-export const testimonials = [
-  {
-    id: 1,
-    img: Testimonial1,
-    name: "Barbara Wilson",
-    author: "CEO Company",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    id: 2,
-    img: Testimonial2,
-    name: "Charlie Smith",
-    author: "Designer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    id: 3,
-    img: Testimonial3,
-    name: "Roy Wang",
-    author: "Manager GYM",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    id: 4,
-    img: Testimonial4,
-    name: "Jennifer Smith",
-    author: "CEO & Founder",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-  {
-    id: 5,
-    img: Testimonial5,
-    name: "Paul Freeman",
-    author: "Photographer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  },
-];
+// export const testimonials = [
+//   {
+//     id: 1,
+//     img: Testimonial1,
+//     name: "Barbara Wilson",
+//     author: "CEO Company",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//   },
+//   {
+//     id: 2,
+//     img: Testimonial2,
+//     name: "Charlie Smith",
+//     author: "Designer",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//   },
+//   {
+//     id: 3,
+//     img: Testimonial3,
+//     name: "Roy Wang",
+//     author: "Manager GYM",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//   },
+//   {
+//     id: 4,
+//     img: Testimonial4,
+//     name: "Jennifer Smith",
+//     author: "CEO & Founder",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//   },
+//   {
+//     id: 5,
+//     img: Testimonial5,
+//     name: "Paul Freeman",
+//     author: "Photographer",
+//     description:
+//       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//   },
+// ];

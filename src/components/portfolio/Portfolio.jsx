@@ -4,14 +4,12 @@ import Items from "./Items";
 import { projects } from "../../Data";
 import "./portfolio.css";
 import { AnimatePresence } from "framer-motion";
-import shapeOne from "../../assets/shape-1.png";
+import shapeOne from "../../assets/shape-1.webp";
 
 const allNavList = [
   "all",
   ...new Set(projects.map((project) => project.category)),
 ];
-
-console.log(allNavList);
 
 const Portfolio = () => {
   const [projectItems, setMenuItems] = useState(

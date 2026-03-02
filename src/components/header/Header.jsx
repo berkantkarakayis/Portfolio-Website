@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { flushSync } from 'react-dom';
+import React, { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { links } from "../../Data";
-import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram,  } from 'react-icons/fa';
-import {BsSun, BsMoon} from 'react-icons/bs';
-import './header.css';
-import { Link } from 'react-scroll';
-import { animateScroll } from 'react-scroll';
-import shapeOne from '../../assets/shape-1.png';
+import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { BsSun, BsMoon } from "react-icons/bs";
+import "./header.css";
+import { Link } from "react-scroll";
+import { animateScroll } from "react-scroll";
+import shapeOne from "../../assets/shape-1.webp";
 
-const getStorageTheme = () =>{
-    let theme = 'light-theme';
-    if(localStorage.getItem('theme')){
-        theme = localStorage.getItem('theme');
-    }
-    return theme;
-}
+const getStorageTheme = () => {
+  let theme = "light-theme";
+  if (localStorage.getItem("theme")) {
+    theme = localStorage.getItem("theme");
+  }
+  return theme;
+};
 
 const Header = ({ introDone, logoRef }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -27,22 +27,21 @@ const Header = ({ introDone, logoRef }) => {
   };
 
   const changeNav = () => {
-    if(window.scrollY >= 80) {
-        setScrollNav(true);
-    }
-    else{
-        setScrollNav(false);
+    if (window.scrollY >= 80) {
+      setScrollNav(true);
+    } else {
+      setScrollNav(false);
     }
   };
 
   const toggleTheme = async () => {
     if (!themeToggleRef.current) {
-      setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme');
+      setTheme(theme === "light-theme" ? "dark-theme" : "light-theme");
       return;
     }
 
     if (!document.startViewTransition) {
-      setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme');
+      setTheme(theme === "light-theme" ? "dark-theme" : "light-theme");
       return;
     }
 
@@ -52,12 +51,12 @@ const Header = ({ introDone, logoRef }) => {
     const y = top + height / 2;
     const maxRadius = Math.hypot(
       Math.max(left, window.innerWidth - left),
-      Math.max(top, window.innerHeight - top)
+      Math.max(top, window.innerHeight - top),
     );
 
     await document.startViewTransition(() => {
       flushSync(() => {
-        setTheme(theme === 'light-theme' ? 'dark-theme' : 'light-theme');
+        setTheme(theme === "light-theme" ? "dark-theme" : "light-theme");
       });
     }).ready;
 
@@ -70,111 +69,129 @@ const Header = ({ introDone, logoRef }) => {
       },
       {
         duration: 400,
-        easing: 'ease-in-out',
-        pseudoElement: '::view-transition-new(root)',
-      }
+        easing: "ease-in-out",
+        pseudoElement: "::view-transition-new(root)",
+      },
     );
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', changeNav);
+    window.addEventListener("scroll", changeNav);
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle('no-scroll', showMenu);
+    document.body.classList.toggle("no-scroll", showMenu);
   }, [showMenu]);
 
   useEffect(() => {
     document.documentElement.className = theme;
-    localStorage.setItem('theme', theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   return (
-    <header className={`${scrollNav ? 'scroll-header': ''}
-    header`}>
-        <nav className="nav">
-            <span ref={logoRef} className="nav__logo-wrap">
-                <Link
-                    to='/'
-                    onClick={scrollTop}
-                    className={`nav__logo text-cs ${introDone ? '' : 'is-hidden'}`}
-                >
-                    Berkant
-                </Link>
-            </span>
+    <header
+      className={`${scrollNav ? "scroll-header" : ""}
+    header`}
+    >
+      <nav className="nav">
+        <span ref={logoRef} className="nav__logo-wrap">
+          <Link
+            to="home"
+            onClick={scrollTop}
+            className={`nav__logo text-cs ${introDone ? "" : "is-hidden"}`}
+            href="#home"
+          >
+            Berkant
+          </Link>
+        </span>
 
-            <div className={`${showMenu ? 'nav__menu show-menu' :
-            'nav__menu'}`}>
-               <div className="nav__data">
-                    <ul className="nav__list">
-                        {links.map(({name, path}, index)=>{
-                            return(
-                                <li className="nav__item" key={index}>
-                                    <Link 
-                                        className='nav__link text-cs'
-                                        to={path}
-                                        spy={true} 
-                                        hashSpy={true}
-                                        smooth={true} 
-                                        offset={-100} 
-                                        duration={500} 
-                                        onClick={() => setShowMenu(!showMenu)}
-                                    >
-                                        {name}
-                                    </Link>
-                                </li>
-                            )
-                        })}
-                    </ul>
+        <div className={`${showMenu ? "nav__menu show-menu" : "nav__menu"}`}>
+          <div className="nav__data">
+            <ul className="nav__list">
+              {links.map(({ name, path }, index) => {
+                return (
+                  <li className="nav__item" key={index}>
+                    <Link
+                      className="nav__link text-cs"
+                      to={path}
+                      href={`#${path}`}
+                      spy={true}
+                      hashSpy={true}
+                      smooth={true}
+                      offset={-100}
+                      duration={500}
+                      onClick={() => setShowMenu(!showMenu)}
+                    >
+                      {name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
 
-                    <div className='header__socials'>
-                        <a href='https://twitter.com/berkantkrkyss' className='header__social-link'>
-                            <FaTwitter />
-                        </a>
+            <div className="header__socials">
+              <a
+                href="https://twitter.com/berkantkrkyss"
+                className="header__social-link"
+              >
+                <FaTwitter />
+              </a>
 
-                        <a href='https://www.linkedin.com/in/berkant-karakayis/' className='header__social-link'>
-                            <FaLinkedinIn />
-                        </a>
+              <a
+                href="https://www.linkedin.com/in/berkant-karakayis/"
+                className="header__social-link"
+              >
+                <FaLinkedinIn />
+              </a>
 
-                        <a href='https://github.com/berkantkarakayis' className='header__social-link'>
-                            <FaGithub />
-                        </a>
+              <a
+                href="https://github.com/berkantkarakayis"
+                className="header__social-link"
+              >
+                <FaGithub />
+              </a>
 
-                        <a href='https://www.instagram.com/berkantkrkys/' className='header__social-link'>
-                            <FaInstagram />
-                        </a>
-                    </div>
-               </div>
-
-               <div className="section__deco deco__left header__deco">
-                    <img src={shapeOne} alt='' className='shape'></img>
-                </div>
+              <a
+                href="https://www.instagram.com/berkantkrkys/"
+                className="header__social-link"
+              >
+                <FaInstagram />
+              </a>
             </div>
+          </div>
 
-            <div
-                className={`nav__overlay ${showMenu ? 'show-overlay' : ''}`}
-                onClick={() => setShowMenu(false)}
-            />
+          <div className="section__deco deco__left header__deco">
+            <img src={shapeOne} alt="" className="shape"></img>
+          </div>
+        </div>
 
-            <div className="nav__btns">
-                <div
-                    ref={themeToggleRef}
-                    className="theme__toggler"
-                    onClick={toggleTheme}
-                >
-                    {theme === 'light-theme' ? <BsMoon /> : <BsSun />}
-                </div>
+        <div
+          className={`nav__overlay ${showMenu ? "show-overlay" : ""}`}
+          onClick={() => setShowMenu(false)}
+        />
 
-                <div className={`${showMenu ? 'nav__toggle animate-toggle' :
-                    'nav__toggle'}`} onClick={() =>
-                    setShowMenu(!showMenu)}>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
+        <div className="nav__btns">
+          <div
+            ref={themeToggleRef}
+            className="theme__toggler"
+            onClick={toggleTheme}
+          >
+            {theme === "light-theme" ? <BsMoon /> : <BsSun />}
+          </div>
+
+          <div
+            className={`${
+              showMenu ? "nav__toggle animate-toggle" : "nav__toggle"
+            }`}
+            onClick={() => setShowMenu(!showMenu)}
+          >
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -1,7 +1,7 @@
 import React from "react";
-import profileImg from "../../assets/profile-img-2.png";
-import shapeOne from "../../assets/shape-1.png";
-import shapeTwo from "../../assets/shape-2.png";
+import profileImg from "../../assets/profile-img-2.webp";
+import shapeOne from "../../assets/shape-1.webp";
+import shapeTwo from "../../assets/shape-2.webp";
 import resume from "../../assets/Resume/resume.pdf";
 
 import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";

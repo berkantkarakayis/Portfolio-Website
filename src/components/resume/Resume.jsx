@@ -2,7 +2,7 @@ import React from "react";
 import { cv } from "../../Data";
 import Card from "./Card";
 import "./resume.css";
-import shapeOne from "../../assets/shape-1.png";
+import shapeOne from "../../assets/shape-1.webp";
 
 const Resume = () => {
   const educationItems = cv.filter((item) => item.category === "education");
@@ -62,4 +62,4 @@ const Resume = () => {
   );
 };
 
-export default Resume
+export default Resume;
