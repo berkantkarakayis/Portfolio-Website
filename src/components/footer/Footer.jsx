@@ -7,19 +7,35 @@ const Footer = () => {
     <footer className="footer">
         <div className="footer__container container grid">
             <div className='footer__socials'>
-                <a href='https://twitter.com/berkantkrkyss' className='footer__social-link'>
+                <a
+                  href='https://twitter.com/berkantkrkyss'
+                  className='footer__social-link'
+                  aria-label='Twitter'
+                >
                     <FaTwitter />
                 </a>
 
-                <a href='https://www.linkedin.com/in/berkant-karakayis/' className='footer__social-link'>
+                <a
+                  href='https://www.linkedin.com/in/berkant-karakayis/'
+                  className='footer__social-link'
+                  aria-label='LinkedIn'
+                >
                     <FaLinkedinIn />
                 </a>
 
-                <a href='https://github.com/berkantkarakayis' className='footer__social-link'>
+                <a
+                  href='https://github.com/berkantkarakayis'
+                  className='footer__social-link'
+                  aria-label='GitHub'
+                >
                     <FaGithub />
                 </a>
 
-                <a href='https://www.instagram.com/berkantkrkys/' className='footer__social-link'>
+                <a
+                  href='https://www.instagram.com/berkantkrkys/'
+                  className='footer__social-link'
+                  aria-label='Instagram'
+                >
                     <FaInstagram />
                 </a>
             </div>

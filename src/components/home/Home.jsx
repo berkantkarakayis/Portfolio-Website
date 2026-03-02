@@ -96,6 +96,7 @@ const Home = ({ introDone }) => {
             <a
               href="https://twitter.com/berkantkrkyss"
               className="home__social-link"
+              aria-label="Twitter"
             >
               <FaTwitter />
             </a>
@@ -103,6 +104,7 @@ const Home = ({ introDone }) => {
             <a
               href="https://www.linkedin.com/in/berkant-karakayis/"
               className="home__social-link"
+              aria-label="LinkedIn"
             >
               <FaLinkedinIn />
             </a>
@@ -110,6 +112,7 @@ const Home = ({ introDone }) => {
             <a
               href="https://github.com/berkantkarakayis"
               className="home__social-link"
+              aria-label="GitHub"
             >
               <FaGithub />
             </a>
@@ -117,6 +120,7 @@ const Home = ({ introDone }) => {
             <a
               href="https://www.instagram.com/berkantkrkys/"
               className="home__social-link"
+              aria-label="Instagram"
             >
               <FaInstagram />
             </a>

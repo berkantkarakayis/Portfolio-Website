@@ -134,6 +134,7 @@ const Header = ({ introDone, logoRef }) => {
               <a
                 href="https://twitter.com/berkantkrkyss"
                 className="header__social-link"
+                aria-label="Twitter"
               >
                 <FaTwitter />
               </a>
@@ -141,6 +142,7 @@ const Header = ({ introDone, logoRef }) => {
               <a
                 href="https://www.linkedin.com/in/berkant-karakayis/"
                 className="header__social-link"
+                aria-label="LinkedIn"
               >
                 <FaLinkedinIn />
               </a>
@@ -148,6 +150,7 @@ const Header = ({ introDone, logoRef }) => {
               <a
                 href="https://github.com/berkantkarakayis"
                 className="header__social-link"
+                aria-label="GitHub"
               >
                 <FaGithub />
               </a>
@@ -155,6 +158,7 @@ const Header = ({ introDone, logoRef }) => {
               <a
                 href="https://www.instagram.com/berkantkrkys/"
                 className="header__social-link"
+                aria-label="Instagram"
               >
                 <FaInstagram />
               </a>

@@ -22,7 +22,7 @@ const LogoLoop = ({
       }}
     >
       <div className="logo-loop__track">
-        <div className="logo-loop__list" aria-hidden="true">
+        <div className="logo-loop__list">
           {logos.map((item, index) => (
             <div className="logo-loop__item" key={`logo-a-${index}`}>
               {item.href ? (
@@ -60,6 +60,8 @@ const LogoLoop = ({
                   title={item.title}
                   target="_blank"
                   rel="noreferrer"
+                  tabIndex={-1}
+                  aria-hidden="true"
                 >
                   <span className="logo-loop__node">{item.node}</span>
                 </a>
@@ -68,6 +70,7 @@ const LogoLoop = ({
                   className="logo-loop__node"
                   aria-label={item.title}
                   title={item.title}
+                  aria-hidden="true"
                 >
                   {item.node}
                 </span>

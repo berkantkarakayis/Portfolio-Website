@@ -94,12 +94,16 @@ const Contact = () => {
         <form className="contact__form" onSubmit={handleSubmit}>
           <div className="contact__form-group grid">
             <div className="contact__form-div">
-              <label className="contact__form-tag text-cs">
+              <label className="contact__form-tag text-cs" htmlFor="contact-name">
                 Your Full Name <b>*</b>
               </label>
               <input
+                id="contact-name"
                 type="text"
                 name="name"
+                autoComplete="name"
+                required
+                aria-required="true"
                 onChange={handleChange}
                 value={form.name}
                 className="contact__form-input"
@@ -107,12 +111,19 @@ const Contact = () => {
             </div>
 
             <div className="contact__form-div">
-              <label className="contact__form-tag text-cs">
+              <label
+                className="contact__form-tag text-cs"
+                htmlFor="contact-email"
+              >
                 Your Email Address <b>*</b>
               </label>
               <input
+                id="contact-email"
                 type="email"
                 name="email"
+                autoComplete="email"
+                required
+                aria-required="true"
                 onChange={handleChange}
                 value={form.email}
                 className="contact__form-input"
@@ -121,12 +132,19 @@ const Contact = () => {
           </div>
 
           <div className="contact__form-div">
-            <label className="contact__form-tag text-cs">
+            <label
+              className="contact__form-tag text-cs"
+              htmlFor="contact-subject"
+            >
               Your Subject <b>*</b>
             </label>
             <input
+              id="contact-subject"
               type="text"
               name="subject"
+              autoComplete="off"
+              required
+              aria-required="true"
               onChange={handleChange}
               value={form.subject}
               className="contact__form-input"
@@ -134,11 +152,17 @@ const Contact = () => {
           </div>
 
           <div className="contact__form-div contact__form-area">
-            <label className="contact__form-tag text-cs">
+            <label
+              className="contact__form-tag text-cs"
+              htmlFor="contact-message"
+            >
               Your Message <b>*</b>
             </label>
             <textarea
+              id="contact-message"
               name="message"
+              required
+              aria-required="true"
               onChange={handleChange}
               value={form.message}
               className="contact__form-input"
