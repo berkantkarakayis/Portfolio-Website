@@ -162,7 +162,7 @@ const Skills = () => {
           ))}
       </div>
 
-      <div className="section__deco deco__left">
+      <div className="section__deco deco__right">
         <img src={shapeOne} alt="" className="shape"></img>
       </div>
 

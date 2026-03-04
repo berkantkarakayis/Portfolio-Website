@@ -25,6 +25,11 @@ const Header = ({ introDone, logoRef }) => {
   const [theme, setTheme] = useState("light-theme");
   const [themeReady, setThemeReady] = useState(false);
   const themeToggleRef = useRef(null);
+  const [activeLink, setActiveLink] = useState(() => {
+    if (typeof window === "undefined") return "home";
+    const hash = window.location.hash.replace("#", "");
+    return hash || "home";
+  });
 
   const scrollTop = () => {
     animateScroll.scrollToTop();
@@ -85,6 +90,16 @@ const Header = ({ introDone, logoRef }) => {
   }, []);
 
   useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      setActiveLink(hash || "home");
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  useEffect(() => {
     document.body.classList.toggle("no-scroll", showMenu);
   }, [showMenu]);
 
@@ -102,10 +117,14 @@ const Header = ({ introDone, logoRef }) => {
   return (
     <header
       className={`${
-        scrollNav ? "fixed bg-bg-alt animate-header-animate" : "absolute"
-      } top-0 w-full p-8 z-[100]`}
+        scrollNav ? "fixed bg-bg-alt" : "absolute"
+      } top-0 w-full p-8 z-[130]`}
     >
-      <nav className="flex justify-between">
+      <nav
+        className={`flex justify-between ${
+          scrollNav ? "animate-header-animate" : ""
+        }`}
+      >
         <span ref={logoRef} className="inline-flex">
           <Link
             to="home"
@@ -119,87 +138,7 @@ const Header = ({ introDone, logoRef }) => {
           </Link>
         </span>
 
-        <div
-          className={`fixed top-0 right-0 h-screen w-0 overflow-hidden bg-bg-alt transition-all duration-1000 ease-in-out z-[120] ${
-            showMenu ? "w-96" : ""
-          }`}
-        >
-          <div className="w-full my-auto pt-20 pr-20 pl-40">
-            <ul className="mb-10">
-              {links.map(({ name, path }, index) => {
-                return (
-                  <li className="mb-5" key={index}>
-                    <Link
-                      className="text-title text-lg font-bold cursor-pointer transition-colors duration-300 ease-in-out text-cs hover:text-primary"
-                      to={path}
-                      href={`#${path}`}
-                      spy={true}
-                      hashSpy={true}
-                      smooth={true}
-                      offset={-100}
-                      duration={500}
-                      onClick={() => setShowMenu(!showMenu)}
-                      activeClass="text-primary"
-                    >
-                      {name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <div className="flex gap-5 mb-8">
-              <a
-                href="https://twitter.com/berkantkrkyss"
-                className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
-                aria-label="Twitter"
-              >
-                <FaTwitter />
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/berkant-karakayis/"
-                className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedinIn />
-              </a>
-
-              <a
-                href="https://github.com/berkantkarakayis"
-                className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
-                aria-label="GitHub"
-              >
-                <FaGithub />
-              </a>
-
-              <a
-                href="https://www.instagram.com/berkantkrkys/"
-                className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
-                aria-label="Instagram"
-              >
-                <FaInstagram />
-              </a>
-            </div>
-          </div>
-
-          <div className="section__deco deco__left left-20">
-            <img
-              src={shapeOne}
-              alt=""
-              className="shape -top-48 -left-40 -z-10"
-            ></img>
-          </div>
-        </div>
-
-        <div
-          className={`fixed inset-0 bg-black/35 opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out z-[110] ${
-            showMenu ? "opacity-100 pointer-events-auto" : ""
-          }`}
-          onClick={() => setShowMenu(false)}
-        />
-
-        <div className="flex items-center gap-10">
+        <div className="flex items-center gap-10 z-50">
           <div
             ref={themeToggleRef}
             className="text-2xl flex items-center cursor-pointer"
@@ -217,7 +156,9 @@ const Header = ({ introDone, logoRef }) => {
           </div>
 
           <div
-            className="h-8 w-7 relative z-[130] cursor-pointer"
+            className={`h-8 w-7 relative z-[140] cursor-pointer ${
+              showMenu ? "fixed top-8 right-8" : ""
+            }`}
             onClick={() => setShowMenu(!showMenu)}
           >
             <span
@@ -233,6 +174,92 @@ const Header = ({ introDone, logoRef }) => {
           </div>
         </div>
       </nav>
+
+      <div
+        className={`fixed top-0 right-0 h-screen w-0 overflow-hidden bg-bg-alt transition-all duration-1000 ease-in-out z-[120] ${
+          showMenu ? "w-full sm:w-96" : ""
+        }`}
+      >
+        <div className="flex flex-col h-full items-center justify-center w-full pt-20 px-8 sm:pr-20 sm:pl-40">
+          <ul className="mb-10">
+            {links.map(({ name, path }, index) => {
+              return (
+                <li className="mb-5" key={index}>
+                  <Link
+                    className={`text-lg font-bold cursor-pointer transition-colors duration-300 ease-in-out text-cs hover:text-primary ${
+                      activeLink === path ? "text-primary" : "text-title"
+                    }`}
+                    to={path}
+                    href={`#${path}`}
+                    spy={true}
+                    hashSpy={true}
+                    smooth={true}
+                    offset={-100}
+                    duration={500}
+                    onSetActive={(section) => setActiveLink(section)}
+                    onClick={() => {
+                      setActiveLink(path);
+                      setShowMenu(false);
+                    }}
+                    activeClass="text-primary"
+                  >
+                    {name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="flex gap-5 mb-8">
+            <a
+              href="https://twitter.com/berkantkrkyss"
+              className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
+              aria-label="Twitter"
+            >
+              <FaTwitter />
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/berkant-karakayis/"
+              className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedinIn />
+            </a>
+
+            <a
+              href="https://github.com/berkantkarakayis"
+              className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
+              aria-label="GitHub"
+            >
+              <FaGithub />
+            </a>
+
+            <a
+              href="https://www.instagram.com/berkantkrkys/"
+              className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
+              aria-label="Instagram"
+            >
+              <FaInstagram />
+            </a>
+          </div>
+        </div>
+
+        <div className="section__deco deco__left left-20">
+          <img
+            src={shapeOne}
+            alt=""
+            className="shape -top-48 -left-40 -z-10"
+          ></img>
+        </div>
+      </div>
+
+      <div
+        className={`fixed inset-0 bg-black/35 sm:bg-black/40 sm:backdrop-blur-[1px] opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out z-[110] ${
+          showMenu ? "opacity-100 pointer-events-auto" : ""
+        }`}
+        onClick={() => setShowMenu(false)}
+      />
     </header>
   );
 };

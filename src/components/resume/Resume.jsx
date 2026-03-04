@@ -19,7 +19,7 @@ const Resume = () => {
 
       <div className="container relative z-10 grid grid-cols-1 gap-10 md:grid-cols-2">
         <div>
-          <h3 className="text-primary text-center text-[length:var(--h4-font-size)] pb-[30px] border-b-2 border-solid border-[color:var(--border-color)]">
+          <h3 className="text-primary text-center text-[length:var(--h4-font-size)] pb-[30px] border-b-2 border-border-color">
             Education
           </h3>
 
@@ -38,7 +38,7 @@ const Resume = () => {
         </div>
 
         <div>
-          <h3 className="text-primary text-center text-[length:var(--h4-font-size)] pb-[30px] border-b-2 border-solid border-[color:var(--border-color)]">
+          <h3 className="text-primary text-center text-[length:var(--h4-font-size)] pb-[30px] border-b-2 border-border-color">
             Experience
           </h3>
 
@@ -57,7 +57,7 @@ const Resume = () => {
         </div>
       </div>
 
-      <div className="section__deco deco__left">
+      <div className="section__deco deco__right">
         <img src={shapeOne} alt="" className="shape"></img>
       </div>
 

@@ -6,7 +6,7 @@ const Card = ({ title, subtitle, date, description, defaultOpen = false }) => {
   const [showInfo, setShadowInfo] = useState(defaultOpen);
 
   return (
-    <div className="relative border-b-2 border-solid border-[color:var(--border-color)] [&:not(:first-child)]:border-r-2">
+    <div className="relative border-solid border-[color:var(--border-color)] [&:not(:first-child)]:border-r-2">
       <div
         className="cursor-pointer py-8 px-[30px]"
         onClick={() => setShadowInfo(!showInfo)}
@@ -14,7 +14,7 @@ const Card = ({ title, subtitle, date, description, defaultOpen = false }) => {
         <h3 className="cursor-pointer text-[length:var(--largest-font-size)]">
           {title}
         </h3>
-        <span className="absolute z-10 -right-6 -bottom-6 pb-1 w-12 h-12 rounded-full border-2 border-solid border-[color:var(--border-color)] bg-container text-[length:var(--h2-font-size)] shadow-soft flex items-center justify-center leading-[1.3em] transition duration-[1200ms] ease-[var(--transition)]">
+        <span className="absolute z-10 -right-6 -bottom-6 pb-1 w-12 h-12 rounded-full bg-container text-[length:var(--h2-font-size)] shadow-soft flex items-center justify-center leading-[1.3em] transition duration-[1200ms] ease-[var(--transition)]">
           {showInfo ? "-" : "+"}
         </span>
       </div>

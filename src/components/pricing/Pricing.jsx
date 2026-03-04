@@ -190,7 +190,7 @@ const Pricing = () => {
         </div>
       </div>
 
-      <div className="section__deco deco__right">
+      <div className="section__deco deco__left">
         <img src={shapeOne} alt="" className="shape"></img>
       </div>
 
