@@ -1,35 +1,35 @@
 "use client";
 
 import React from "react";
+import { skills } from "../../Data";
+import LogoLoop from "./LogoLoop";
+import { TbBrandCSharp } from "react-icons/tb";
 import {
-  SiAdobephotoshop,
   SiAndroid,
   SiArduino,
   SiBootstrap,
-  SiCss3,
+  SiCss,
   SiGit,
   SiGithub,
   SiHtml5,
   SiJavascript,
   SiJquery,
-  SiMui,
   SiMongodb,
+  SiMui,
   SiMysql,
+  SiNextdotjs,
   SiNodedotjs,
   SiNpm,
   SiReact,
+  SiRedis,
+  SiRedux,
   SiSass,
   SiTypescript,
   SiVite,
   SiWordpress,
-  SiNextdotjs,
   SiXcode,
-  SiRedux,
-  SiRedis,
 } from "react-icons/si";
-import { skills } from "../../Data";
-import LogoLoop from "./LogoLoop";
-import { TbBrandCSharp } from "react-icons/tb";
+import { DiPhotoshop } from "react-icons/di";
 
 const shapeOne = "/assets/shape-1.webp";
 
@@ -42,7 +42,7 @@ const Skills = () => {
       href: "https://developer.mozilla.org/docs/Web/HTML",
     },
     {
-      node: <SiCss3 />,
+      node: <SiCss />,
       title: "CSS3",
       href: "https://developer.mozilla.org/docs/Web/CSS",
     },
@@ -104,7 +104,7 @@ const Skills = () => {
       href: "https://developer.android.com",
     },
     {
-      node: <SiAdobephotoshop />,
+      node: <DiPhotoshop />,
       title: "Photoshop",
       href: "https://www.adobe.com/products/photoshop.html",
     },
