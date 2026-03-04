@@ -33,7 +33,7 @@ const Portfolio = () => {
   };
 
   return (
-    <section className="portfolio section" id="work">
+    <section className="section bg-first" id="work">
       <h2 className="section__title text-cs">Portfolio</h2>
       <p className="section__subtitle">
         My <span>Cases</span>
@@ -41,7 +41,7 @@ const Portfolio = () => {
 
       <List List={navList} filterItems={filterItems} />
 
-      <div className="portfolio__container container grid">
+      <div className="container grid gap-10 md:grid-cols-2 xl:grid-cols-3">
         <AnimatePresence initial={false}>
           <Items projectItems={projectItems} />
         </AnimatePresence>

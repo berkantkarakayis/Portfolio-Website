@@ -11,17 +11,19 @@ const Resume = () => {
   const experienceItems = cv.filter((item) => item.category === "experience");
 
   return (
-    <section className="resume section" id="resume">
+    <section className="section bg-second" id="resume">
       <h2 className="section__title text-cs">Resume</h2>
       <p className="section__subtitle">
         My <span>Story</span>
       </p>
 
-      <div className="resume__container container grid">
-        <div className="resume__group">
-          <h3 className="resume__heading">Education</h3>
+      <div className="container relative z-10 grid grid-cols-1 gap-10 md:grid-cols-2">
+        <div>
+          <h3 className="text-primary text-center text-[length:var(--h4-font-size)] pb-[30px] border-b-2 border-solid border-[color:var(--border-color)]">
+            Education
+          </h3>
 
-          <div className="resume__items">
+          <div>
             {educationItems.map((val, index) => (
               <Card
                 key={val.id}
@@ -35,10 +37,12 @@ const Resume = () => {
           </div>
         </div>
 
-        <div className="resume__group">
-          <h3 className="resume__heading">Experience</h3>
+        <div>
+          <h3 className="text-primary text-center text-[length:var(--h4-font-size)] pb-[30px] border-b-2 border-solid border-[color:var(--border-color)]">
+            Experience
+          </h3>
 
-          <div className="resume__items">
+          <div>
             {experienceItems.map((val, index) => (
               <Card
                 key={val.id}

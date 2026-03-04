@@ -39,42 +39,45 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact section" id="contact">
+    <section className="section bg-first" id="contact">
       <h2 className="section__title text-cs">Contact Me</h2>
       <p className="section__subtitle">
         Let's <span>Talk Abouut Ideas</span>
       </p>
 
-      <div className="contact__container container grid">
-        <div className="contact__content">
-          <div className="contact__card">
-            <span className="contact__card-icon">
+      <div className="container grid gap-12 lg:grid-cols-2 relative z-10">
+        <div>
+          <div className="relative pl-32 mb-10 max-md:pl-24 max-sm:pl-20">
+            <span className="absolute top-0 left-0 w-14 h-14 rounded-full border-2 border-solid border-[color:var(--border-color)] bg-container shadow-soft text-lg grid place-items-center after:content-[''] after:w-10 after:h-0.5 after:bg-border after:absolute after:left-full after:top-1/2 after:-translate-y-1/2 max-sm:after:hidden">
               <FaRegMap />
             </span>
 
-            <h3 className="contact__card-title">Address</h3>
-            <p className="contact__card-data">Istanbul, Turkiye</p>
+            <h3 className="text-2xl font-accent text-title py-1.5">Address</h3>
+            <p className="text-text">Istanbul, Turkiye</p>
           </div>
 
-          <div className="contact__card">
-            <span className="contact__card-icon">
+          <div className="relative pl-32 mb-10 max-md:pl-24 max-sm:pl-20">
+            <span className="absolute top-0 left-0 w-14 h-14 rounded-full border-2 border-solid border-[color:var(--border-color)] bg-container shadow-soft text-lg grid place-items-center after:content-[''] after:w-10 after:h-0.5 after:bg-border after:absolute after:left-full after:top-1/2 after:-translate-y-1/2 max-sm:after:hidden">
               <FaRegUser />
             </span>
 
-            <h3 className="contact__card-title">Freelance</h3>
-            <p className="contact__card-data">Available Right Now!</p>
+            <h3 className="text-2xl font-accent text-title py-1.5">
+              Freelance
+            </h3>
+            <p className="text-text">Available Right Now!</p>
           </div>
 
-          <div className="contact__card">
-            <span className="contact__card-icon">
+          <div className="relative pl-32 mb-10 max-md:pl-24 max-sm:pl-20">
+            <span className="absolute top-0 left-0 w-14 h-14 rounded-full border-2 border-solid border-[color:var(--border-color)] bg-container shadow-soft text-lg grid place-items-center after:content-[''] after:w-10 after:h-0.5 after:bg-border after:absolute after:left-full after:top-1/2 after:-translate-y-1/2 max-sm:after:hidden">
               <FaRegEnvelope />
             </span>
 
-            <h3 className="contact__card-title">Send an Email</h3>
+            <h3 className="text-2xl font-accent text-title py-1.5">
+              Send an Email
+            </h3>
             <a
-              className="contact__card-data"
+              className="text-primary"
               href="mailto:berkantkarakayiss@gmail.com"
-              style={{ color: "hsl(165, 60%, 40%)" }}
             >
               berkantkarakayiss@gmail.com
             </a>
@@ -93,11 +96,14 @@ const Contact = () => {
                 </div> */}
         </div>
 
-        <form className="contact__form" onSubmit={handleSubmit}>
-          <div className="contact__form-group grid">
-            <div className="contact__form-div">
-              <label className="contact__form-tag text-cs" htmlFor="contact-name">
-                Your Full Name <b>*</b>
+        <form onSubmit={handleSubmit}>
+          <div className="grid md:grid-cols-2 gap-x-8">
+            <div className="grid gap-2 mb-8">
+              <label
+                className="ml-8 text-xs font-bold text-cs"
+                htmlFor="contact-name"
+              >
+                Your Full Name <b className="text-primary">*</b>
               </label>
               <input
                 id="contact-name"
@@ -108,16 +114,16 @@ const Contact = () => {
                 aria-required="true"
                 onChange={handleChange}
                 value={form.name}
-                className="contact__form-input"
+                className="border-2 border-solid border-[color:var(--border-color)] bg-container text-title h-14 rounded-full px-8"
               />
             </div>
 
-            <div className="contact__form-div">
+            <div className="grid gap-2 mb-8">
               <label
-                className="contact__form-tag text-cs"
+                className="ml-8 text-xs font-bold text-cs"
                 htmlFor="contact-email"
               >
-                Your Email Address <b>*</b>
+                Your Email Address <b className="text-primary">*</b>
               </label>
               <input
                 id="contact-email"
@@ -128,17 +134,17 @@ const Contact = () => {
                 aria-required="true"
                 onChange={handleChange}
                 value={form.email}
-                className="contact__form-input"
+                className="border-2 border-solid border-[color:var(--border-color)] bg-container text-title h-14 rounded-full px-8"
               />
             </div>
           </div>
 
-          <div className="contact__form-div">
+          <div className="grid gap-2 mb-8">
             <label
-              className="contact__form-tag text-cs"
+              className="ml-8 text-xs font-bold text-cs"
               htmlFor="contact-subject"
             >
-              Your Subject <b>*</b>
+              Your Subject <b className="text-primary">*</b>
             </label>
             <input
               id="contact-subject"
@@ -149,16 +155,16 @@ const Contact = () => {
               aria-required="true"
               onChange={handleChange}
               value={form.subject}
-              className="contact__form-input"
+              className="border-2 border-solid border-[color:var(--border-color)] bg-container text-title h-14 rounded-full px-8"
             />
           </div>
 
-          <div className="contact__form-div contact__form-area">
+          <div className="grid gap-2 mb-8">
             <label
-              className="contact__form-tag text-cs"
+              className="ml-8 text-xs font-bold text-cs"
               htmlFor="contact-message"
             >
-              Your Message <b>*</b>
+              Your Message <b className="text-primary">*</b>
             </label>
             <textarea
               id="contact-message"
@@ -167,13 +173,13 @@ const Contact = () => {
               aria-required="true"
               onChange={handleChange}
               value={form.message}
-              className="contact__form-input"
+              className="border-2 border-solid border-[color:var(--border-color)] bg-container text-title h-36 rounded-3xl px-8 py-5 resize-none"
             ></textarea>
           </div>
 
-          <div className="contact__submit">
+          <div className="flex items-center justify-end flex-wrap gap-x-8 gap-y-4">
             <p>* Accept the terms and conditions.</p>
-            <button type="submit" className="btn tex-cs">
+            <button type="submit" className="btn text-cs">
               Send Message
             </button>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 const LogoLoop = ({
   logos,
@@ -10,52 +10,74 @@ const LogoLoop = ({
   ariaLabel = "Technology logos",
 }) => {
   const duration = Math.max(18, Math.round((logos.length * 140) / speed));
+  const [isPaused, setIsPaused] = useState(false);
 
   return (
     <div
-      className="logo-loop"
+      className="relative w-full overflow-hidden text-inherit"
       role="group"
       aria-label={ariaLabel}
-      style={{
-        "--logo-gap": `${gap}px`,
-        "--logo-height": `${logoHeight}px`,
-        "--logo-duration": `${duration}s`,
-      }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="logo-loop__track">
-        <div className="logo-loop__list">
+      <div
+        className={`flex w-max motion-reduce:animate-none ${
+          isPaused ? "" : "animate-logo-scroll"
+        }`}
+        style={{ "--logo-duration": `${duration}s` }}
+      >
+        <div
+          className="flex items-center"
+          style={{ gap: `${gap}px`, paddingRight: `${gap}px` }}
+        >
           {logos.map((item, index) => (
-            <div className="logo-loop__item" key={`logo-a-${index}`}>
+            <div
+              className="flex-none flex flex-col items-center gap-2"
+              style={{ fontSize: `${logoHeight}px` }}
+              key={`logo-a-${index}`}
+            >
               {item.href ? (
                 <a
-                  className="logo-loop__link"
+                  className="inline-flex items-center text-inherit transition-opacity duration-200 ease-in-out hover:opacity-85"
                   href={item.href}
                   aria-label={item.title}
                   title={item.title}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <span className="logo-loop__node">{item.node}</span>
+                  <span className="inline-flex items-center text-inherit">
+                    {item.node}
+                  </span>
                 </a>
               ) : (
                 <span
-                  className="logo-loop__node"
+                  className="inline-flex items-center text-inherit"
                   aria-label={item.title}
                   title={item.title}
                 >
                   {item.node}
                 </span>
               )}
-              <span className="logo-loop__label">{item.title}</span>
+              <span className="text-xs leading-tight tracking-wide opacity-80 whitespace-nowrap">
+                {item.title}
+              </span>
             </div>
           ))}
         </div>
-        <div className="logo-loop__list" aria-hidden="true">
+        <div
+          className="flex items-center"
+          style={{ gap: `${gap}px`, paddingRight: `${gap}px` }}
+          aria-hidden="true"
+        >
           {logos.map((item, index) => (
-            <div className="logo-loop__item" key={`logo-b-${index}`}>
+            <div
+              className="flex-none flex flex-col items-center gap-2"
+              style={{ fontSize: `${logoHeight}px` }}
+              key={`logo-b-${index}`}
+            >
               {item.href ? (
                 <a
-                  className="logo-loop__link"
+                  className="inline-flex items-center text-inherit transition-opacity duration-200 ease-in-out hover:opacity-85"
                   href={item.href}
                   aria-label={item.title}
                   title={item.title}
@@ -64,11 +86,13 @@ const LogoLoop = ({
                   tabIndex={-1}
                   aria-hidden="true"
                 >
-                  <span className="logo-loop__node">{item.node}</span>
+                  <span className="inline-flex items-center text-inherit">
+                    {item.node}
+                  </span>
                 </a>
               ) : (
                 <span
-                  className="logo-loop__node"
+                  className="inline-flex items-center text-inherit"
                   aria-label={item.title}
                   title={item.title}
                   aria-hidden="true"
@@ -76,7 +100,9 @@ const LogoLoop = ({
                   {item.node}
                 </span>
               )}
-              <span className="logo-loop__label">{item.title}</span>
+              <span className="text-xs leading-tight tracking-wide opacity-80 whitespace-nowrap">
+                {item.title}
+              </span>
             </div>
           ))}
         </div>

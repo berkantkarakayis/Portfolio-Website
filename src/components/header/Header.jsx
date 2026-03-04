@@ -101,29 +101,36 @@ const Header = ({ introDone, logoRef }) => {
 
   return (
     <header
-      className={`${scrollNav ? "scroll-header" : ""}
-    header`}
+      className={`${
+        scrollNav ? "fixed bg-bg-alt animate-header-animate" : "absolute"
+      } top-0 w-full p-8 z-[100]`}
     >
-      <nav className="nav">
-        <span ref={logoRef} className="nav__logo-wrap">
+      <nav className="flex justify-between">
+        <span ref={logoRef} className="inline-flex">
           <Link
             to="home"
             onClick={scrollTop}
-            className={`nav__logo text-cs ${introDone ? "" : "is-hidden"}`}
+            className={`text-title text-2xl font-bold cursor-pointer transition-all duration-500 ease-in-out text-cs ${
+              introDone ? "" : "opacity-0 pointer-events-none -translate-y-1"
+            }`}
             href="#home"
           >
             Berkant
           </Link>
         </span>
 
-        <div className={`${showMenu ? "nav__menu show-menu" : "nav__menu"}`}>
-          <div className="nav__data">
-            <ul className="nav__list">
+        <div
+          className={`fixed top-0 right-0 h-screen w-0 overflow-hidden bg-bg-alt transition-all duration-1000 ease-in-out z-[120] ${
+            showMenu ? "w-96" : ""
+          }`}
+        >
+          <div className="w-full my-auto pt-20 pr-20 pl-40">
+            <ul className="mb-10">
               {links.map(({ name, path }, index) => {
                 return (
-                  <li className="nav__item" key={index}>
+                  <li className="mb-5" key={index}>
                     <Link
-                      className="nav__link text-cs"
+                      className="text-title text-lg font-bold cursor-pointer transition-colors duration-300 ease-in-out text-cs hover:text-primary"
                       to={path}
                       href={`#${path}`}
                       spy={true}
@@ -132,6 +139,7 @@ const Header = ({ introDone, logoRef }) => {
                       offset={-100}
                       duration={500}
                       onClick={() => setShowMenu(!showMenu)}
+                      activeClass="text-primary"
                     >
                       {name}
                     </Link>
@@ -140,10 +148,10 @@ const Header = ({ introDone, logoRef }) => {
               })}
             </ul>
 
-            <div className="header__socials">
+            <div className="flex gap-5 mb-8">
               <a
                 href="https://twitter.com/berkantkrkyss"
-                className="header__social-link"
+                className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
                 aria-label="Twitter"
               >
                 <FaTwitter />
@@ -151,7 +159,7 @@ const Header = ({ introDone, logoRef }) => {
 
               <a
                 href="https://www.linkedin.com/in/berkant-karakayis/"
-                className="header__social-link"
+                className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
                 aria-label="LinkedIn"
               >
                 <FaLinkedinIn />
@@ -159,7 +167,7 @@ const Header = ({ introDone, logoRef }) => {
 
               <a
                 href="https://github.com/berkantkarakayis"
-                className="header__social-link"
+                className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
                 aria-label="GitHub"
               >
                 <FaGithub />
@@ -167,7 +175,7 @@ const Header = ({ introDone, logoRef }) => {
 
               <a
                 href="https://www.instagram.com/berkantkrkys/"
-                className="header__social-link"
+                className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
                 aria-label="Instagram"
               >
                 <FaInstagram />
@@ -175,20 +183,26 @@ const Header = ({ introDone, logoRef }) => {
             </div>
           </div>
 
-          <div className="section__deco deco__left header__deco">
-            <img src={shapeOne} alt="" className="shape"></img>
+          <div className="section__deco deco__left left-20">
+            <img
+              src={shapeOne}
+              alt=""
+              className="shape -top-48 -left-40 -z-10"
+            ></img>
           </div>
         </div>
 
         <div
-          className={`nav__overlay ${showMenu ? "show-overlay" : ""}`}
+          className={`fixed inset-0 bg-black/35 opacity-0 pointer-events-none transition-opacity duration-700 ease-in-out z-[110] ${
+            showMenu ? "opacity-100 pointer-events-auto" : ""
+          }`}
           onClick={() => setShowMenu(false)}
         />
 
-        <div className="nav__btns">
+        <div className="flex items-center gap-10">
           <div
             ref={themeToggleRef}
-            className="theme__toggler"
+            className="text-2xl flex items-center cursor-pointer"
             onClick={toggleTheme}
           >
             {themeReady ? (
@@ -203,13 +217,19 @@ const Header = ({ introDone, logoRef }) => {
           </div>
 
           <div
-            className={`${
-              showMenu ? "nav__toggle animate-toggle" : "nav__toggle"
-            }`}
+            className="h-8 w-7 relative z-[130] cursor-pointer"
             onClick={() => setShowMenu(!showMenu)}
           >
-            <span></span>
-            <span></span>
+            <span
+              className={`absolute left-0 w-full h-0.5 bg-title transition-all duration-300 ease-in-out ${
+                showMenu ? "top-3.5 -rotate-45" : "top-2"
+              }`}
+            ></span>
+            <span
+              className={`absolute left-0 w-full h-0.5 bg-title transition-all duration-300 ease-in-out ${
+                showMenu ? "bottom-3.5 rotate-45" : "bottom-2"
+              }`}
+            ></span>
           </div>
         </div>
       </nav>

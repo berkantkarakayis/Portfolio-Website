@@ -33,7 +33,9 @@ const GlareHover = ({
 
   return (
     <div
-      className={`glare-hover ${active ? "glare-hover--active" : ""} ${className}`.trim()}
+      className={`relative overflow-hidden before:content-[''] before:absolute before:top-1/2 before:left-[-40%] before:w-[var(--glare-size)] before:h-[calc(var(--glare-size)*1.6)] before:bg-[linear-gradient(var(--glare-angle),rgba(255,255,255,0)_0%,var(--glare-color)_45%,rgba(255,255,255,0)_70%)] before:opacity-0 before:-translate-x-1/2 before:-translate-y-1/2 before:transition-[opacity,transform] before:duration-[var(--glare-duration)] before:ease-in-out before:pointer-events-none ${
+        active ? "before:[opacity:var(--glare-opacity)] before:translate-x-[220%]" : ""
+      } ${className}`.trim()}
       style={{
         "--glare-color": glareColor,
         "--glare-opacity": glareOpacity,
@@ -44,7 +46,7 @@ const GlareHover = ({
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
-      <div className="glare-hover__inner">{children}</div>
+      <div className="relative z-10">{children}</div>
     </div>
   );
 };
