@@ -14,9 +14,13 @@ module.exports = {
         "bg-alt": "var(--bg-color-alt)",
         container: "var(--container-color)",
         border: "var(--border-color)",
-      },
-      borderColor: {
-        border: "var(--border-color)",
+        "primary-color": "var(--primary-color)",
+        "title-color": "var(--title-color)",
+        "text-color": "var(--text-color)",
+        "bg-color": "var(--bg-color)",
+        "bg-color-alt": "var(--bg-color-alt)",
+        "container-color": "var(--container-color)",
+        "border-color": "var(--border-color)",
       },
       fontFamily: {
         body: ["var(--body-font)"],

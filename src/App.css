@@ -86,7 +86,7 @@
   --title-color: #000;
   --text-color: #262626;
   --bg-color: #f0ebe3;
-  --bg-color-alt: #eeeeee;
+  --bg-color-alt: rgb(226, 224, 224);
   --container-color: #fff;
   --border-color: #000;
 
@@ -279,6 +279,11 @@ img {
   position: relative;
 }
 
+.section > :not(.section__bg-wrapper):not(.section__deco) {
+  position: relative;
+  z-index: 2;
+}
+
 .section__title,
 .section__subtitle {
   text-align: center;
@@ -403,9 +408,11 @@ img {
 
 .section__bg-wrapper {
   position: absolute;
-  bottom: 148px;
+  bottom: 128px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
 }
 
 .bg__title {

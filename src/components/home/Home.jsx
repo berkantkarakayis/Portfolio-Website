@@ -10,7 +10,7 @@ const resume = "/assets/Resume/resume.pdf";
 
 const Home = ({ introDone }) => {
   return (
-    <section className="relative bg-first pt-20 lg:pt-0 pb-80" id="home">
+    <section className="relative bg-first pt-20 lg:pt-0 pb-20" id="home">
       <div className="relative pt-4 min-h-screen grid items-center">
         <div className="container relative w-full z-10 flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between gap-0 lg:gap-16">
           <div className="w-full lg:w-1/2 max-lg:text-center max-lg:flex max-lg:flex-col max-lg:items-center">

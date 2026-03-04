@@ -16,7 +16,7 @@ const Pricing = () => {
 
       <div className="container grid gap-10 md:grid-cols-2 xl:grid-cols-3">
         <div className="group relative rotate-[-1deg] transition-all duration-300">
-          <div className="absolute inset-0 pointer-events-none rounded-[22px] border-2 border-white/80 bg-white/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.6)] group-hover:-translate-x-1 group-hover:-translate-y-1" />
+          <div className="absolute inset-0 pointer-events-none rounded-[22px] border-2 border-border-color bg-bg-color-alt shadow-[4px_4px_0px_0px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.6)] group-hover:-translate-x-1 group-hover:-translate-y-1" />
           <div className="relative overflow-hidden rounded-[22px] p-8">
             <span className="text-cs block text-title text-xs font-bold tracking-widest uppercase mb-10">
               Hourly Basis
@@ -71,11 +71,11 @@ const Pricing = () => {
         </div>
 
         <div className="group relative rotate-[1deg] transition-all duration-300">
-          <div className="absolute inset-0 pointer-events-none rounded-[22px] border-2 border-white/90 bg-white/25 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.6)] group-hover:-translate-x-1 group-hover:-translate-y-1" />
+          <span className="absolute -top-3 -right-3 z-10 rounded-full border-2 border-white/90 bg-primary text-title text-xs font-bold px-3 py-1 rotate-12">
+            Popular!
+          </span>
+          <div className="absolute inset-0 pointer-events-none rounded-[22px] border-2 border-border-color bg-bg-color-alt  shadow-[4px_4px_0px_0px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.6)] group-hover:-translate-x-1 group-hover:-translate-y-1" />
           <div className="relative overflow-hidden rounded-[22px] p-8">
-            <span className="absolute -top-3 -right-3 rounded-full border-2 border-white/90 bg-primary text-title text-xs font-bold px-3 py-1 rotate-12">
-              Popular!
-            </span>
             <span className="text-cs block text-title text-xs font-bold tracking-widest uppercase mb-10">
               Freelancing
             </span>
@@ -131,7 +131,7 @@ const Pricing = () => {
         </div>
 
         <div className="group relative rotate-[-2deg] transition-all duration-300">
-          <div className="absolute inset-0 pointer-events-none rounded-[22px] border-2 border-white/80 bg-white/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.6)] group-hover:-translate-x-1 group-hover:-translate-y-1" />
+          <div className="absolute inset-0 pointer-events-none rounded-[22px] border-border-color bg-bg-color-alt shadow-[4px_4px_0px_0px_rgba(0,0,0,0.55)] transition-all duration-300 group-hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.6)] group-hover:-translate-x-1 group-hover:-translate-y-1" />
           <div className="relative overflow-hidden rounded-[22px] p-8">
             <span className="text-cs block text-title text-xs font-bold tracking-widest uppercase mb-10">
               Full Time

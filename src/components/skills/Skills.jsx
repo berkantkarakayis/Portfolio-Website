@@ -121,7 +121,7 @@ const Skills = () => {
       </p>
 
       <div
-        className="relative my-6 mb-12 overflow-hidden text-white"
+        className="relative my-6 mb-12 overflow-hidden text-title-color"
         aria-label="Technology stacks"
       >
         <LogoLoop
