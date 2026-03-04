@@ -83,7 +83,7 @@ const Skills = () => {
     },
     { node: <SiMysql />, title: "MySQL", href: "https://www.mysql.com" },
     { node: <SiMongodb />, title: "MongoDB", href: "https://www.mongodb.com" },
-    // Other / tools
+    // Other
     { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
     { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
     { node: <SiNpm />, title: "npm", href: "https://www.npmjs.com" },
