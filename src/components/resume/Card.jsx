@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 
 const Card = ({ title, subtitle, date, description, defaultOpen = false }) => {

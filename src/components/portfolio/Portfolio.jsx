@@ -1,10 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
 import List from "./List";
 import Items from "./Items";
 import { projects } from "../../Data";
-import "./portfolio.css";
 import { AnimatePresence } from "framer-motion";
-import shapeOne from "../../assets/shape-1.webp";
+
+const shapeOne = "/assets/shape-1.webp";
 
 const allNavList = [
   "all",

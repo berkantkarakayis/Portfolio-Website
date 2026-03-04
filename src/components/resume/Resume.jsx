@@ -1,8 +1,10 @@
+"use client";
+
 import React from "react";
 import { cv } from "../../Data";
 import Card from "./Card";
-import "./resume.css";
-import shapeOne from "../../assets/shape-1.webp";
+
+const shapeOne = "/assets/shape-1.webp";
 
 const Resume = () => {
   const educationItems = cv.filter((item) => item.category === "education");

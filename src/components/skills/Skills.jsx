@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   SiAdobephotoshop,
@@ -26,10 +28,10 @@ import {
   SiRedis,
 } from "react-icons/si";
 import { skills } from "../../Data";
-import shapeOne from "../../assets/shape-1.webp";
 import LogoLoop from "./LogoLoop";
-import "./skills.css";
 import { TbBrandCSharp } from "react-icons/tb";
+
+const shapeOne = "/assets/shape-1.webp";
 
 const Skills = () => {
   const techLogos = [

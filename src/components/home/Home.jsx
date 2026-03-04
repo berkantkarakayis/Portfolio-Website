@@ -1,10 +1,11 @@
-import React from "react";
-import shapeOne from "../../assets/shape-1.webp";
-import shapeTwo from "../../assets/shape-2.webp";
-import resume from "../../assets/Resume/resume.pdf";
+"use client";
 
+import React from "react";
 import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import "./home.css";
+
+const shapeOne = "/assets/shape-1.webp";
+const shapeTwo = "/assets/shape-2.webp";
+const resume = "/assets/Resume/resume.pdf";
 
 const Home = ({ introDone }) => {
   return (

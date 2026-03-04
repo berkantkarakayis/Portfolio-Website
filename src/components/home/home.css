@@ -157,7 +157,7 @@
 
 .home__subtitle,
 .home__job span {
-  font-size: var(-small-font-size);
+  font-size: var(--small-font-size);
   color: var(--title-color);
 }
 

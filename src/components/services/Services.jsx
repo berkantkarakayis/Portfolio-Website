@@ -1,20 +1,17 @@
+"use client";
+
 import React from "react";
 import { services } from "../../Data";
 import { FaArrowRight } from "react-icons/fa";
-import shapeOne from "../../assets/shape-1.webp";
-import shapeTwo from "../../assets/shape-2.webp";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-
 // import required modules
 import { Pagination } from "swiper/modules";
 
-import "./services.css";
+const shapeOne = "/assets/shape-1.webp";
+const shapeTwo = "/assets/shape-2.webp";
 
 const Services = () => {
   return (

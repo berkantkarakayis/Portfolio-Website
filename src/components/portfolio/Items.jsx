@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
-import shapeTwo from "../../assets/shape-2.webp";
 import { motion } from "framer-motion";
+
+const shapeTwo = "/assets/shape-2.webp";
 
 const Items = ({ projectItems }) => {
   return (

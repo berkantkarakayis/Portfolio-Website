@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+"use client";
+
+import React, { useState } from "react";
 
 const List = ({ List, filterItems }) => { 
     const [active, setActive] = useState(1);

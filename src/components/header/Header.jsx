@@ -1,25 +1,29 @@
+"use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { links } from "../../Data";
 import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { BsSun, BsMoon } from "react-icons/bs";
-import "./header.css";
 import { Link } from "react-scroll";
 import { animateScroll } from "react-scroll";
-import shapeOne from "../../assets/shape-1.webp";
+
+const shapeOne = "/assets/shape-1.webp";
 
 const getStorageTheme = () => {
-  let theme = "light-theme";
-  if (localStorage.getItem("theme")) {
-    theme = localStorage.getItem("theme");
+  if (typeof window === "undefined") {
+    return "light-theme";
   }
-  return theme;
+
+  const storedTheme = localStorage.getItem("theme");
+  return storedTheme || "light-theme";
 };
 
 const Header = ({ introDone, logoRef }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [scrollNav, setScrollNav] = useState(false);
-  const [theme, setTheme] = useState(getStorageTheme());
+  const [theme, setTheme] = useState("light-theme");
+  const [themeReady, setThemeReady] = useState(false);
   const themeToggleRef = useRef(null);
 
   const scrollTop = () => {
@@ -85,9 +89,15 @@ const Header = ({ introDone, logoRef }) => {
   }, [showMenu]);
 
   useEffect(() => {
+    setTheme(getStorageTheme());
+    setThemeReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!themeReady) return;
     document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, [theme, themeReady]);
 
   return (
     <header
@@ -181,7 +191,15 @@ const Header = ({ introDone, logoRef }) => {
             className="theme__toggler"
             onClick={toggleTheme}
           >
-            {theme === "light-theme" ? <BsMoon /> : <BsSun />}
+            {themeReady ? (
+              theme === "light-theme" ? (
+                <BsMoon />
+              ) : (
+                <BsSun />
+              )
+            ) : (
+              <BsMoon />
+            )}
           </div>
 
           <div

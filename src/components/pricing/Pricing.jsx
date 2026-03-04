@@ -1,9 +1,11 @@
+"use client";
+
 import React from "react";
-import shapeOne from "../../assets/shape-1.webp";
-import shapeTwo from "../../assets/shape-2.webp";
 import { FaCheck, FaArrowRight } from "react-icons/fa";
 import GlareHover from "./GlareHover";
-import "./pricing.css";
+
+const shapeOne = "/assets/shape-1.webp";
+const shapeTwo = "/assets/shape-2.webp";
 
 const Pricing = () => {
   return (

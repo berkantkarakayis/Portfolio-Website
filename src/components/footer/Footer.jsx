@@ -1,6 +1,7 @@
-import React from 'react'
-import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram,  } from 'react-icons/fa';
-import './footer.css';
+"use client";
+
+import React from "react";
+import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (

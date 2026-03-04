@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import {
   FaRegAddressBook,
@@ -5,9 +7,9 @@ import {
   FaRegUser,
   FaRegMap,
 } from "react-icons/fa";
-import "./contact.css";
 import axios from "axios";
-import shapeOne from "../../assets/shape-1.webp";
+
+const shapeOne = "/assets/shape-1.webp";
 
 const Contact = () => {
   const [form, setForm] = useState({
