@@ -10,17 +10,11 @@ module.exports = {
         primary: "var(--primary-color)",
         title: "var(--title-color)",
         text: "var(--text-color)",
+        muted: "var(--muted-color)",
         bg: "var(--bg-color)",
         "bg-alt": "var(--bg-color-alt)",
         container: "var(--container-color)",
         border: "var(--border-color)",
-        "primary-color": "var(--primary-color)",
-        "title-color": "var(--title-color)",
-        "text-color": "var(--text-color)",
-        "bg-color": "var(--bg-color)",
-        "bg-color-alt": "var(--bg-color-alt)",
-        "container-color": "var(--container-color)",
-        "border-color": "var(--border-color)",
       },
       fontFamily: {
         body: ["var(--body-font)"],
@@ -28,6 +22,8 @@ module.exports = {
       },
       boxShadow: {
         soft: "var(--shadow)",
+        card: "var(--shadow-card)",
+        "card-hover": "var(--shadow-card-hover)",
       },
       backgroundImage: {
         first: "var(--first-gradient)",
@@ -35,10 +31,6 @@ module.exports = {
         third: "var(--third-gradient)",
       },
       keyframes: {
-        "header-animate": {
-          "0%": { transform: "translateY(-100px)" },
-          "100%": { transform: "translateY(0)" },
-        },
         "home-reveal": {
           "0%": { opacity: "0", transform: "translateY(18px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
@@ -79,13 +71,12 @@ module.exports = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
-        "pricing-border-spin": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
+        "scroll-hint": {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(200%)" },
         },
       },
       animation: {
-        "header-animate": "header-animate 0.8s var(--transition) forwards",
         "home-reveal": "home-reveal 0.9s var(--transition) forwards",
         "home-reveal-pop": "home-reveal-pop 1s var(--transition) forwards",
         "home-reveal-card-left":
@@ -93,7 +84,7 @@ module.exports = {
         "home-reveal-card-right":
           "home-reveal-card-right 0.85s var(--transition) forwards",
         "logo-scroll": "logo-scroll var(--logo-duration) linear infinite",
-        "pricing-border-spin": "pricing-border-spin 2.4s linear infinite",
+        "scroll-hint": "scroll-hint 1.6s ease-in-out infinite",
       },
     },
   },

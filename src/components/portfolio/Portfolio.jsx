@@ -1,54 +1,159 @@
 "use client";
 
-import React, { useState } from "react";
-import List from "./List";
-import Items from "./Items";
-import { projects } from "../../Data";
-import { AnimatePresence } from "framer-motion";
+import React, { useMemo, useState } from "react";
+import { AnimatePresence, LayoutGroup, m } from "framer-motion";
+import { LuChevronDown } from "react-icons/lu";
+import { projects, projectCategories } from "../../Data";
+import { ProjectCard } from "./ProjectCard";
+import { SectionHeading } from "../ui/SectionHeading";
+import { Reveal, StaggerGroup, StaggerItem } from "../ui/Reveal";
 
 const shapeOne = "/assets/shape-1.webp";
+const INITIAL_VISIBLE = 9;
 
-const allNavList = [
-  "all",
-  ...new Set(projects.map((project) => project.category)),
-];
+const FilterTabs = ({ active, onChange, counts }) => (
+  <div
+    className="header__nav mx-auto mb-12 flex max-w-full flex-wrap justify-center gap-1 rounded-full p-1.5"
+    role="tablist"
+    aria-label="Filter projects by category"
+  >
+    {projectCategories.map(({ id, label }) => {
+      const selected = active === id;
+      return (
+        <button
+          key={id}
+          type="button"
+          role="tab"
+          aria-selected={selected}
+          onClick={() => onChange(id)}
+          className={`relative rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 ${
+            selected ? "text-white" : "text-title hover:text-primary"
+          }`}
+        >
+          <span className="relative z-10 inline-flex items-center gap-1.5">
+            {label}
+            <span className={`text-[10px] ${selected ? "text-white/80" : "text-primary"}`}>
+              {counts[id]}
+            </span>
+          </span>
+          {selected && (
+            <m.span
+              layoutId="filter-pill"
+              className="absolute inset-0 rounded-full bg-primary shadow-[0_6px_18px_-6px_var(--primary-color)]"
+              transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              aria-hidden="true"
+            />
+          )}
+        </button>
+      );
+    })}
+  </div>
+);
 
 const Portfolio = () => {
-  const [projectItems, setMenuItems] = useState(
-    projects.filter((item) => item.category === "CSS/JS"),
+  const [category, setCategory] = useState("all");
+  const [expanded, setExpanded] = useState(false);
+
+  const featured = useMemo(() => projects.filter((p) => p.featured), []);
+
+  const counts = useMemo(() => {
+    const c = { all: projects.length };
+    for (const p of projects) c[p.category] = (c[p.category] ?? 0) + 1;
+    return c;
+  }, []);
+
+  const filtered = useMemo(
+    () => (category === "all" ? projects : projects.filter((p) => p.category === category)),
+    [category],
   );
-  const [navList, setCategories] = useState(allNavList);
 
-  const filterItems = (category) => {
-    if (category === "all") {
-      setMenuItems(projects);
-      return;
-    }
+  const visible = expanded ? filtered : filtered.slice(0, INITIAL_VISIBLE);
+  const hiddenCount = filtered.length - visible.length;
 
-    const newProjectItems = projects.filter(
-      (item) => item.category === category,
-    );
-
-    setMenuItems(newProjectItems);
+  const handleCategory = (id) => {
+    setCategory(id);
+    setExpanded(false);
   };
 
   return (
-    <section className="section bg-first" id="work">
-      <h2 className="section__title text-cs">Portfolio</h2>
-      <p className="section__subtitle">
-        My <span>Cases</span>
-      </p>
+    <section className="section scroll-mt-20 bg-first" id="work">
+      <SectionHeading title="Portfolio" kicker="Selected" accent="Work" />
 
-      <List List={navList} filterItems={filterItems} />
+      {/* Featured */}
+      <div className="container mb-20">
+        <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-4" y={16}>
+          <div>
+            <p className="text-cs text-xs font-bold tracking-[0.2em] text-primary">Featured</p>
+            <h3 className="mt-1 text-2xl font-bold text-title sm:text-3xl">
+              Things I&apos;m proud of
+            </h3>
+          </div>
+          <p className="max-w-md text-sm text-text">
+            Production iGaming work under NDA is shown with public links only. Personal projects
+            include source code.
+          </p>
+        </Reveal>
 
-      <div className="container grid gap-10 md:grid-cols-2 xl:grid-cols-3">
-        <AnimatePresence initial={false}>
-          <Items projectItems={projectItems} />
-        </AnimatePresence>
+        <StaggerGroup className="grid gap-6 md:grid-cols-2" stagger={0.1}>
+          {featured.map((project, i) => (
+            <StaggerItem
+              key={project.id}
+              className={i === 0 ? "md:col-span-2 xl:col-span-1" : ""}
+            >
+              <ProjectCard project={project} featured layout={false} />
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </div>
+
+      {/* All projects */}
+      <div className="container">
+        <Reveal className="mb-8 text-center" y={16}>
+          <p className="text-cs text-xs font-bold tracking-[0.2em] text-primary">Archive</p>
+          <h3 className="mt-1 text-2xl font-bold text-title sm:text-3xl">All projects</h3>
+        </Reveal>
+
+        <LayoutGroup id="portfolio">
+          <Reveal y={12}>
+            <FilterTabs active={category} onChange={handleCategory} counts={counts} />
+          </Reveal>
+
+          <m.div layout className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <AnimatePresence mode="popLayout" initial={false}>
+              {visible.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </AnimatePresence>
+          </m.div>
+        </LayoutGroup>
+
+        {hiddenCount > 0 && (
+          <div className="mt-12 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setExpanded(true)}
+              className="btn text-cs inline-flex items-center gap-3"
+            >
+              Show {hiddenCount} more
+              <LuChevronDown aria-hidden="true" />
+            </button>
+          </div>
+        )}
+        {expanded && filtered.length > INITIAL_VISIBLE && (
+          <div className="mt-12 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setExpanded(false)}
+              className="text-cs text-xs font-bold text-title transition-colors hover:text-primary"
+            >
+              Show less
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="section__deco deco__left">
-        <img src={shapeOne} alt="" className="shape"></img>
+        <img src={shapeOne} alt="" className="shape" loading="lazy" decoding="async" />
       </div>
 
       <div className="section__bg-wrapper">

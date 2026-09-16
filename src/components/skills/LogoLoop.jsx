@@ -1,6 +1,37 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+
+const Row = ({ logos, gap, logoHeight, hidden = false }) => (
+  <ul
+    className="flex items-center"
+    style={{ gap: `${gap}px`, paddingRight: `${gap}px` }}
+    aria-hidden={hidden || undefined}
+  >
+    {logos.map((item, index) => (
+      <li
+        className="group flex flex-none flex-col items-center gap-2"
+        style={{ fontSize: `${logoHeight}px` }}
+        key={`${item.title}-${index}`}
+      >
+        <a
+          className="inline-flex items-center text-inherit transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:text-primary"
+          href={item.href}
+          aria-label={item.title}
+          title={item.title}
+          target="_blank"
+          rel="noopener noreferrer"
+          tabIndex={hidden ? -1 : 0}
+        >
+          {item.node}
+        </a>
+        <span className="whitespace-nowrap text-xs leading-tight tracking-wide opacity-70">
+          {item.title}
+        </span>
+      </li>
+    ))}
+  </ul>
+);
 
 const LogoLoop = ({
   logos,
@@ -10,102 +41,19 @@ const LogoLoop = ({
   ariaLabel = "Technology logos",
 }) => {
   const duration = Math.max(18, Math.round((logos.length * 140) / speed));
-  const [isPaused, setIsPaused] = useState(false);
 
   return (
     <div
-      className="relative w-full overflow-hidden text-inherit"
+      className="logo-loop relative w-full overflow-hidden text-inherit"
       role="group"
       aria-label={ariaLabel}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
     >
       <div
-        className={`flex w-max motion-reduce:animate-none ${
-          isPaused ? "" : "animate-logo-scroll"
-        }`}
+        className="logo-loop__track flex w-max motion-reduce:animate-none"
         style={{ "--logo-duration": `${duration}s` }}
       >
-        <div
-          className="flex items-center"
-          style={{ gap: `${gap}px`, paddingRight: `${gap}px` }}
-        >
-          {logos.map((item, index) => (
-            <div
-              className="flex-none flex flex-col items-center gap-2"
-              style={{ fontSize: `${logoHeight}px` }}
-              key={`logo-a-${index}`}
-            >
-              {item.href ? (
-                <a
-                  className="inline-flex items-center text-inherit transition-opacity duration-200 ease-in-out hover:opacity-85"
-                  href={item.href}
-                  aria-label={item.title}
-                  title={item.title}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span className="inline-flex items-center text-inherit">
-                    {item.node}
-                  </span>
-                </a>
-              ) : (
-                <span
-                  className="inline-flex items-center text-inherit"
-                  aria-label={item.title}
-                  title={item.title}
-                >
-                  {item.node}
-                </span>
-              )}
-              <span className="text-xs leading-tight tracking-wide opacity-80 whitespace-nowrap">
-                {item.title}
-              </span>
-            </div>
-          ))}
-        </div>
-        <div
-          className="flex items-center"
-          style={{ gap: `${gap}px`, paddingRight: `${gap}px` }}
-          aria-hidden="true"
-        >
-          {logos.map((item, index) => (
-            <div
-              className="flex-none flex flex-col items-center gap-2"
-              style={{ fontSize: `${logoHeight}px` }}
-              key={`logo-b-${index}`}
-            >
-              {item.href ? (
-                <a
-                  className="inline-flex items-center text-inherit transition-opacity duration-200 ease-in-out hover:opacity-85"
-                  href={item.href}
-                  aria-label={item.title}
-                  title={item.title}
-                  target="_blank"
-                  rel="noreferrer"
-                  tabIndex={-1}
-                  aria-hidden="true"
-                >
-                  <span className="inline-flex items-center text-inherit">
-                    {item.node}
-                  </span>
-                </a>
-              ) : (
-                <span
-                  className="inline-flex items-center text-inherit"
-                  aria-label={item.title}
-                  title={item.title}
-                  aria-hidden="true"
-                >
-                  {item.node}
-                </span>
-              )}
-              <span className="text-xs leading-tight tracking-wide opacity-80 whitespace-nowrap">
-                {item.title}
-              </span>
-            </div>
-          ))}
-        </div>
+        <Row logos={logos} gap={gap} logoHeight={logoHeight} />
+        <Row logos={logos} gap={gap} logoHeight={logoHeight} hidden />
       </div>
     </div>
   );

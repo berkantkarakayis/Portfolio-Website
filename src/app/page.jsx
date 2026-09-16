@@ -1,43 +1,51 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { LazyMotion } from "framer-motion";
 import Header from "../components/header/Header";
 import Home from "../components/home/Home";
 import Skills from "../components/skills/Skills";
 import Portfolio from "../components/portfolio/Portfolio";
 import Resume from "../components/resume/Resume";
-import Pricing from "../components/pricing/Pricing";
+import WorkWithMe from "../components/services/WorkWithMe";
 import Contact from "../components/contact/Contact";
 import Footer from "../components/footer/Footer";
+import { BackToTop } from "../components/ui/BackToTop";
+
+// Loaded on demand so the animation runtime stays out of the initial bundle.
+const loadMotionFeatures = () =>
+  import("framer-motion").then((mod) => mod.domMax);
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export default function Page() {
-  const prefersReducedMotion = useMemo(() => {
-    if (typeof window === "undefined") return false;
-    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  }, []);
-
   const [introMoving, setIntroMoving] = useState(false);
-  const [introDone, setIntroDone] = useState(prefersReducedMotion);
+  const [introDone, setIntroDone] = useState(false);
   const [introDelta, setIntroDelta] = useState({ x: 0, y: 0 });
   const logoRef = useRef(null);
 
   useEffect(() => {
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion()) {
+      // One-off sync with a browser-only media query after hydration.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setIntroDone(true);
+      return;
+    }
 
-    let holdTimer;
-    let moveTimer;
     let resizeRaf = 0;
 
     const updateDelta = () => {
       const logoEl = logoRef.current;
       if (!logoEl) return;
-
       const rect = logoEl.getBoundingClientRect();
       const targetX = rect.left + rect.width / 2;
       const targetY = rect.top + rect.height / 2;
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-      setIntroDelta({ x: targetX - centerX, y: targetY - centerY });
+      setIntroDelta({
+        x: targetX - window.innerWidth / 2,
+        y: targetY - window.innerHeight / 2,
+      });
     };
 
     const scheduleDelta = () => {
@@ -45,58 +53,48 @@ export default function Page() {
       resizeRaf = requestAnimationFrame(updateDelta);
     };
 
-    const startMove = () => {
+    const holdTimer = setTimeout(() => {
       scheduleDelta();
-      requestAnimationFrame(() => {
-        setIntroMoving(true);
-      });
-      moveTimer = setTimeout(() => {
-        setIntroDone(true);
-      }, 900);
-    };
+      requestAnimationFrame(() => setIntroMoving(true));
+    }, 550);
+    const moveTimer = setTimeout(() => setIntroDone(true), 550 + 900);
 
-    holdTimer = setTimeout(startMove, 550);
-
-    const handleResize = () => {
-      if (!introDone) scheduleDelta();
-    };
-
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", scheduleDelta);
 
     return () => {
       clearTimeout(holdTimer);
       clearTimeout(moveTimer);
       if (resizeRaf) cancelAnimationFrame(resizeRaf);
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", scheduleDelta);
     };
-  }, [introDone, prefersReducedMotion]);
+  }, []);
 
   return (
-    <main className="main">
-      {!introDone && !prefersReducedMotion && (
-        <div
-          className={`intro-logo ${introMoving ? "is-moving" : ""} ${
-            introDone ? "is-done" : ""
-          }`}
-          style={{
-            "--intro-dx": `${introDelta.x}px`,
-            "--intro-dy": `${introDelta.y}px`,
-          }}
-          aria-hidden="true"
-        >
-          <span className="text-cs">BERKANT</span>
-        </div>
-      )}
+    <LazyMotion features={loadMotionFeatures} strict>
+      <main className="main">
+        {!introDone && (
+          <div
+            className={`intro-logo ${introMoving ? "is-moving" : ""}`}
+            style={{
+              "--intro-dx": `${introDelta.x}px`,
+              "--intro-dy": `${introDelta.y}px`,
+            }}
+            aria-hidden="true"
+          >
+            <span className="text-cs">BERKANT</span>
+          </div>
+        )}
 
-      <Header introDone={introDone} logoRef={logoRef} />
-      <Home introDone={introDone} />
-      {/* <Services /> */}
-      <Skills />
-      <Portfolio />
-      <Resume />
-      <Pricing />
-      <Contact />
-      <Footer />
-    </main>
+        <Header introDone={introDone} logoRef={logoRef} />
+        <Home introDone={introDone} />
+        <Skills />
+        <Portfolio />
+        <Resume />
+        <WorkWithMe />
+        <Contact />
+        <Footer />
+        <BackToTop />
+      </main>
+    </LazyMotion>
   );
 }

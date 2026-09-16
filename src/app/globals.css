@@ -1,9 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Jost:wght@400;500;700&family=Lora&family=Open+Sans:ital,wght@0,400;0,800;1,400&display=swap");
-@import "swiper/css";
-@import "swiper/css/pagination";
-
 @import "../index.css";
-@import "../App.css";
 
 @tailwind base;
 @tailwind components;

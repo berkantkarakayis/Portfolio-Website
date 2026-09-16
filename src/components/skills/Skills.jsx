@@ -1,169 +1,155 @@
 "use client";
 
 import React from "react";
-import { skills } from "../../Data";
-import LogoLoop from "./LogoLoop";
-import { TbBrandCSharp } from "react-icons/tb";
 import {
-  SiAndroid,
-  SiArduino,
-  SiBootstrap,
-  SiCss,
-  SiGit,
-  SiGithub,
   SiHtml5,
+  SiCss,
   SiJavascript,
-  SiJquery,
-  SiMongodb,
-  SiMui,
-  SiMysql,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiNpm,
-  SiReact,
-  SiRedis,
-  SiRedux,
-  SiSass,
   SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiRedux,
+  SiTailwindcss,
+  SiFramer,
   SiVite,
-  SiWordpress,
-  SiXcode,
+  SiNodedotjs,
+  SiFastify,
+  SiExpress,
+  SiSocketdotio,
+  SiRedis,
+  SiMongodb,
+  SiClickhouse,
+  SiApachekafka,
+  SiRabbitmq,
+  SiDocker,
+  SiNginx,
+  SiGithubactions,
+  SiGit,
+  SiSwift,
+  SiExpo,
+  SiThreedotjs,
+  SiStrapi,
+  SiSwagger,
+  SiVercel,
 } from "react-icons/si";
-import { DiPhotoshop } from "react-icons/di";
+import { skillGroups } from "../../Data";
+import LogoLoop from "./LogoLoop";
+import { SectionHeading } from "../ui/SectionHeading";
+import { SpotlightCard } from "../ui/SpotlightCard";
+import { StaggerGroup, StaggerItem } from "../ui/Reveal";
+import { GroupIcon } from "../ui/icons";
 
 const shapeOne = "/assets/shape-1.webp";
 
+const techLogos = [
+  { node: <SiReact />, title: "React", href: "https://react.dev" },
+  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <SiJavascript />, title: "JavaScript", href: "https://developer.mozilla.org/docs/Web/JavaScript" },
+  { node: <SiRedux />, title: "Redux Toolkit", href: "https://redux-toolkit.js.org" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+  { node: <SiFramer />, title: "framer-motion", href: "https://www.framer.com/motion/" },
+  { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
+  { node: <SiFastify />, title: "Fastify", href: "https://fastify.dev" },
+  { node: <SiExpress />, title: "Express", href: "https://expressjs.com" },
+  { node: <SiSocketdotio />, title: "socket.io", href: "https://socket.io" },
+  { node: <SiRedis />, title: "Redis", href: "https://redis.io" },
+  { node: <SiMongodb />, title: "MongoDB", href: "https://www.mongodb.com" },
+  { node: <SiClickhouse />, title: "ClickHouse", href: "https://clickhouse.com" },
+  { node: <SiApachekafka />, title: "Kafka", href: "https://kafka.apache.org" },
+  { node: <SiRabbitmq />, title: "RabbitMQ", href: "https://www.rabbitmq.com" },
+  { node: <SiDocker />, title: "Docker", href: "https://www.docker.com" },
+  { node: <SiNginx />, title: "nginx", href: "https://nginx.org" },
+  { node: <SiGithubactions />, title: "GitHub Actions", href: "https://github.com/features/actions" },
+  { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
+  { node: <SiSwift />, title: "Swift", href: "https://www.swift.org" },
+  { node: <SiExpo />, title: "Expo", href: "https://expo.dev" },
+  { node: <SiThreedotjs />, title: "Three.js", href: "https://threejs.org" },
+  { node: <SiStrapi />, title: "Strapi", href: "https://strapi.io" },
+  { node: <SiSwagger />, title: "Swagger", href: "https://swagger.io" },
+  { node: <SiVite />, title: "Vite", href: "https://vitejs.dev" },
+  { node: <SiVercel />, title: "Vercel", href: "https://vercel.com" },
+  { node: <SiHtml5 />, title: "HTML5", href: "https://developer.mozilla.org/docs/Web/HTML" },
+  { node: <SiCss />, title: "CSS3", href: "https://developer.mozilla.org/docs/Web/CSS" },
+];
+
 const Skills = () => {
-  const techLogos = [
-    // Frontend tech
-    {
-      node: <SiHtml5 />,
-      title: "HTML5",
-      href: "https://developer.mozilla.org/docs/Web/HTML",
-    },
-    {
-      node: <SiCss />,
-      title: "CSS3",
-      href: "https://developer.mozilla.org/docs/Web/CSS",
-    },
-    { node: <SiSass />, title: "Sass", href: "https://sass-lang.com" },
-    {
-      node: <SiJavascript />,
-      title: "JavaScript",
-      href: "https://javascript.info",
-    },
-    {
-      node: <SiTypescript />,
-      title: "TypeScript",
-      href: "https://www.typescriptlang.org",
-    },
-    { node: <SiReact />, title: "React", href: "https://react.dev" },
-    { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
-    { node: <SiVite />, title: "Vite", href: "https://vitejs.dev" },
-    {
-      node: <SiBootstrap />,
-      title: "Bootstrap",
-      href: "https://getbootstrap.com",
-    },
-    { node: <SiMui />, title: "MUI", href: "https://mui.com" },
-    { node: <SiJquery />, title: "jQuery", href: "https://jquery.com" },
-    {
-      node: <SiRedux />,
-      title: "Redux Toolkit",
-      href: "https://redux-toolkit.js.org",
-    },
-
-    // Backend tech
-    { node: <SiNodedotjs />, title: "Node.js", href: "https://nodejs.org" },
-    { node: <SiRedis />, title: "Redis", href: "https://redis.io" },
-    {
-      node: <TbBrandCSharp />,
-      title: "C#",
-      href: "https://learn.microsoft.com/dotnet/csharp",
-    },
-    { node: <SiMysql />, title: "MySQL", href: "https://www.mysql.com" },
-    { node: <SiMongodb />, title: "MongoDB", href: "https://www.mongodb.com" },
-    // Other tools
-    { node: <SiGit />, title: "Git", href: "https://git-scm.com" },
-    { node: <SiGithub />, title: "GitHub", href: "https://github.com" },
-    { node: <SiNpm />, title: "npm", href: "https://www.npmjs.com" },
-    {
-      node: <SiXcode />,
-      title: "Xcode",
-      href: "https://developer.apple.com/xcode/",
-    },
-    { node: <SiArduino />, title: "Arduino", href: "https://www.arduino.cc" },
-    {
-      node: <SiWordpress />,
-      title: "WordPress",
-      href: "https://wordpress.org",
-    },
-    {
-      node: <SiAndroid />,
-      title: "Android",
-      href: "https://developer.android.com",
-    },
-    {
-      node: <DiPhotoshop />,
-      title: "Photoshop",
-      href: "https://www.adobe.com/products/photoshop.html",
-    },
-  ];
-
   return (
-    <section
-      className="section relative bg-[image:var(--second-gradient)]"
-      id="skills"
-    >
-      <h2 className="section__title text-cs">Professional Skills</h2>
-      <p className="section__subtitle">
-        My <span>Talent</span>
-      </p>
+    <section className="section relative scroll-mt-20 bg-[image:var(--second-gradient)]" id="skills">
+      <SectionHeading title="Professional Skills" kicker="My" accent="Toolbox" />
 
-      <div
-        className="relative my-6 mb-12 overflow-hidden text-title-color"
-        aria-label="Technology stacks"
+      <div className="relative my-6 mb-14 overflow-hidden text-title" aria-label="Technology stack">
+        <LogoLoop logos={techLogos} speed={90} logoHeight={52} gap={56} />
+      </div>
+
+      <StaggerGroup
+        className="container grid gap-6 md:grid-cols-2 xl:grid-cols-6"
+        stagger={0.07}
       >
-        <LogoLoop
-          logos={techLogos}
-          speed={100}
-          direction="left"
-          logoHeight={60}
-          gap={60}
-          hoverSpeed={0}
-          scaleOnHover
-        />
-      </div>
+        {skillGroups.map(({ id, title, icon, blurb, items, span }) => {
+          const full = span === "full";
+          const wide = span === "wide";
 
-      <div className="container grid gap-9 md:grid-cols-2 xl:grid-cols-3">
-        {[...skills]
-          .sort((a, b) => {
-            const order = { frontend: 0, backend: 1, tools: 2 };
-            const categoryDelta =
-              (order[a.category] ?? 99) - (order[b.category] ?? 99);
-            if (categoryDelta !== 0) return categoryDelta;
-            return a.id - b.id;
-          })
-          .map(({ id, name, description }) => (
-            <div
-              className="group relative flex flex-col overflow-hidden rounded-[18px] border border-white/20 bg-[linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] p-7 pb-9 shadow-[0_18px_40px_rgba(0,0,0,0.25)] backdrop-blur-[8px] transition-[transform,box-shadow,border-color] duration-300 ease-in-out before:absolute before:inset-[-1px] before:bg-[linear-gradient(135deg,rgba(255,255,255,0.35),transparent_55%)] before:opacity-40 before:pointer-events-none after:absolute after:-right-[20%] after:-bottom-[30%] after:h-[220px] after:w-[220px] after:bg-[radial-gradient(circle,rgba(255,255,255,0.22)_0%,rgba(255,255,255,0)_70%)] after:opacity-35 after:pointer-events-none after:transition after:duration-300 after:ease-in-out hover:-translate-y-2 hover:border-white/35 hover:shadow-[0_26px_50px_rgba(0,0,0,0.35)] group-hover:after:-translate-y-2.5 group-hover:after:opacity-60"
+          return (
+            <StaggerItem
               key={id}
+              className={`h-full ${
+                full
+                  ? "md:col-span-2 xl:col-span-6"
+                  : wide
+                    ? "md:col-span-2 xl:col-span-3"
+                    : "xl:col-span-2"
+              }`}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-left text-primary text-lg font-semibold tracking-[0.2px] md:text-xl">
-                  {name}
-                </h3>
-              </div>
+              <SpotlightCard className="skill-card flex h-full flex-col rounded-[22px] p-6 sm:p-7">
+                <div
+                  className={`flex flex-1 ${
+                    full
+                      ? "flex-col gap-7 lg:flex-row lg:items-center lg:gap-10"
+                      : "flex-col"
+                  }`}
+                >
+                  {/* Header: horizontal on wide/full cards, stacked on narrow ones
+                      so the blurb gets the full card width instead of a ~160px column. */}
+                  <div
+                    className={`flex gap-4 ${
+                      full || wide ? "items-start" : "flex-col items-start gap-4"
+                    } ${full ? "lg:w-[320px] lg:flex-none" : ""}`}
+                  >
+                    <span className="skill-card__icon grid h-12 w-12 flex-none place-items-center rounded-2xl border border-[color:var(--glass-border)] bg-[color:var(--primary-soft)] text-2xl text-primary">
+                      <GroupIcon name={icon} />
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="text-lg font-semibold text-title md:text-xl">{title}</h3>
+                        <span className="text-cs rounded-full border border-[color:var(--glass-border)] px-2 py-0.5 text-[10px] font-bold text-[color:var(--muted-color)]">
+                          {items.length}
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-sm leading-relaxed text-text">{blurb}</p>
+                    </div>
+                  </div>
 
-              <p className="text-sm md:text-base leading-relaxed text-text">
-                {description}
-              </p>
-            </div>
-          ))}
-      </div>
+                  <ul
+                    className={`flex flex-wrap gap-2 ${
+                      full ? "lg:flex-1" : "mt-auto pt-6"
+                    }`}
+                  >
+                    {items.map((item) => (
+                      <li key={item} className="chip">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </SpotlightCard>
+            </StaggerItem>
+          );
+        })}
+      </StaggerGroup>
 
       <div className="section__deco deco__right">
-        <img src={shapeOne} alt="" className="shape"></img>
+        <img src={shapeOne} alt="" className="shape" loading="lazy" decoding="async" />
       </div>
 
       <div className="section__bg-wrapper">

@@ -1,54 +1,82 @@
 "use client";
 
 import React from "react";
-import { FaTwitter, FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
+import { site, links } from "../../Data";
+import { SocialLinks } from "../ui/SocialLinks";
+import { scrollToSection } from "../../hooks/useActiveSection";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-white/5 py-14 bg-second">
-        <div className="container grid gap-4 md:grid-cols-3 items-center text-center md:text-left">
-            <div className="flex gap-5 justify-center">
-                <a
-                  href='https://twitter.com/berkantkrkyss'
-                  className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
-                  aria-label='Twitter'
-                >
-                    <FaTwitter />
-                </a>
-
-                <a
-                  href='https://www.linkedin.com/in/berkant-karakayis/'
-                  className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
-                  aria-label='LinkedIn'
-                >
-                    <FaLinkedinIn />
-                </a>
-
-                <a
-                  href='https://github.com/berkantkarakayis'
-                  className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
-                  aria-label='GitHub'
-                >
-                    <FaGithub />
-                </a>
-
-                <a
-                  href='https://www.instagram.com/berkantkrkys/'
-                  className="text-title text-lg transition-colors duration-700 ease-in-out hover:text-primary"
-                  aria-label='Instagram'
-                >
-                    <FaInstagram />
-                </a>
-            </div>
-
-            <p className="text-xs font-bold text-cs md:text-center">
-            <span className="text-primary">&copy;2026.</span> All Rights Reserved</p>
-
-            <p className="text-xs font-bold text-cs md:text-right">Developed by 
-            <span className="text-primary"> Berkant Karakayış</span></p>
+    <footer className="relative border-t border-[color:var(--glass-border)] bg-second pb-10 pt-14">
+      <div className="container grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div>
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("home");
+            }}
+            className="text-cs text-2xl font-bold text-title transition-colors hover:text-primary"
+          >
+            Berkant
+          </a>
+          <p className="mt-3 max-w-sm text-sm text-text">
+            {site.role} building real-time products, game engines and multi-brand interfaces.
+            Based in {site.location}, working remotely.
+          </p>
+          <SocialLinks className="mt-5 -ml-2" size="text-lg" />
         </div>
-    </footer>
-  )
-}
 
-export default Footer
+        <nav aria-label="Footer">
+          <p className="text-cs mb-4 text-xs font-bold tracking-[0.2em] text-primary">Navigate</p>
+          <ul className="grid grid-cols-2 gap-2 sm:grid-cols-1">
+            {links.map(({ name, path }) => (
+              <li key={path}>
+                <a
+                  href={`#${path}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(path);
+                  }}
+                  className="text-sm font-semibold text-title transition-colors hover:text-primary"
+                >
+                  {name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <p className="text-cs mb-4 text-xs font-bold tracking-[0.2em] text-primary">Get in touch</p>
+          <a href={`mailto:${site.email}`} className="text-sm font-semibold text-title transition-colors hover:text-primary">
+            {site.email}
+          </a>
+          <p className="mt-2 text-sm text-text">{site.availability}</p>
+          <a
+            href={site.resume}
+            download="Berkant-Karakayis-Resume.pdf"
+            className="mt-4 inline-block text-sm font-semibold text-primary hover:underline"
+          >
+            Download CV ↓
+          </a>
+        </div>
+      </div>
+
+      <div className="container mt-12 flex flex-col items-center justify-between gap-4 border-t border-[color:var(--glass-border)] pt-6 text-xs font-bold text-text sm:flex-row">
+        <p className="text-cs">
+          <span className="text-primary">&copy; {year}</span> {site.name}. All rights reserved.
+        </p>
+        <p className="inline-flex items-center gap-2">
+          Built with <SiNextdotjs aria-hidden="true" title="Next.js" /> Next.js &amp;{" "}
+          <SiTailwindcss aria-hidden="true" title="Tailwind CSS" /> Tailwind
+        </p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
