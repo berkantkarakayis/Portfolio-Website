@@ -400,17 +400,6 @@ const allProjects = [
     img: "/assets/project-betfabriq.webp",
   },
   {
-    id: "doctors-panel",
-    title: "Doctors Association Panel",
-    category: "professional",
-    role: "Team project at Nevera Tech",
-    description:
-      "Admin panel for a doctors' association, paired with a React Native app for patients and doctors. Appointment flows, member management and content tooling.",
-    tags: ["React", "TypeScript", "React Native", "REST APIs"],
-    github: gh("besiktasli-doktorlar-dernegi-ui"),
-    img: "/assets/project21.webp",
-  },
-  {
     id: "private-admin",
     title: "Operations Admin Panel",
     category: "professional",
@@ -473,13 +462,13 @@ const allProjects = [
   },
   {
     id: "portfolio",
-    title: "This Portfolio",
+    title: "Portfolio",
     category: "personal",
     description:
-      "Next.js App Router site with Tailwind CSS, framer-motion reveals, a Spline 3D hero and a view-transition theme switch.",
-    tags: ["Next.js", "Tailwind CSS", "framer-motion", "Spline"],
-    live: "https://berkant.vercel.app",
-    github: gh("Portfolio-Website"),
+      "React.js App Router site with Tailwind CSS, framer-motion reveals, a Spline 3D hero and a view-transition theme switch.",
+    tags: ["React.js", "Tailwind CSS", "framer-motion"],
+    live: "https://berkantkarakayis.github.io/PortfolioWebsite2/",
+    github: gh("PortfolioWebsite2"),
     img: "/assets/project1.webp",
   },
 
@@ -642,16 +631,15 @@ const LEAD_ORDER = [
   "decrypted-text",
 ];
 
-const lead = LEAD_ORDER.map((id) => allProjects.find((p) => p.id === id)).filter(
-  Boolean,
-);
+const lead = LEAD_ORDER.map((id) =>
+  allProjects.find((p) => p.id === id),
+).filter(Boolean);
 const leadIds = new Set(lead.map((p) => p.id));
 
 export const projects = [
   ...lead,
   ...allProjects.filter((p) => !leadIds.has(p.id)),
 ];
-
 
 /* ------------------------------------------------------------------ */
 /*  Work With Me                                                       */
