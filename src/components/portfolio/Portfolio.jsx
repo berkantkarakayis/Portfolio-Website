@@ -6,7 +6,8 @@ import { LuChevronDown } from "react-icons/lu";
 import { projects, projectCategories } from "../../Data";
 import { ProjectCard } from "./ProjectCard";
 import { SectionHeading } from "../ui/SectionHeading";
-import { Reveal, StaggerGroup, StaggerItem } from "../ui/Reveal";
+// StaggerGroup / StaggerItem return with the Featured block below.
+import { Reveal } from "../ui/Reveal";
 
 const shapeOne = "/assets/shape-1.webp";
 const INITIAL_VISIBLE = 9;
@@ -54,7 +55,7 @@ const Portfolio = () => {
   const [category, setCategory] = useState("all");
   const [expanded, setExpanded] = useState(false);
 
-  const featured = useMemo(() => projects.filter((p) => p.featured), []);
+  // const featured = useMemo(() => projects.filter((p) => p.featured), []);
 
   const counts = useMemo(() => {
     const c = { all: projects.length };
@@ -79,7 +80,10 @@ const Portfolio = () => {
     <section className="section scroll-mt-20 bg-first" id="work">
       <SectionHeading title="Portfolio" kicker="Selected" accent="Work" />
 
-      {/* Featured */}
+      {/* Featured showcase — hidden for now; the Archive grid below is enough.
+          To restore it, uncomment this block, the `featured` memo above, and the
+          StaggerGroup / StaggerItem imports at the top of the file.
+
       <div className="container mb-20">
         <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-4" y={16}>
           <div>
@@ -105,6 +109,7 @@ const Portfolio = () => {
           ))}
         </StaggerGroup>
       </div>
+      */}
 
       {/* All projects */}
       <div className="container">

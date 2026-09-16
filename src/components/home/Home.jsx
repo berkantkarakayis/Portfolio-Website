@@ -1,14 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Image from "next/image";
-import { LuArrowDown, LuDownload } from "react-icons/lu";
+import { LuArrowDown, LuBoxes, LuDownload, LuUserRound } from "react-icons/lu";
 import { site, heroRoles, heroStats } from "../../Data";
 import { SplineScene } from "../ui/SplineScene";
 import { SocialLinks } from "../ui/SocialLinks";
 import { RotatingText } from "../ui/RotatingText";
 import { CountUp } from "../ui/CountUp";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { scrollToSection } from "../../hooks/useActiveSection";
 
 const shapeOne = "/assets/shape-1.webp";
@@ -21,10 +20,16 @@ const reveal = (introDone, delay) => ({
 });
 
 const Home = ({ introDone }) => {
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const [flipped, setFlipped] = useState(false);
+  const [splineReady, setSplineReady] = useState(false);
+  // The "press me" hint retires once the toggle has done its job.
+  const [toggleUsed, setToggleUsed] = useState(false);
 
-  // Only pull the Spline runtime on desktop, after the intro. Mobile gets the static portrait.
-  const showSpline = introDone && isDesktop;
+  const handleSplineReady = useCallback(() => setSplineReady(true), []);
+
+  // The Spline runtime is heavy, so it still waits for the intro to finish —
+  // but it now loads on every viewport, with the portrait as the poster frame.
+  const showSpline = introDone;
 
   return (
     <section className="relative bg-first pb-16 pt-24 lg:pb-20 lg:pt-0" id="home">
@@ -116,28 +121,89 @@ const Home = ({ introDone }) => {
             }`}
             style={{ animationDelay: "0.4s" }}
           >
-            <div className="relative z-10 aspect-square w-full overflow-hidden rounded-full bg-primary shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">
-              {showSpline ? (
-                <SplineScene />
-              ) : (
-                <Image
-                  src={profileImg}
-                  alt="Portrait of Berkant Karakayış"
-                  className="absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto object-contain object-bottom"
-                  width={685}
-                  height={800}
-                  sizes="(min-width: 1024px) 45vw, 90vw"
-                  priority
-                />
-              )}
-              <span
-                className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/20"
+            <div className="hero-flip relative z-10 aspect-square w-full">
+              <div className={`hero-flip__inner ${flipped ? "is-flipped" : ""}`}>
+                {/* Front: the 3D scene, with the portrait as its poster. */}
+                <div className="hero-flip__face overflow-hidden rounded-full bg-primary shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">
+                  <Image
+                    src={profileImg}
+                    alt=""
+                    aria-hidden="true"
+                    className={`absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto object-contain object-bottom transition-opacity duration-700 ${
+                      splineReady ? "opacity-0" : "opacity-100"
+                    }`}
+                    width={685}
+                    height={800}
+                    sizes="(min-width: 1024px) 45vw, 90vw"
+                    priority
+                  />
+                  {showSpline && (
+                    <SplineScene onReady={handleSplineReady} paused={flipped} />
+                  )}
+                  <span
+                    className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/20"
+                    aria-hidden="true"
+                  />
+                </div>
+
+                {/* Back: the portrait. */}
+                <div className="hero-flip__face hero-flip__face--back overflow-hidden rounded-full bg-primary shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">
+                  <Image
+                    src={profileImg}
+                    alt="Portrait of Berkant Karakayış"
+                    className="absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto object-contain object-bottom"
+                    width={685}
+                    height={800}
+                    sizes="(min-width: 1024px) 45vw, 90vw"
+                  />
+                  <span
+                    className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-white/20"
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Controls live in their own layer: .hero-flip is a z-10 stacking
+                context, so anything inside it renders below the z-20 stat cards.
+                This overlay matches the circle's box exactly (same width,
+                aspect-square) but sits above them. */}
+            <div className="pointer-events-none absolute left-0 top-0 z-40 aspect-square w-full">
+              <button
+                type="button"
+                onClick={() => {
+                  setFlipped((v) => !v);
+                  setToggleUsed(true);
+                }}
+                aria-pressed={flipped}
+                aria-label={flipped ? "Show the 3D scene" : "Show my photo"}
+                title={flipped ? "Show the 3D scene" : "Show my photo"}
+                className="hero-flip__toggle text-cs pointer-events-auto absolute bottom-0 left-1/2 grid h-12 w-12 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border-2 border-[color:var(--border-color)] bg-container text-lg text-title shadow-soft transition-colors duration-300 hover:border-primary hover:text-primary"
+              >
+                {!toggleUsed && (
+                  <span
+                    className="hero-flip__ping pointer-events-none absolute -inset-[2px] rounded-full border-2 border-primary"
+                    aria-hidden="true"
+                  />
+                )}
+                {flipped ? <LuBoxes aria-hidden="true" /> : <LuUserRound aria-hidden="true" />}
+              </button>
+
+              {/* Hand-drawn nudge so the toggle reads as a control, not decoration. */}
+              <div
+                className={`hero-flip__hint ${toggleUsed ? "is-gone" : ""}`}
                 aria-hidden="true"
-              />
+              >
+                <span className="hero-flip__hint-label font-accent">Press me!</span>
+                <svg className="hero-flip__hint-arrow" viewBox="0 0 62 42" role="presentation">
+                  <path d="M57 6C47 3 22 7 13 29" />
+                  <path d="M11 32l13 1M11 32l8-10" />
+                </svg>
+              </div>
             </div>
 
             {/* Stats: stacked row on mobile, floating cards on desktop */}
-            <div className="mt-6 flex flex-wrap justify-center gap-4 lg:contents">
+            <div className="mt-10 flex flex-wrap justify-center gap-4 lg:contents">
               {heroStats.map(({ id, value, suffix, label, accent }, i) => (
                 <p
                   key={id}

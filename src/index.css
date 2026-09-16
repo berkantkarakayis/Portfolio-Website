@@ -601,6 +601,175 @@ img {
   z-index: 1;
 }
 
+/*--------------------------------------------------*\
+#HERO FLIP CARD
+\*--------------------------------------------------*/
+
+.hero-flip {
+  perspective: 1600px;
+}
+
+.hero-flip__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.95s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-flip__inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.hero-flip__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* Safari needs an explicit transform on both faces to keep them in 3D. */
+  transform: rotateY(0deg);
+}
+
+.hero-flip__face--back {
+  transform: rotateY(180deg);
+}
+
+.hero-flip__toggle {
+  /* Sits on the circle's bottom edge, half in and half out. */
+  transition:
+    border-color 0.3s var(--transition),
+    color 0.3s var(--transition),
+    transform 0.3s var(--transition);
+}
+
+.hero-flip__toggle:hover {
+  transform: translate(-50%, 50%) scale(1.08);
+}
+
+.hero-flip__toggle:active {
+  transform: translate(-50%, 50%) scale(0.94);
+}
+
+.hero-flip__toggle:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 3px;
+}
+
+/* Attention ring that retires after the first press. */
+.hero-flip__ping {
+  animation: hero-flip-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes hero-flip-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70%,
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+.hero-flip__hint {
+  position: absolute;
+  bottom: 10px;
+  /* Left of the toggle: the right side is where the "Products shipped" stat
+     card floats, and white-on-white would swallow the label. */
+  right: 50%;
+  margin-right: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  /* Always drawn over the coloured circle, so it is white with a soft shadow
+     rather than the theme's primary green. */
+  color: #fff;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+  animation: hero-flip-hint-in 0.6s var(--transition) 1.8s both;
+  transition:
+    opacity 0.45s var(--transition),
+    transform 0.45s var(--transition);
+}
+
+.hero-flip__hint.is-gone {
+  /* Drop the entrance animation first: its `both` fill would otherwise
+     outrank these declarations and the hint would never fade out. */
+  animation: none;
+  opacity: 0;
+  transform: translateY(6px) scale(0.94);
+}
+
+.hero-flip__hint-label {
+  font-size: 1.9rem;
+  line-height: 1;
+  white-space: nowrap;
+  transform: rotate(-5deg);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+.hero-flip__hint-arrow {
+  width: 58px;
+  height: 40px;
+  margin-right: -6px;
+  /* Mirrored so the arrowhead points down-right, at the toggle. */
+  transform: scaleX(-1);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes hero-flip-hint-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-flip__hint {
+    margin-right: 26px;
+  }
+
+  .hero-flip__hint-label {
+    font-size: 1.45rem;
+  }
+
+  .hero-flip__hint-arrow {
+    width: 46px;
+    height: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-flip__inner {
+    transition: none;
+  }
+
+  .hero-flip__toggle:hover,
+  .hero-flip__toggle:active {
+    transform: translate(-50%, 50%);
+  }
+
+  .hero-flip__ping {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .hero-flip__hint {
+    animation: none;
+  }
+}
+
 /* Skills bento card: hairline accent on top + icon lift on hover */
 .skill-card::after {
   content: "";

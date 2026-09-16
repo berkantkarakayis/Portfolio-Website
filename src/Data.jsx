@@ -56,8 +56,20 @@ export const heroRoles = [
 ];
 
 export const heroStats = [
-  { id: "years", value: 4, suffix: "+", label: "Years of", accent: "Experience" },
-  { id: "projects", value: 30, suffix: "+", label: "Products", accent: "Shipped" },
+  {
+    id: "years",
+    value: 4,
+    suffix: "+",
+    label: "Years of",
+    accent: "Experience",
+  },
+  {
+    id: "projects",
+    value: 30,
+    suffix: "+",
+    label: "Products",
+    accent: "Shipped",
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -242,8 +254,16 @@ export const education = [
 ];
 
 export const certificates = [
-  { id: "techcareer", name: "Full-Stack Development Bootcamp", issuer: "Techcareer.net" },
-  { id: "udemy-web", name: "Complete Web Development Bootcamp", issuer: "Udemy" },
+  {
+    id: "techcareer",
+    name: "Full-Stack Development Bootcamp",
+    issuer: "Techcareer.net",
+  },
+  {
+    id: "udemy-web",
+    name: "Complete Web Development Bootcamp",
+    issuer: "Udemy",
+  },
   { id: "cisco", name: "Cyber Security", issuer: "Cisco Networking Academy" },
   { id: "btk", name: "Intro to AI & Algorithms", issuer: "BTK Akademi" },
 ];
@@ -268,7 +288,7 @@ export const projectCategories = [
 const gh = (repo) => `https://github.com/berkantkarakayis/${repo}`;
 const pages = (repo) => `https://berkantkarakayis.github.io/${repo}/`;
 
-export const projects = [
+const allProjects = [
   /* ---------- Professional (source private) ---------- */
   {
     id: "fast-games-api",
@@ -431,7 +451,7 @@ export const projects = [
     tags: ["Three.js", "WebGL", "Vite", "JavaScript"],
     live: "https://berkantkarakayis.github.io/threejs-podium/",
     github: gh("threejs-podium"),
-    img: null,
+    img: "/assets/project-podium.webp",
     cover: {
       variant: "podium",
       label: "3D",
@@ -484,7 +504,7 @@ export const projects = [
     description:
       "iOS app that helps people keep a no-contact streak after a breakup. Daily check-ins, an SOS panic button, unsent letters, breathing exercises, a mood journal and an AI companion bear, plus widgets and an anonymous support forum.",
     tags: ["Swift", "SwiftUI", "WidgetKit", "Supabase", "StoreKit 2"],
-    img: null,
+    img: "/assets/project-pofu.webp",
     cover: {
       variant: "app",
       label: "Pofu",
@@ -496,15 +516,16 @@ export const projects = [
   },
   {
     id: "manifesta",
-    title: "Manifesta",
+    title: "Aldım Verdim: Niyet Olumlama",
     category: "mobile",
     description:
       "Manifestation, affirmation and intention-setting app for women. Token-based SwiftUI design system, fully componentised feature modules, home-screen widgets and a Supabase backend.",
     tags: ["Swift", "SwiftUI", "WidgetKit", "Supabase"],
-    img: null,
+    live: "https://apps.apple.com/tr/app/ald%C4%B1m-verdim-niyet-olumlama/id6798382626?l=tr",
+    img: "/assets/project-manifest.webp",
     cover: {
       variant: "app",
-      label: "Manifesta",
+      label: "Aldım Verdim: Niyet Olumlama",
       sub: "Daily intentions · iOS",
       from: "#7c2d12",
       to: "#f59e0b",
@@ -597,12 +618,40 @@ export const projects = [
     id: "arduino-projects",
     title: "Arduino Projects",
     category: "experiments",
-    description: "Collection of small Arduino builds, from beginner to intermediate.",
+    description:
+      "Collection of small Arduino builds, from beginner to intermediate.",
     tags: ["Arduino", "C++"],
     github: gh("Arduino-Projects"),
     img: "/assets/project18.webp",
   },
 ];
+
+/* The archive grid renders in array order and only shows the first 9 before
+   "Show more", so lead with a deliberate mix of professional, personal and
+   mobile work instead of nine consecutive iGaming projects. Everything not
+   listed here keeps its grouped order below. */
+const LEAD_ORDER = [
+  "fast-games-api",
+  "live-chess-leaderboard",
+  "my-agents-bar",
+  "genius-tracker",
+  "threejs-podium",
+  "manifesta",
+  "match-tracking",
+  "pixup-play",
+  "decrypted-text",
+];
+
+const lead = LEAD_ORDER.map((id) => allProjects.find((p) => p.id === id)).filter(
+  Boolean,
+);
+const leadIds = new Set(lead.map((p) => p.id));
+
+export const projects = [
+  ...lead,
+  ...allProjects.filter((p) => !leadIds.has(p.id)),
+];
+
 
 /* ------------------------------------------------------------------ */
 /*  Work With Me                                                       */
@@ -656,6 +705,10 @@ export const services = [
 
 export const engagementModels = [
   { id: "hourly", label: "Hourly", note: "Bug fixes, audits, small features" },
-  { id: "project", label: "Project-based", note: "Defined scope, fixed timeline" },
+  {
+    id: "project",
+    label: "Project-based",
+    note: "Defined scope, fixed timeline",
+  },
   { id: "retainer", label: "Monthly retainer", note: "Ongoing product work" },
 ];
