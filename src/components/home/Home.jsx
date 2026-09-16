@@ -132,8 +132,8 @@ const Home = ({ introDone }) => {
                     className={`absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto object-contain object-bottom transition-opacity duration-700 ${
                       splineReady ? "opacity-0" : "opacity-100"
                     }`}
-                    width={685}
-                    height={800}
+                    width={1570}
+                    height={1448}
                     sizes="(min-width: 1024px) 45vw, 90vw"
                     priority
                   />
@@ -152,8 +152,8 @@ const Home = ({ introDone }) => {
                     src={profileImg}
                     alt="Portrait of Berkant Karakayış"
                     className="absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto object-contain object-bottom"
-                    width={685}
-                    height={800}
+                    width={1570}
+                    height={1448}
                     sizes="(min-width: 1024px) 45vw, 90vw"
                   />
                   <span
