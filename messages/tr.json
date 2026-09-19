@@ -1,0 +1,403 @@
+{
+  "meta": {
+    "title": "Berkant Karakayış | Full-Stack Geliştirici",
+    "titleTemplate": "%s | Berkant Karakayış",
+    "description": "Berkant Karakayış, İstanbul'da yaşayan 4+ yıl deneyimli bir full-stack geliştirici. React, TypeScript, Next.js ve Node.js uzmanı; gerçek zamanlı web platformları, yüksek trafikli ürün arayüzleri, WebSocket sistemleri, HTML5 Canvas motorları ve native iOS uygulamaları geliştiriyor.",
+    "applicationName": "Berkant Karakayış Portfolyo",
+    "ogLocale": "tr_TR",
+    "keywords": [
+      "Berkant Karakayış",
+      "Full-Stack Geliştirici",
+      "React Geliştirici",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "WebSocket",
+      "Gerçek zamanlı sistemler",
+      "WebSocket geliştirici",
+      "React Native geliştirici",
+      "HTML5 Canvas oyun motoru",
+      "İstanbul",
+      "Uzaktan çalışan geliştirici"
+    ]
+  },
+  "og": {
+    "alt": "Berkant Karakayış — Full-Stack Geliştirici",
+    "kicker": "Full-Stack Geliştirici · İstanbul",
+    "blurb": "Gerçek zamanlı web platformları, yüksek trafikli ürün arayüzleri, özel render motorları ve native iOS uygulamaları."
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "skills": "Yetenekler",
+    "work": "İşler",
+    "resume": "Özgeçmiş",
+    "services": "Birlikte Çalışalım",
+    "contact": "İletişim"
+  },
+  "header": {
+    "primaryNav": "Ana menü",
+    "switchToLight": "Açık temaya geç",
+    "switchToDark": "Koyu temaya geç",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat",
+    "language": "Dil",
+    "switchTo": "{language} diline geç"
+  },
+  "common": {
+    "cvFilename": "Berkant-Karakayis-CV.pdf",
+    "downloadCv": "CV İndir",
+    "backToTop": "Başa dön"
+  },
+  "hero": {
+    "greeting": "Merhaba,",
+    "greetingAccent": "benim adım",
+    "iAm": "Ben bir",
+    "viewWork": "İşlerime göz at",
+    "pressMe": "Bana bas!",
+    "scroll": "Kaydır",
+    "scrollToSkills": "Yeteneklere kaydır",
+    "showScene": "3D sahneyi göster",
+    "showPhoto": "Fotoğrafımı göster",
+    "portraitAlt": "Berkant Karakayış'ın portresi",
+    "watermark": "Geliştirici"
+  },
+  "skills": {
+    "title": "Profesyonel Yetenekler",
+    "kicker": "Benim",
+    "accent": "Araç Kutum",
+    "stackLabel": "Teknoloji yığını",
+    "logosLabel": "Teknoloji logoları",
+    "watermark": "Yetenekler"
+  },
+  "portfolio": {
+    "title": "Portfolyo",
+    "kicker": "Seçili",
+    "accent": "İşler",
+    "archive": "Arşiv",
+    "allProjects": "Tüm projeler",
+    "filterLabel": "Projeleri kategoriye göre filtrele",
+    "showMore": "{count} tane daha göster",
+    "showLess": "Daha az göster",
+    "watermark": "Portfolyo"
+  },
+  "projectCard": {
+    "sourcePrivate": "Kaynak kodu gizli",
+    "live": "Canlı",
+    "code": "Kod",
+    "moreTags": "+{count}",
+    "screenshotAlt": "{title} ekran görüntüsü",
+    "openLive": "{title} canlı sitesini aç",
+    "onGitHub": "{title} GitHub'da"
+  },
+  "resume": {
+    "title": "Özgeçmiş",
+    "kicker": "Benim",
+    "accent": "Yolculuğum",
+    "experience": "Deneyim",
+    "educationMore": "Eğitim & daha fazlası",
+    "education": "Eğitim",
+    "certificates": "Sertifikalar",
+    "languages": "Diller",
+    "downloadFull": "CV'nin tamamını indir",
+    "present": "Günümüz",
+    "watermark": "Özgeçmiş"
+  },
+  "services": {
+    "title": "Birlikte Çalışalım",
+    "kicker": "Sizin İçin",
+    "accent": "Neler Yapabilirim",
+    "mostRequested": "En çok talep edilen",
+    "startConversation": "Konuşmaya başla",
+    "letsTalk": "Konuşalım",
+    "emailMe": "E-posta gönder",
+    "mailSubject": "berkant.vercel.app üzerinden proje talebi",
+    "watermark": "Hizmetler"
+  },
+  "contact": {
+    "title": "İletişime Geç",
+    "kicker": "Fikirler",
+    "accent": "Üzerine Konuşalım",
+    "location": "Konum",
+    "remoteFriendly": "Uzaktan çalışmaya uygun",
+    "availability": "Müsaitlik",
+    "email": "E-posta",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı",
+    "nameLabel": "Ad soyad",
+    "namePlaceholder": "Ayşe Yılmaz",
+    "emailLabel": "E-posta adresi",
+    "emailPlaceholder": "ayse@sirket.com",
+    "subjectLabel": "Konu",
+    "subjectPlaceholder": "… için gerçek zamanlı pano",
+    "messageLabel": "Mesaj",
+    "messagePlaceholder": "Projeyi, takvimi ve bütçe aralığını anlat.",
+    "honeypot": "Şirket",
+    "replyNote": "Genellikle <b>24 saat</b> içinde yanıt veriyorum.",
+    "sending": "Gönderiliyor…",
+    "send": "Mesaj gönder",
+    "success": "Teşekkürler! Mesajın yola çıktı. En kısa sürede dönüş yapacağım.",
+    "error": "Bir şeyler ters gitti. Lütfen tekrar dene ya da doğrudan <link>{email}</link> adresine yaz.",
+    "watermark": "İletişim"
+  },
+  "footer": {
+    "blurb": "Gerçek zamanlı ürünler, oyun motorları ve çok markalı arayüzler geliştiren {role}. {location} merkezli, uzaktan çalışıyor.",
+    "navLabel": "Alt bilgi",
+    "navigate": "Gezin",
+    "getInTouch": "İletişime geç",
+    "downloadCv": "CV İndir ↓",
+    "rights": "{name}. Tüm hakları saklıdır.",
+    "builtWith": "Yapım:"
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "text": "Aradığın sayfa mevcut değil ya da taşınmış.",
+    "back": "Ana sayfaya dön"
+  },
+  "data": {
+    "site": {
+      "role": "Full-Stack Geliştirici",
+      "tagline": "İstanbul'da yaşayan full-stack geliştirici. React ve Next.js arayüzlerinden Node.js servislerine, WebSocket sistemlerinden özel render motorlarına ve native iOS uygulamalarına kadar hızlı, gerçek zamanlı web ve mobil ürünleri uçtan uca tasarlıyor ve yayına alıyorum.",
+      "location": "İstanbul, Türkiye",
+      "availability": "Freelance ve uzaktan çalışmaya açığım"
+    },
+    "heroRoles": [
+      "Full-Stack Geliştirici",
+      "Gerçek Zamanlı Sistem Mühendisi",
+      "Oyun Motoru Geliştiricisi",
+      "React & Node.js Uzmanı"
+    ],
+    "heroStats": {
+      "years": { "label": "Yıllık", "accent": "Deneyim" },
+      "projects": { "label": "Yayınlanan", "accent": "Ürün" }
+    },
+    "skillGroups": {
+      "frontend": {
+        "title": "Frontend",
+        "blurb": "Token tabanlı temalandırma, rol bazlı erişim ve canlı veri altında performans dostu animasyonlarla config-driven, çok markalı React arayüzleri."
+      },
+      "backend": {
+        "title": "Backend & Gerçek Zamanlı",
+        "blurb": "Sunucu otoriteli oyun sunucuları, Redis pub/sub ile WebSocket fan-out, idempotent settlement ve gateway arkasında mikroservisler."
+      },
+      "games": {
+        "title": "Oyun & Grafik",
+        "blurb": "70+ üretim casino oyununu çalıştıran ortak HTML5 Canvas motoru, provably fair RNG ve ayarlanabilir RTP matematiği."
+      },
+      "data": {
+        "title": "Veri & Mesajlaşma",
+        "blurb": "Çok markalı bir casino platformunun arkasındaki event-driven servisler ve analitik pipeline'ları."
+      },
+      "mobile": {
+        "title": "Mobil",
+        "blurb": "Expo ile mağazalara çıkan cross-platform uygulamalar, ayrıca Swift ile native iOS ve macOS işleri."
+      },
+      "devops": {
+        "title": "DevOps & Kalite",
+        "blurb": "nginx arkasında konteynerize Node.js dağıtımları; CI/CD, API dokümantasyonu ve bileşen testleri."
+      }
+    },
+    "experience": {
+      "pixupplay": {
+        "role": "Full-Stack Geliştirici",
+        "location": "Malta · Uzaktan",
+        "summary": "Çok markalı bir iGaming platformu için oyun motoru, multiplayer sunucular ve canlı spor grafikleri.",
+        "highlights": [
+          "70'ten fazla üretim casino oyununun üzerinde çalıştığı ortak HTML5 Canvas motorunu geliştirdim ve bakımını yapıyorum. Render, animasyon, asset yükleme, ses ve UI durumu yeniden kullanılabilir modüller; yeni bir oyun çoğunlukla konfigürasyondan ibaret.",
+          "Oyuncuların her sonucu doğrulayabilmesi için provably fair RNG (seed ve nonce ile HMAC-SHA256) ve oyun başına ayarlanabilir RTP matematiği uyguladım.",
+          "Gerçek zamanlı multiplayer oyun sunucularının (Node.js + WebSocket) sahibiyim: sunucu otoriteli durum, bağlantısı kopan oyuncular için reconnect-and-resume ve idempotent cüzdan settlement'ı.",
+          "6 spor için TV yayınlarında canlı maç grafikleri render eden LiveTracker platformunu tasarladım. Olaylar socket.io ve instance'lar arası Redis pub/sub ile akıyor, kopmadan sonra yaklaşık bir saniyede yetişiyor.",
+          "Mikroservis casino platformunda çalıştım: Fastify API gateway, servisler arası gRPC, Kafka ve RabbitMQ olayları, ClickHouse analitiği, JWT / OAuth 2.0 / 2FA giriş güvenliği ve Docker dağıtımları.",
+          "Redux Toolkit, TanStack Query, i18next ve framer-motion kullanarak rol bazlı erişimli, config-driven, çok markalı React + TypeScript arayüzleri geliştirdim.",
+          "Merkezi bir Strapi CMS üzerinde web siteleri ve admin panelleri teslim ettim. GitHub Actions ile Docker, nginx ve PM2 üzerinden dağıtım; Swagger ile API dokümantasyonu; React Testing Library ile test."
+        ]
+      },
+      "nevera-fe": {
+        "role": "Front End Geliştirici",
+        "location": "İstanbul · Hibrit",
+        "summary": "Birden fazla müşteri için müşteriye dönük web uygulamaları ve cross-platform mobil uygulamalar.",
+        "highlights": [
+          "React, Next.js, TypeScript ve Tailwind CSS ile duyarlı, yüksek performanslı web uygulamaları geliştirdim ve bakımını yaptım; gereksiz HTTP isteklerini azaltıp istemci tarafı render verimliliğini artırdım.",
+          "Tekrarlanan arayüzleri ortak bir yeniden kullanılabilir bileşen ve yerleşim seti altında birleştirdim; özellik teslimatını hızlandırdım ve ürünler arası deneyimi tutarlı tuttum.",
+          "Çeşitli kategorilerdeki müşteriler için konseptten mağaza yayınına kadar React Native (Expo) mobil uygulamaların geliştirilmesinde yer aldım."
+        ]
+      },
+      "nevera-intern": {
+        "role": "Front End Geliştirici · Yarı Zamanlı / Stajyer",
+        "location": "İstanbul",
+        "summary": "Eğitimimle eş zamanlı yürüttüğüm üretim React/TypeScript işleri.",
+        "highlights": [
+          "UX/UI ekipleriyle birlikte üretim React/TypeScript kod tabanlarında tasarım mockup'larından duyarlı, tarayıcılar arası uyumlu arayüzler geliştirdim; UI uygulamasından tam özellik sahipliğine geçtim."
+        ]
+      }
+    },
+    "education": {
+      "nku": {
+        "degree": "Ön Lisans, Bilgisayar Programcılığı",
+        "location": "Tekirdağ, Türkiye",
+        "description": "Temel programlama, algoritmalar ve yazılım geliştirme esasları."
+      }
+    },
+    "certificates": {
+      "techcareer": { "name": "Full-Stack Geliştirme Bootcamp'i" },
+      "cisco": { "name": "Siber Güvenlik" },
+      "btk": { "name": "Yapay Zekâ ve Algoritmalara Giriş" }
+    },
+    "languages": {
+      "tr": { "name": "Türkçe", "level": "Ana dil" },
+      "en": { "name": "İngilizce", "level": "Orta-Üstü (B2)" }
+    },
+    "projectCategories": {
+      "all": { "label": "Tümü" },
+      "professional": { "label": "Profesyonel" },
+      "personal": { "label": "Kişisel" },
+      "mobile": { "label": "Mobil & Masaüstü" },
+      "experiments": { "label": "Denemeler" }
+    },
+    "projects": {
+      "fast-games-api": {
+        "role": "Bağımsız geliştirdim",
+        "description": "Platform entegrasyonları için casino oyun API'si ve ekosistemi. Ortak HTML5 Canvas motorunu ve üzerinde 70'ten fazla üretim oyununu, provably fair RNG ve ayarlanabilir RTP ile ben geliştirdim.",
+        "cover": { "sub": "tek ortak motor üzerinde üretim oyunu" }
+      },
+      "genius-tracker": {
+        "role": "Bağımsız geliştirdim",
+        "description": "Futbol, basketbol, tenis, voleybol, beyzbol ve buz hokeyi için iframe ile kolayca gömülen canlı maç takibi ve görselleştirme. Olaylar socket.io üzerinden gelir ve Redis pub/sub ile dağıtılır."
+      },
+      "match-tracking": {
+        "role": "Bağımsız geliştirdim",
+        "description": "Bahis ve trading kullanıcıları için gerçek zamanlı spor takip platformu: düşük gecikmeli maç verisi; VAR kararları, sakatlıklar, uzatmalar ve diğer kritik olaylar için uyarılar, ayrıca operatör admin paneli."
+      },
+      "genius-feeds": {
+        "role": "Bağımsız geliştirdim",
+        "description": "Bahis operatörleri için spor verisi altyapısı: canlı oran akışları, maç öncesi veri, API entegrasyonları, risk yönetimi, tracker widget'ları ve bet-builder araçları."
+      },
+      "pixup-play": {
+        "role": "Ekip çalışması · frontend, API entegrasyonları, admin paneli",
+        "description": "Casino, sportsbook ve bahis borsasını promosyonlar, VIP, affiliate ve kripto ödemelerle birleştiren online platform. Çok markalı, config-driven arayüz ve rol bazlı erişim."
+      },
+      "betroxy": {
+        "role": "Ekip çalışması · frontend, API entegrasyonları, admin paneli",
+        "description": "Casino, sportsbook ve borsa modüllerini bir araya getiren, birden fazla kripto ve yerel para birimini destekleyen bahis platformu."
+      },
+      "betamericano": {
+        "role": "Ekip çalışması · frontend, API entegrasyonları, admin paneli",
+        "description": "Aynı çok markalı kod tabanı üzerinde slotlar, canlı casino, crash oyunları, turnuvalar, görevler ve VIP özellikleri sunan online casino."
+      },
+      "betfabriq": {
+        "title": "Betfabriq Casino Demosu",
+        "role": "Ekip çalışması",
+        "description": "Spor, casino, arcade ve VIP alanları ile değiştirilebilir görsel temalara sahip modern bahis ve casino platform demosu. Fast Games API oyunları içinde çalışıyor."
+      },
+      "private-admin": {
+        "title": "Operasyon Admin Paneli",
+        "role": "Nevera Tech'te ekip projesi",
+        "description": "Tüketici React Native uygulamasını destekleyen dahili admin paneli: teknik olmayan operasyon ekibi için panolar, rol yönetimi ve içerik yapılandırması."
+      },
+      "live-chess-leaderboard": {
+        "title": "Canlı Satranç GM Sıralaması",
+        "description": "Dünyanın en iyi büyük ustalarının gerçek zamanlı sıralaması. Bir Node/Express sunucusu Chess.com API'sini yoklar ve güncellemeleri WebSocket üzerinden iter; kartlar layout animasyonlarıyla yer değiştirir, yeniden bağlanma exponential backoff kullanır."
+      },
+      "threejs-podium": {
+        "title": "Three.js Podyum",
+        "description": "Three.js ve Vite ile geliştirilen etkileşimli 3D podyum vitrini: orbit kontrolleri, ışık düzenleri ve podyum durumları arasında animasyonlu geçişler.",
+        "cover": { "sub": "Three.js ile yapılan WebGL podyum" }
+      },
+      "decrypted-text": {
+        "title": "Kaydırarak Şifre Çöz",
+        "description": "React ile kaydırmaya bağlı metin şifre çözme efekti; hız, karakter setleri ve açılma yönü için canlı ayar paneli."
+      },
+      "portfolio": {
+        "title": "Portfolyo",
+        "description": "Tailwind CSS, framer-motion açılışları, Spline 3D hero ve view-transition tema geçişi olan React.js App Router sitesi."
+      },
+      "my-agents-bar": {
+        "description": "Claude, Copilot, Cursor, Codex ve daha fazlasında AI token kullanımını iş akışından çıkmadan canlı takip eden ücretsiz macOS menü çubuğu uygulaması. Native Swift."
+      },
+      "pofu-no-contact": {
+        "description": "Ayrılık sonrası temassızlık serisini korumaya yardımcı olan iOS uygulaması. Günlük check-in'ler, SOS panik butonu, gönderilmemiş mektuplar, nefes egzersizleri, ruh hali günlüğü ve AI yol arkadaşı ayı; ayrıca widget'lar ve anonim destek forumu.",
+        "cover": { "sub": "Temassızlık yol arkadaşı · iOS" },
+        "status": "App Store · Türkiye"
+      },
+      "manifesta": {
+        "description": "Kadınlar için manifestasyon, olumlama ve niyet belirleme uygulaması. Token tabanlı SwiftUI tasarım sistemi, tamamen bileşenleştirilmiş özellik modülleri, ana ekran widget'ları ve Supabase backend.",
+        "cover": { "sub": "Günlük niyetler · iOS" },
+        "status": "Geliştirme aşamasında"
+      },
+      "ticket-hologram": {
+        "title": "Hologram Efektli Bilet",
+        "description": "İmleç konumuyla yönlendirilen holografik bilet kartı."
+      },
+      "3d-room": {
+        "title": "3D Oda",
+        "description": "Odamın izometrik CSS 3D sahne olarak yeniden yapımı."
+      },
+      "particles": {
+        "title": "Parçacıklar",
+        "description": "Metne dönüşen Canvas parçacık sistemi."
+      },
+      "voyage-slider": {
+        "description": "Kademeli metin geçişleri olan tam ekran görsel slider."
+      },
+      "3d-calculator": {
+        "title": "3D Hesap Makinesi",
+        "description": "Dokunsal 3D tuş basışlarıyla çalışan hesap makinesi."
+      },
+      "expanding-flex-card": {
+        "title": "Genişleyen Flex Kart",
+        "description": "Animasyonlu panellere sahip Flexbox akordeon galeri."
+      },
+      "simon-game": {
+        "title": "Simon Oyunu",
+        "description": "İzle, hatırla, tekrarla. Klasik hafıza oyunu."
+      },
+      "drum-kit": {
+        "title": "Davul Seti",
+        "description": "Örnek ses çalan, klavyeyle çalınan davul makinesi."
+      },
+      "arduino-projects": {
+        "title": "Arduino Projeleri",
+        "description": "Başlangıçtan orta seviyeye küçük Arduino yapımları koleksiyonu."
+      }
+    },
+    "services": {
+      "frontend": {
+        "kicker": "Frontend",
+        "title": "Ölçeklenen ürün arayüzleri",
+        "description": "TypeScript, Tailwind ve framer-motion ile React / Next.js uygulamaları. Çok markalı temalandırma, i18n, rol bazlı erişim ve onları hızlı tutan performans çalışması.",
+        "points": [
+          "Tasarım sistemi ve bileşen kütüphaneleri",
+          "Config-driven çok markalı arayüzler",
+          "Panolar ve admin panelleri",
+          "Performans ve erişilebilirlik iyileştirmeleri"
+        ]
+      },
+      "realtime": {
+        "kicker": "Backend & Gerçek Zamanlı",
+        "title": "Canlı veri, doğru şekilde",
+        "description": "Fastify veya Express ile Node.js servisleri, WebSocket fan-out, Redis pub/sub ve idempotent yazımlar. Kararsız bağlantılar ve yüksek eşzamanlılık için tasarlandı.",
+        "points": [
+          "WebSocket / socket.io sunucuları",
+          "OpenAPI dokümantasyonlu REST ve gRPC API'ler",
+          "Kimlik doğrulama: JWT, OAuth 2.0, 2FA",
+          "Docker, nginx, CI/CD dağıtımları"
+        ]
+      },
+      "games": {
+        "kicker": "Oyun & Mobil",
+        "title": "Motorlar, oyunlar ve uygulamalar",
+        "description": "Provably fair RNG'li HTML5 Canvas oyun motorları ve casino oyunları; ayrıca konseptten mağaza yayınına React Native (Expo) ve native Swift uygulamaları.",
+        "points": [
+          "Canvas / WebGL oyun geliştirme",
+          "Provably fair RNG ve RTP matematiği",
+          "React Native (Expo) uygulamaları",
+          "Swift ile native iOS ve macOS"
+        ]
+      }
+    },
+    "engagementModels": {
+      "hourly": { "label": "Saatlik", "note": "Hata düzeltmeleri, denetimler, küçük özellikler" },
+      "project": { "label": "Proje bazlı", "note": "Tanımlı kapsam, sabit takvim" },
+      "retainer": { "label": "Aylık anlaşma", "note": "Sürekli ürün geliştirme" }
+    }
+  }
+}

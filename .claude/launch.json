@@ -3,8 +3,17 @@
   "configurations": [
     {
       "name": "portfolio-dev",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "3050"],
+      "runtimeExecutable": "nice",
+      "runtimeArgs": [
+        "-n",
+        "10",
+        "npm",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "3050"
+      ],
       "port": 3050
     }
   ]

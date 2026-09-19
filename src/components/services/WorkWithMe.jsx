@@ -2,20 +2,24 @@
 
 import React from "react";
 import { LuCheck, LuArrowRight, LuMail, LuSparkles } from "react-icons/lu";
-import { site, services, engagementModels } from "../../Data";
-import { SectionHeading } from "../ui/SectionHeading";
-import { SpotlightCard } from "../ui/SpotlightCard";
-import { Reveal, StaggerGroup, StaggerItem } from "../ui/Reveal";
-import { GroupIcon } from "../ui/icons";
-import { scrollToSection } from "../../hooks/useActiveSection";
+import { useTranslations } from "next-intl";
+import { useContent } from "@/i18n/content";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
+import { GroupIcon } from "@/components/ui/icons";
+import { scrollToSection } from "@/hooks/useActiveSection";
 
 const shapeOne = "/assets/shape-1.webp";
 const shapeTwo = "/assets/shape-2.webp";
 
 const WorkWithMe = () => {
+  const { site, services, engagementModels } = useContent();
+  const t = useTranslations("services");
+
   return (
     <section className="section scroll-mt-20 bg-third" id="services">
-      <SectionHeading title="Work With Me" kicker="What I" accent="Can Build For You" />
+      <SectionHeading title={t("title")} kicker={t("kicker")} accent={t("accent")} />
 
       <StaggerGroup className="container grid gap-6 md:grid-cols-2 xl:grid-cols-3" stagger={0.1}>
         {services.map(({ id, kicker, title, icon, description, points, popular }) => (
@@ -30,7 +34,7 @@ const WorkWithMe = () => {
               {/* Full-width ribbon flush with the card's top edge, above the icon and title. */}
               {popular && (
                 <span className="text-cs -mx-7 -mt-7 mb-7 flex items-center justify-center gap-2 bg-primary px-4 py-2.5 text-[10px] font-bold tracking-[0.18em] text-white sm:-mx-8 sm:-mt-8 sm:mb-8">
-                  <LuSparkles aria-hidden="true" /> Most requested
+                  <LuSparkles aria-hidden="true" /> {t("mostRequested")}
                 </span>
               )}
 
@@ -66,7 +70,7 @@ const WorkWithMe = () => {
                   }}
                   className="group inline-flex items-center gap-3 text-sm font-bold text-title transition-colors hover:text-primary"
                 >
-                  Start a conversation
+                  {t("startConversation")}
                   <LuArrowRight className="text-primary transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
                 </a>
               </div>
@@ -104,15 +108,15 @@ const WorkWithMe = () => {
               }}
               className="btn btn--primary text-cs inline-flex items-center justify-center gap-3"
             >
-              Let&apos;s talk
+              {t("letsTalk")}
               <LuArrowRight aria-hidden="true" />
             </a>
             <a
-              href={`mailto:${site.email}?subject=Project inquiry from berkant.vercel.app`}
+              href={`mailto:${site.email}?subject=${encodeURIComponent(t("mailSubject"))}`}
               className="btn text-cs inline-flex items-center justify-center gap-3"
             >
               <LuMail aria-hidden="true" />
-              Email me
+              {t("emailMe")}
             </a>
           </div>
         </div>
@@ -123,7 +127,7 @@ const WorkWithMe = () => {
       </div>
 
       <div className="section__bg-wrapper">
-        <span className="bg__title">Services</span>
+        <span className="bg__title" aria-hidden="true">{t("watermark")}</span>
       </div>
     </section>
   );

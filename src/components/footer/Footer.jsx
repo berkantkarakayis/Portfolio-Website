@@ -2,11 +2,16 @@
 
 import React from "react";
 import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
-import { site, links } from "../../Data";
-import { SocialLinks } from "../ui/SocialLinks";
-import { scrollToSection } from "../../hooks/useActiveSection";
+import { useTranslations } from "next-intl";
+import { useContent } from "@/i18n/content";
+import { SocialLinks } from "@/components/ui/SocialLinks";
+import { scrollToSection } from "@/hooks/useActiveSection";
 
 const Footer = () => {
+  const { site, links } = useContent();
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
+  const tc = useTranslations("common");
   const year = new Date().getFullYear();
 
   return (
@@ -24,16 +29,15 @@ const Footer = () => {
             Berkant
           </a>
           <p className="mt-3 max-w-sm text-sm text-text">
-            {site.role} building real-time products, game engines and multi-brand interfaces.
-            Based in {site.location}, working remotely.
+            {t("blurb", { role: site.role, location: site.location })}
           </p>
           <SocialLinks className="mt-5 -ml-2" size="text-lg" />
         </div>
 
-        <nav aria-label="Footer">
-          <p className="text-cs mb-4 text-xs font-bold tracking-[0.2em] text-primary">Navigate</p>
+        <nav aria-label={t("navLabel")}>
+          <p className="text-cs mb-4 text-xs font-bold tracking-[0.2em] text-primary">{t("navigate")}</p>
           <ul className="grid grid-cols-2 gap-2 sm:grid-cols-1">
-            {links.map(({ name, path }) => (
+            {links.map(({ path }) => (
               <li key={path}>
                 <a
                   href={`#${path}`}
@@ -43,7 +47,7 @@ const Footer = () => {
                   }}
                   className="text-sm font-semibold text-title transition-colors hover:text-primary"
                 >
-                  {name}
+                  {tNav(path)}
                 </a>
               </li>
             ))}
@@ -51,27 +55,27 @@ const Footer = () => {
         </nav>
 
         <div>
-          <p className="text-cs mb-4 text-xs font-bold tracking-[0.2em] text-primary">Get in touch</p>
+          <p className="text-cs mb-4 text-xs font-bold tracking-[0.2em] text-primary">{t("getInTouch")}</p>
           <a href={`mailto:${site.email}`} className="text-sm font-semibold text-title transition-colors hover:text-primary">
             {site.email}
           </a>
           <p className="mt-2 text-sm text-text">{site.availability}</p>
           <a
             href={site.resume}
-            download="Berkant-Karakayis-Resume.pdf"
+            download={tc("cvFilename")}
             className="mt-4 inline-block text-sm font-semibold text-primary hover:underline"
           >
-            Download CV ↓
+            {t("downloadCv")}
           </a>
         </div>
       </div>
 
       <div className="container mt-12 flex flex-col items-center justify-between gap-4 border-t border-[color:var(--glass-border)] pt-6 text-xs font-bold text-text sm:flex-row">
         <p className="text-cs">
-          <span className="text-primary">&copy; {year}</span> {site.name}. All rights reserved.
+          <span className="text-primary">&copy; {year}</span> {t("rights", { name: site.name })}
         </p>
         <p className="inline-flex items-center gap-2">
-          Built with <SiNextdotjs aria-hidden="true" title="Next.js" /> Next.js &amp;{" "}
+          {t("builtWith")} <SiNextdotjs aria-hidden="true" title="Next.js" /> Next.js &amp;{" "}
           <SiTailwindcss aria-hidden="true" title="Tailwind CSS" /> Tailwind
         </p>
       </div>

@@ -26,3 +26,20 @@ Then open `http://localhost:3000`.
 npm run build
 npm run start
 ```
+
+## Languages
+
+The site is bilingual. English lives at `/`, Turkish at `/tr` (next-intl, `[locale]` segment,
+`localePrefix: "as-needed"`). Both routes are statically generated.
+
+- UI strings: `messages/en.json` and `messages/tr.json` (same keys).
+- Content (projects, experience, skills, services): `src/Data.jsx` is the English source of truth.
+  `messages/tr.json` → `data` holds Turkish overrides keyed by item `id`; any field left out falls
+  back to English automatically.
+
+### Adding a project
+
+1. Add the project to `allProjects` in `src/Data.jsx` (title, description, tags, links, image).
+2. Add a `data.projects.<id>` block to `messages/tr.json` with the Turkish `description`
+   (and `title` / `role` / `cover.sub` / `status` when they are descriptive text).
+3. Run `node scripts/i18n-check.mjs` to list anything still missing a translation.

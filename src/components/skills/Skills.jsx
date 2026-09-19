@@ -32,12 +32,13 @@ import {
   SiSwagger,
   SiVercel,
 } from "react-icons/si";
-import { skillGroups } from "../../Data";
-import LogoLoop from "./LogoLoop";
-import { SectionHeading } from "../ui/SectionHeading";
-import { SpotlightCard } from "../ui/SpotlightCard";
-import { StaggerGroup, StaggerItem } from "../ui/Reveal";
-import { GroupIcon } from "../ui/icons";
+import { useTranslations } from "next-intl";
+import { useContent } from "@/i18n/content";
+import LogoLoop from "@/components/skills/LogoLoop";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
+import { GroupIcon } from "@/components/ui/icons";
 
 const shapeOne = "/assets/shape-1.webp";
 
@@ -74,12 +75,15 @@ const techLogos = [
 ];
 
 const Skills = () => {
+  const { skillGroups } = useContent();
+  const t = useTranslations("skills");
+
   return (
     <section className="section relative scroll-mt-20 bg-[image:var(--second-gradient)]" id="skills">
-      <SectionHeading title="Professional Skills" kicker="My" accent="Toolbox" />
+      <SectionHeading title={t("title")} kicker={t("kicker")} accent={t("accent")} />
 
-      <div className="relative my-6 mb-14 overflow-hidden text-title" aria-label="Technology stack">
-        <LogoLoop logos={techLogos} speed={90} logoHeight={52} gap={56} />
+      <div className="relative my-6 mb-14 overflow-hidden text-title" aria-label={t("stackLabel")}>
+        <LogoLoop logos={techLogos} speed={90} logoHeight={52} gap={56} ariaLabel={t("logosLabel")} />
       </div>
 
       <StaggerGroup
@@ -153,7 +157,7 @@ const Skills = () => {
       </div>
 
       <div className="section__bg-wrapper">
-        <span className="bg__title">Skills</span>
+        <span className="bg__title" aria-hidden="true">{t("watermark")}</span>
       </div>
     </section>
   );

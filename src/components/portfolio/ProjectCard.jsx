@@ -5,8 +5,9 @@ import Image from "next/image";
 import { m } from "framer-motion";
 import { FaGithub } from "react-icons/fa6";
 import { LuArrowUpRight, LuLock } from "react-icons/lu";
-import { projectCategories } from "../../Data";
-import { SpotlightCard } from "../ui/SpotlightCard";
+import { useTranslations } from "next-intl";
+import { useContent } from "@/i18n/content";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 const shapeTwo = "/assets/shape-2.webp";
 
@@ -14,9 +15,6 @@ const CARD_SIZES =
   "(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 92vw";
 const FEATURED_SIZES =
   "(min-width: 1280px) 30vw, (min-width: 768px) 90vw, 92vw";
-
-const categoryLabel = (id) =>
-  projectCategories.find((c) => c.id === id)?.label ?? id;
 
 /* ------------------------------------------------------------------ */
 /*  Designed covers for projects without a screenshot                  */
@@ -135,6 +133,9 @@ const LinkButton = ({ href, label, children, primary = false }) => (
 );
 
 export const ProjectCard = ({ project, featured = false, layout = true }) => {
+  const { projectCategories } = useContent();
+  const t = useTranslations("projectCard");
+  const categoryLabel = (id) => projectCategories.find((c) => c.id === id)?.label ?? id;
   const {
     title,
     description,
@@ -176,7 +177,7 @@ export const ProjectCard = ({ project, featured = false, layout = true }) => {
           {showImage ? (
             <Image
               src={img}
-              alt={`${title} screenshot`}
+              alt={t("screenshotAlt", { title })}
               fill
               sizes={featured ? FEATURED_SIZES : CARD_SIZES}
               onError={() => setImgFailed(true)}
@@ -190,13 +191,13 @@ export const ProjectCard = ({ project, featured = false, layout = true }) => {
           <div className="absolute inset-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
             <div className="flex flex-wrap gap-2">
               {live && (
-                <LinkButton href={live} label={`Open ${title} live`} primary>
-                  Live <LuArrowUpRight aria-hidden="true" />
+                <LinkButton href={live} label={t("openLive", { title })} primary>
+                  {t("live")} <LuArrowUpRight aria-hidden="true" />
                 </LinkButton>
               )}
               {github && (
-                <LinkButton href={github} label={`${title} on GitHub`}>
-                  <FaGithub aria-hidden="true" /> Code
+                <LinkButton href={github} label={t("onGitHub", { title })}>
+                  <FaGithub aria-hidden="true" /> {t("code")}
                 </LinkButton>
               )}
             </div>
@@ -209,7 +210,7 @@ export const ProjectCard = ({ project, featured = false, layout = true }) => {
             </span>
             {nda && (
               <span className="inline-flex items-center gap-1 rounded-full bg-black/55 px-3 py-1 text-[10px] font-bold text-white/90 backdrop-blur">
-                <LuLock aria-hidden="true" /> Source private
+                <LuLock aria-hidden="true" /> {t("sourcePrivate")}
               </span>
             )}
           </div>
@@ -233,19 +234,19 @@ export const ProjectCard = ({ project, featured = false, layout = true }) => {
                 {tag}
               </li>
             ))}
-            {extraTags > 0 && <li className="chip opacity-70">+{extraTags}</li>}
+            {extraTags > 0 && <li className="chip opacity-70">{t("moreTags", { count: extraTags })}</li>}
           </ul>
 
           {/* Persistent links for touch devices */}
           <div className="mt-5 flex items-center gap-4 text-sm font-bold text-title lg:hidden">
             {live && (
               <a href={live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-primary">
-                Live <LuArrowUpRight aria-hidden="true" />
+                {t("live")} <LuArrowUpRight aria-hidden="true" />
               </a>
             )}
             {github && (
               <a href={github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-primary">
-                <FaGithub aria-hidden="true" /> Code
+                <FaGithub aria-hidden="true" /> {t("code")}
               </a>
             )}
           </div>

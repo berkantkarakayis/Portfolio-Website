@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, m } from "framer-motion";
 import { LuArrowUp } from "react-icons/lu";
+import { useTranslations } from "next-intl";
 
 export const BackToTop = () => {
   const [visible, setVisible] = useState(false);
+  const t = useTranslations("common");
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 700);
@@ -26,7 +28,7 @@ export const BackToTop = () => {
           key="top"
           type="button"
           onClick={toTop}
-          aria-label="Back to top"
+          aria-label={t("backToTop")}
           initial={{ opacity: 0, y: 16, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 16, scale: 0.9 }}

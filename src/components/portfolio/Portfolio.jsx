@@ -3,22 +3,23 @@
 import React, { useMemo, useState } from "react";
 import { AnimatePresence, LayoutGroup, m } from "framer-motion";
 import { LuChevronDown } from "react-icons/lu";
-import { projects, projectCategories } from "../../Data";
-import { ProjectCard } from "./ProjectCard";
-import { SectionHeading } from "../ui/SectionHeading";
+import { useTranslations } from "next-intl";
+import { useContent } from "@/i18n/content";
+import { ProjectCard } from "@/components/portfolio/ProjectCard";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 // StaggerGroup / StaggerItem return with the Featured block below.
-import { Reveal } from "../ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
 
 const shapeOne = "/assets/shape-1.webp";
 const INITIAL_VISIBLE = 9;
 
-const FilterTabs = ({ active, onChange, counts }) => (
+const FilterTabs = ({ active, onChange, counts, categories, label: groupLabel }) => (
   <div
     className="header__nav mx-auto mb-12 flex max-w-full flex-wrap justify-center gap-1 rounded-full p-1.5"
     role="tablist"
-    aria-label="Filter projects by category"
+    aria-label={groupLabel}
   >
-    {projectCategories.map(({ id, label }) => {
+    {categories.map(({ id, label }) => {
       const selected = active === id;
       return (
         <button
@@ -52,6 +53,8 @@ const FilterTabs = ({ active, onChange, counts }) => (
 );
 
 const Portfolio = () => {
+  const { projects, projectCategories } = useContent();
+  const t = useTranslations("portfolio");
   const [category, setCategory] = useState("all");
   const [expanded, setExpanded] = useState(false);
 
@@ -61,11 +64,11 @@ const Portfolio = () => {
     const c = { all: projects.length };
     for (const p of projects) c[p.category] = (c[p.category] ?? 0) + 1;
     return c;
-  }, []);
+  }, [projects]);
 
   const filtered = useMemo(
     () => (category === "all" ? projects : projects.filter((p) => p.category === category)),
-    [category],
+    [category, projects],
   );
 
   const visible = expanded ? filtered : filtered.slice(0, INITIAL_VISIBLE);
@@ -78,7 +81,7 @@ const Portfolio = () => {
 
   return (
     <section className="section scroll-mt-20 bg-first" id="work">
-      <SectionHeading title="Portfolio" kicker="Selected" accent="Work" />
+      <SectionHeading title={t("title")} kicker={t("kicker")} accent={t("accent")} />
 
       {/* Featured showcase — hidden for now; the Archive grid below is enough.
           To restore it, uncomment this block, the `featured` memo above, and the
@@ -114,13 +117,19 @@ const Portfolio = () => {
       {/* All projects */}
       <div className="container">
         <Reveal className="mb-8 text-center" y={16}>
-          <p className="text-cs text-xs font-bold tracking-[0.2em] text-primary">Archive</p>
-          <h3 className="mt-1 text-2xl font-bold text-title sm:text-3xl">All projects</h3>
+          <p className="text-cs text-xs font-bold tracking-[0.2em] text-primary">{t("archive")}</p>
+          <h3 className="mt-1 text-2xl font-bold text-title sm:text-3xl">{t("allProjects")}</h3>
         </Reveal>
 
         <LayoutGroup id="portfolio">
           <Reveal y={12}>
-            <FilterTabs active={category} onChange={handleCategory} counts={counts} />
+            <FilterTabs
+              active={category}
+              onChange={handleCategory}
+              counts={counts}
+              categories={projectCategories}
+              label={t("filterLabel")}
+            />
           </Reveal>
 
           <m.div layout className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -139,7 +148,7 @@ const Portfolio = () => {
               onClick={() => setExpanded(true)}
               className="btn text-cs inline-flex items-center gap-3"
             >
-              Show {hiddenCount} more
+              {t("showMore", { count: hiddenCount })}
               <LuChevronDown aria-hidden="true" />
             </button>
           </div>
@@ -151,7 +160,7 @@ const Portfolio = () => {
               onClick={() => setExpanded(false)}
               className="text-cs text-xs font-bold text-title transition-colors hover:text-primary"
             >
-              Show less
+              {t("showLess")}
             </button>
           </div>
         )}
@@ -162,7 +171,7 @@ const Portfolio = () => {
       </div>
 
       <div className="section__bg-wrapper">
-        <span className="bg__title">Portfolio</span>
+        <span className="bg__title" aria-hidden="true">{t("watermark")}</span>
       </div>
     </section>
   );

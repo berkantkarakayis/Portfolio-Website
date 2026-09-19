@@ -12,9 +12,10 @@ import {
   LuCircleAlert,
   LuBriefcase,
 } from "react-icons/lu";
-import { site } from "../../Data";
-import { SectionHeading } from "../ui/SectionHeading";
-import { Reveal, StaggerGroup, StaggerItem } from "../ui/Reveal";
+import { useTranslations } from "next-intl";
+import { useContent } from "@/i18n/content";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 
 const shapeOne = "/assets/shape-1.webp";
 const ENDPOINT = "https://sheet.best/api/sheets/165f2129-e949-4e84-8e9a-3cbf2f1cbd98";
@@ -36,6 +37,8 @@ const InfoCard = ({ icon: Icon, title, children }) => (
 );
 
 const Contact = () => {
+  const { site } = useContent();
+  const t = useTranslations("contact");
   const [form, setForm] = useState(EMPTY);
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
   const [copied, setCopied] = useState(false);
@@ -100,18 +103,18 @@ const Contact = () => {
 
   return (
     <section className="section scroll-mt-20 bg-first" id="contact">
-      <SectionHeading title="Contact Me" kicker="Let's" accent="Talk About Ideas" />
+      <SectionHeading title={t("title")} kicker={t("kicker")} accent={t("accent")} />
 
       <div className="container relative z-10 grid gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         <StaggerGroup className="space-y-10" stagger={0.1}>
           <StaggerItem>
-            <InfoCard icon={LuMapPin} title="Location">
-              <p>{site.location} · Remote-friendly</p>
+            <InfoCard icon={LuMapPin} title={t("location")}>
+              <p>{site.location} · {t("remoteFriendly")}</p>
             </InfoCard>
           </StaggerItem>
 
           <StaggerItem>
-            <InfoCard icon={LuBriefcase} title="Availability">
+            <InfoCard icon={LuBriefcase} title={t("availability")}>
               <p className="inline-flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-70" />
@@ -123,7 +126,7 @@ const Contact = () => {
           </StaggerItem>
 
           <StaggerItem>
-            <InfoCard icon={LuMail} title="Email">
+            <InfoCard icon={LuMail} title={t("email")}>
               <div className="flex flex-wrap items-center gap-3">
                 <a className="font-semibold text-primary hover:underline" href={`mailto:${site.email}`}>
                   {site.email}
@@ -135,7 +138,7 @@ const Contact = () => {
                   aria-live="polite"
                 >
                   {copied ? <LuCheck aria-hidden="true" /> : <LuCopy aria-hidden="true" />}
-                  {copied ? "Copied" : "Copy"}
+                  {copied ? t("copied") : t("copy")}
                 </button>
               </div>
             </InfoCard>
@@ -147,7 +150,7 @@ const Contact = () => {
             <div className="grid gap-x-6 md:grid-cols-2">
               <div className="mb-6 grid gap-2">
                 <label className="text-cs ml-6 text-xs font-bold text-title" htmlFor="contact-name">
-                  Full name <b className="text-primary">*</b>
+                  {t("nameLabel")} <b className="text-primary">*</b>
                 </label>
                 <input
                   id="contact-name"
@@ -158,14 +161,14 @@ const Contact = () => {
                   disabled={busy}
                   onChange={handleChange}
                   value={form.name}
-                  placeholder="Jane Doe"
+                  placeholder={t("namePlaceholder")}
                   className={`${inputClass} h-14`}
                 />
               </div>
 
               <div className="mb-6 grid gap-2">
                 <label className="text-cs ml-6 text-xs font-bold text-title" htmlFor="contact-email">
-                  Email address <b className="text-primary">*</b>
+                  {t("emailLabel")} <b className="text-primary">*</b>
                 </label>
                 <input
                   id="contact-email"
@@ -176,7 +179,7 @@ const Contact = () => {
                   disabled={busy}
                   onChange={handleChange}
                   value={form.email}
-                  placeholder="jane@company.com"
+                  placeholder={t("emailPlaceholder")}
                   className={`${inputClass} h-14`}
                 />
               </div>
@@ -184,7 +187,7 @@ const Contact = () => {
 
             <div className="mb-6 grid gap-2">
               <label className="text-cs ml-6 text-xs font-bold text-title" htmlFor="contact-subject">
-                Subject <b className="text-primary">*</b>
+                {t("subjectLabel")} <b className="text-primary">*</b>
               </label>
               <input
                 id="contact-subject"
@@ -195,14 +198,14 @@ const Contact = () => {
                 disabled={busy}
                 onChange={handleChange}
                 value={form.subject}
-                placeholder="Real-time dashboard for…"
+                placeholder={t("subjectPlaceholder")}
                 className={`${inputClass} h-14`}
               />
             </div>
 
             <div className="mb-6 grid gap-2">
               <label className="text-cs ml-6 text-xs font-bold text-title" htmlFor="contact-message">
-                Message <b className="text-primary">*</b>
+                {t("messageLabel")} <b className="text-primary">*</b>
               </label>
               <textarea
                 id="contact-message"
@@ -212,14 +215,14 @@ const Contact = () => {
                 minLength={10}
                 onChange={handleChange}
                 value={form.message}
-                placeholder="Tell me about the project, timeline and budget range."
+                placeholder={t("messagePlaceholder")}
                 className={`${inputClass} h-40 resize-none !rounded-3xl py-5`}
               />
             </div>
 
             {/* Honeypot */}
             <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-              <label htmlFor="contact-company">Company</label>
+              <label htmlFor="contact-company">{t("honeypot")}</label>
               <input
                 id="contact-company"
                 type="text"
@@ -233,7 +236,7 @@ const Contact = () => {
 
             <div className="flex flex-wrap items-center justify-between gap-4">
               <p className="text-sm text-text">
-                I usually reply within <b className="text-title">24 hours</b>.
+                {t.rich("replyNote", { b: (chunks) => <b className="text-title">{chunks}</b> })}
               </p>
               <button
                 type="submit"
@@ -242,11 +245,11 @@ const Contact = () => {
               >
                 {busy ? (
                   <>
-                    <LuLoaderCircle className="animate-spin" aria-hidden="true" /> Sending…
+                    <LuLoaderCircle className="animate-spin" aria-hidden="true" /> {t("sending")}
                   </>
                 ) : (
                   <>
-                    Send message <LuSend aria-hidden="true" />
+                    {t("send")} <LuSend aria-hidden="true" />
                   </>
                 )}
               </button>
@@ -263,7 +266,7 @@ const Contact = () => {
                   className="mt-6 flex items-center gap-3 rounded-2xl border border-primary bg-[color:var(--primary-soft)] px-5 py-4 text-sm text-title"
                 >
                   <LuCheck className="text-primary" aria-hidden="true" />
-                  Thanks! Your message is on its way. I&apos;ll get back to you shortly.
+                  {t("success")}
                 </m.p>
               )}
               {status === "error" && (
@@ -276,11 +279,16 @@ const Contact = () => {
                   className="mt-6 flex items-center gap-3 rounded-2xl border border-red-400/50 bg-red-500/10 px-5 py-4 text-sm text-title"
                 >
                   <LuCircleAlert className="text-red-400" aria-hidden="true" />
-                  Something went wrong. Please try again or email me directly at{" "}
-                  <a className="font-semibold text-primary" href={`mailto:${site.email}`}>
-                    {site.email}
-                  </a>
-                  .
+                  <span>
+                    {t.rich("error", {
+                      email: site.email,
+                      link: (chunks) => (
+                        <a className="font-semibold text-primary" href={`mailto:${site.email}`}>
+                          {chunks}
+                        </a>
+                      ),
+                    })}
+                  </span>
                 </m.p>
               )}
             </AnimatePresence>
@@ -293,7 +301,7 @@ const Contact = () => {
       </div>
 
       <div className="section__bg-wrapper">
-        <span className="bg__title">Contact</span>
+        <span className="bg__title" aria-hidden="true">{t("watermark")}</span>
       </div>
     </section>
   );

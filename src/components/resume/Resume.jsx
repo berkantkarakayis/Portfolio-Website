@@ -10,15 +10,30 @@ import {
   LuDownload,
   LuChevronDown,
 } from "react-icons/lu";
-import { site, experience, education, certificates, languages } from "../../Data";
-import { SectionHeading } from "../ui/SectionHeading";
-import { SpotlightCard } from "../ui/SpotlightCard";
-import { Reveal, StaggerGroup, StaggerItem } from "../ui/Reveal";
+import { useFormatter, useTranslations } from "next-intl";
+import { useContent } from "@/i18n/content";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 
 const shapeOne = "/assets/shape-1.webp";
 
+/** "2024-12" -> "Dec 2024" / "Ara 2024" in the active locale. */
+const useMonthYear = () => {
+  const format = useFormatter();
+  return (iso) => {
+    const [year, month] = iso.split("-").map(Number);
+    return format.dateTime(new Date(Date.UTC(year, month - 1, 1)), {
+      month: "short",
+      year: "numeric",
+    });
+  };
+};
+
 const TimelineItem = ({ item, defaultOpen = false, last = false }) => {
   const [open, setOpen] = useState(defaultOpen);
+  const t = useTranslations("resume");
+  const monthYear = useMonthYear();
   const panelId = `exp-${item.id}`;
 
   return (
@@ -46,7 +61,7 @@ const TimelineItem = ({ item, defaultOpen = false, last = false }) => {
       {/* date */}
       <div className="md:pr-8 md:text-right">
         <p className="text-cs text-xs font-bold tracking-wide text-primary">
-          {item.start} — {item.end}
+          {monthYear(item.start)} — {item.end ? monthYear(item.end) : t("present")}
         </p>
         <p className="mt-1 text-xs text-[color:var(--muted-color)]">{item.location}</p>
       </div>
@@ -122,16 +137,20 @@ const SideCard = ({ icon: Icon, title, children }) => (
 );
 
 const Resume = () => {
+  const { site, experience, education, certificates, languages } = useContent();
+  const t = useTranslations("resume");
+  const tc = useTranslations("common");
+
   return (
     <section className="section scroll-mt-20 bg-second" id="resume">
-      <SectionHeading title="Resume" kicker="My" accent="Journey" />
+      <SectionHeading title={t("title")} kicker={t("kicker")} accent={t("accent")} />
 
       <div className="container grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-12">
         {/* Experience timeline */}
         <div>
           <Reveal className="mb-8 flex items-center gap-3" y={16}>
             <LuBriefcase className="text-2xl text-primary" aria-hidden="true" />
-            <h3 className="text-2xl font-bold text-title">Experience</h3>
+            <h3 className="text-2xl font-bold text-title">{t("experience")}</h3>
           </Reveal>
 
           <StaggerGroup as="ol" className="space-y-8" stagger={0.12}>
@@ -151,12 +170,12 @@ const Resume = () => {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal className="mb-8 flex items-center gap-3" y={16}>
             <LuGraduationCap className="text-2xl text-primary" aria-hidden="true" />
-            <h3 className="text-2xl font-bold text-title">Education &amp; more</h3>
+            <h3 className="text-2xl font-bold text-title">{t("educationMore")}</h3>
           </Reveal>
 
         <StaggerGroup className="space-y-6" stagger={0.1}>
           <StaggerItem>
-            <SideCard icon={LuGraduationCap} title="Education">
+            <SideCard icon={LuGraduationCap} title={t("education")}>
               {education.map((e) => (
                 <div key={e.id}>
                   <p className="font-semibold text-title">{e.degree}</p>
@@ -171,7 +190,7 @@ const Resume = () => {
           </StaggerItem>
 
           <StaggerItem>
-            <SideCard icon={LuAward} title="Certificates">
+            <SideCard icon={LuAward} title={t("certificates")}>
               <ul className="flex flex-wrap gap-2">
                 {certificates.map((c) => (
                   <li key={c.id} className="chip !whitespace-normal" title={`${c.name} · ${c.issuer}`}>
@@ -183,7 +202,7 @@ const Resume = () => {
           </StaggerItem>
 
           <StaggerItem>
-            <SideCard icon={LuLanguages} title="Languages">
+            <SideCard icon={LuLanguages} title={t("languages")}>
               <ul className="flex flex-wrap gap-2">
                 {languages.map((l) => (
                   <li key={l.id} className="chip">
@@ -197,11 +216,11 @@ const Resume = () => {
           <StaggerItem>
             <a
               href={site.resume}
-              download="Berkant-Karakayis-Resume.pdf"
+              download={tc("cvFilename")}
               className="btn btn--primary text-cs inline-flex w-full items-center justify-center gap-3"
             >
               <LuDownload aria-hidden="true" />
-              Download full CV
+              {t("downloadFull")}
             </a>
           </StaggerItem>
         </StaggerGroup>
@@ -213,7 +232,7 @@ const Resume = () => {
       </div>
 
       <div className="section__bg-wrapper">
-        <span className="bg__title">Resume</span>
+        <span className="bg__title" aria-hidden="true">{t("watermark")}</span>
       </div>
     </section>
   );

@@ -2,15 +2,15 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { LazyMotion } from "framer-motion";
-import Header from "../components/header/Header";
-import Home from "../components/home/Home";
-import Skills from "../components/skills/Skills";
-import Portfolio from "../components/portfolio/Portfolio";
-import Resume from "../components/resume/Resume";
-import WorkWithMe from "../components/services/WorkWithMe";
-import Contact from "../components/contact/Contact";
-import Footer from "../components/footer/Footer";
-import { BackToTop } from "../components/ui/BackToTop";
+import Header from "@/components/header/Header";
+import Home from "@/components/home/Home";
+import Skills from "@/components/skills/Skills";
+import Portfolio from "@/components/portfolio/Portfolio";
+import Resume from "@/components/resume/Resume";
+import WorkWithMe from "@/components/services/WorkWithMe";
+import Contact from "@/components/contact/Contact";
+import Footer from "@/components/footer/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 // Loaded on demand so the animation runtime stays out of the initial bundle.
 const loadMotionFeatures = () =>
@@ -20,15 +20,35 @@ const prefersReducedMotion = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-export default function Page() {
+const INTRO_SEEN_KEY = "introSeen";
+
+const introAlreadySeen = () => {
+  try {
+    return sessionStorage.getItem(INTRO_SEEN_KEY) === "1";
+  } catch {
+    return false;
+  }
+};
+
+const markIntroSeen = () => {
+  try {
+    sessionStorage.setItem(INTRO_SEEN_KEY, "1");
+  } catch {
+    /* storage unavailable */
+  }
+};
+
+export default function PortfolioPage() {
   const [introMoving, setIntroMoving] = useState(false);
   const [introDone, setIntroDone] = useState(false);
   const [introDelta, setIntroDelta] = useState({ x: 0, y: 0 });
   const logoRef = useRef(null);
 
   useEffect(() => {
-    if (prefersReducedMotion()) {
-      // One-off sync with a browser-only media query after hydration.
+    // Skip the intro for reduced motion, and don't replay it when the page
+    // remounts on a locale switch within the same tab.
+    if (prefersReducedMotion() || introAlreadySeen()) {
+      // One-off sync with browser-only state after hydration.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setIntroDone(true);
       return;
@@ -57,7 +77,10 @@ export default function Page() {
       scheduleDelta();
       requestAnimationFrame(() => setIntroMoving(true));
     }, 550);
-    const moveTimer = setTimeout(() => setIntroDone(true), 550 + 900);
+    const moveTimer = setTimeout(() => {
+      markIntroSeen();
+      setIntroDone(true);
+    }, 550 + 900);
 
     window.addEventListener("resize", scheduleDelta);
 

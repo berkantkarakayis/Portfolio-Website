@@ -183,8 +183,8 @@ export const experience = [
     role: "Full-Stack Developer",
     company: "Pixupplay",
     location: "Malta · Remote",
-    start: "Dec 2024",
-    end: "Present",
+    start: "2024-12",
+    end: null,
     current: true,
     summary:
       "Game engine, multiplayer servers and live sports graphics for a multi-brand iGaming platform.",
@@ -214,8 +214,8 @@ export const experience = [
     role: "Front End Developer",
     company: "Nevera Tech",
     location: "Istanbul · Hybrid",
-    start: "Jan 2024",
-    end: "Dec 2024",
+    start: "2024-01",
+    end: "2024-12",
     summary:
       "Customer-facing web apps and cross-platform mobile apps for multiple clients.",
     highlights: [
@@ -230,8 +230,8 @@ export const experience = [
     role: "Front End Developer · Part-Time / Intern",
     company: "Nevera Tech",
     location: "Istanbul",
-    start: "Oct 2021",
-    end: "Jan 2024",
+    start: "2021-10",
+    end: "2024-01",
     summary: "Production React/TypeScript work alongside my degree.",
     highlights: [
       "Implemented responsive, cross-browser interfaces from design mockups alongside UX/UI teams in production React/TypeScript codebases, growing from UI implementation to owning complete features.",

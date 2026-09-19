@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "title": "Berkant Karakayış | Full-Stack Developer",
+    "titleTemplate": "%s | Berkant Karakayış",
+    "description": "Berkant Karakayış is a full-stack developer in Istanbul with 4+ years of experience. React, TypeScript, Next.js and Node.js specialist building real-time web platforms, high-traffic product frontends, WebSocket systems, HTML5 Canvas engines and native iOS apps.",
+    "applicationName": "Berkant Karakayış Portfolio",
+    "ogLocale": "en_US",
+    "keywords": [
+      "Berkant Karakayış",
+      "Full-Stack Developer",
+      "React Developer",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "WebSocket",
+      "Real-time systems",
+      "WebSocket developer",
+      "React Native developer",
+      "HTML5 Canvas game engine",
+      "Istanbul",
+      "Remote developer"
+    ]
+  },
+  "og": {
+    "alt": "Berkant Karakayış — Full-Stack Developer",
+    "kicker": "Full-Stack Developer · Istanbul",
+    "blurb": "Real-time web platforms, high-traffic product frontends, custom rendering engines and native iOS apps."
+  },
+  "nav": {
+    "home": "Home",
+    "skills": "Skills",
+    "work": "Work",
+    "resume": "Resume",
+    "services": "Work With Me",
+    "contact": "Contact"
+  },
+  "header": {
+    "primaryNav": "Primary",
+    "switchToLight": "Switch to light theme",
+    "switchToDark": "Switch to dark theme",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "switchTo": "Switch to {language}"
+  },
+  "common": {
+    "cvFilename": "Berkant-Karakayis-Resume.pdf",
+    "downloadCv": "Download CV",
+    "backToTop": "Back to top"
+  },
+  "hero": {
+    "greeting": "Hello,",
+    "greetingAccent": "my name is",
+    "iAm": "I am",
+    "viewWork": "View my work",
+    "pressMe": "Press me!",
+    "scroll": "Scroll",
+    "scrollToSkills": "Scroll to skills",
+    "showScene": "Show the 3D scene",
+    "showPhoto": "Show my photo",
+    "portraitAlt": "Portrait of Berkant Karakayış",
+    "watermark": "Developer"
+  },
+  "skills": {
+    "title": "Professional Skills",
+    "kicker": "My",
+    "accent": "Toolbox",
+    "stackLabel": "Technology stack",
+    "logosLabel": "Technology logos",
+    "watermark": "Skills"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "kicker": "Selected",
+    "accent": "Work",
+    "archive": "Archive",
+    "allProjects": "All projects",
+    "filterLabel": "Filter projects by category",
+    "showMore": "Show {count} more",
+    "showLess": "Show less",
+    "watermark": "Portfolio"
+  },
+  "projectCard": {
+    "sourcePrivate": "Source private",
+    "live": "Live",
+    "code": "Code",
+    "moreTags": "+{count}",
+    "screenshotAlt": "{title} screenshot",
+    "openLive": "Open {title} live",
+    "onGitHub": "{title} on GitHub"
+  },
+  "resume": {
+    "title": "Resume",
+    "kicker": "My",
+    "accent": "Journey",
+    "experience": "Experience",
+    "educationMore": "Education & more",
+    "education": "Education",
+    "certificates": "Certificates",
+    "languages": "Languages",
+    "downloadFull": "Download full CV",
+    "present": "Present",
+    "watermark": "Resume"
+  },
+  "services": {
+    "title": "Work With Me",
+    "kicker": "What I",
+    "accent": "Can Build For You",
+    "mostRequested": "Most requested",
+    "startConversation": "Start a conversation",
+    "letsTalk": "Let's talk",
+    "emailMe": "Email me",
+    "mailSubject": "Project inquiry from berkant.vercel.app",
+    "watermark": "Services"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "kicker": "Let's",
+    "accent": "Talk About Ideas",
+    "location": "Location",
+    "remoteFriendly": "Remote-friendly",
+    "availability": "Availability",
+    "email": "Email",
+    "copy": "Copy",
+    "copied": "Copied",
+    "nameLabel": "Full name",
+    "namePlaceholder": "Jane Doe",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "jane@company.com",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Real-time dashboard for…",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me about the project, timeline and budget range.",
+    "honeypot": "Company",
+    "replyNote": "I usually reply within <b>24 hours</b>.",
+    "sending": "Sending…",
+    "send": "Send message",
+    "success": "Thanks! Your message is on its way. I'll get back to you shortly.",
+    "error": "Something went wrong. Please try again or email me directly at <link>{email}</link>.",
+    "watermark": "Contact"
+  },
+  "footer": {
+    "blurb": "{role} building real-time products, game engines and multi-brand interfaces. Based in {location}, working remotely.",
+    "navLabel": "Footer",
+    "navigate": "Navigate",
+    "getInTouch": "Get in touch",
+    "downloadCv": "Download CV ↓",
+    "rights": "{name}. All rights reserved.",
+    "builtWith": "Built with"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or has moved.",
+    "back": "Back to home"
+  }
+}

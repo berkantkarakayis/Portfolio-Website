@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { getTranslations } from "next-intl/server";
 
 export const alt = "Berkant Karakayış — Full-Stack Developer";
 export const size = { width: 1200, height: 630 };
@@ -6,7 +7,10 @@ export const contentType = "image/png";
 
 const stack = ["React", "TypeScript", "Next.js", "Node.js", "WebSocket", "Redis", "Canvas"];
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage({ params }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "og" });
+
   return new ImageResponse(
     (
       <div
@@ -63,14 +67,14 @@ export default function OpenGraphImage() {
             }}
           >
             <div style={{ width: 12, height: 12, borderRadius: 99, background: "hsl(165,60%,50%)", display: "flex" }} />
-            Full-Stack Developer · Istanbul
+            {t("kicker")}
           </div>
           <div style={{ fontSize: 92, fontWeight: 800, lineHeight: 1, letterSpacing: -2, display: "flex", flexDirection: "column" }}>
             <span style={{ color: "hsl(165, 60%, 50%)" }}>BERKANT</span>
             <span>KARAKAYIŞ</span>
           </div>
           <div style={{ fontSize: 28, color: "rgba(255,255,255,0.78)", maxWidth: 720, lineHeight: 1.35, display: "flex" }}>
-            Real-time web platforms, high-traffic product frontends, custom rendering engines and native iOS apps.
+            {t("blurb")}
           </div>
         </div>
 

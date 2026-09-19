@@ -3,12 +3,13 @@
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
 import { LuArrowDown, LuBoxes, LuDownload, LuUserRound } from "react-icons/lu";
-import { site, heroRoles, heroStats } from "../../Data";
-import { SplineScene } from "../ui/SplineScene";
-import { SocialLinks } from "../ui/SocialLinks";
-import { RotatingText } from "../ui/RotatingText";
-import { CountUp } from "../ui/CountUp";
-import { scrollToSection } from "../../hooks/useActiveSection";
+import { useTranslations } from "next-intl";
+import { useContent } from "@/i18n/content";
+import { SplineScene } from "@/components/ui/SplineScene";
+import { SocialLinks } from "@/components/ui/SocialLinks";
+import { RotatingText } from "@/components/ui/RotatingText";
+import { CountUp } from "@/components/ui/CountUp";
+import { scrollToSection } from "@/hooks/useActiveSection";
 
 const shapeOne = "/assets/shape-1.webp";
 const shapeTwo = "/assets/shape-2.webp";
@@ -20,6 +21,9 @@ const reveal = (introDone, delay) => ({
 });
 
 const Home = ({ introDone }) => {
+  const { site, heroRoles, heroStats } = useContent();
+  const t = useTranslations("hero");
+  const tc = useTranslations("common");
   const [flipped, setFlipped] = useState(false);
   const [splineReady, setSplineReady] = useState(false);
   // The "press me" hint retires once the toggle has done its job.
@@ -52,7 +56,7 @@ const Home = ({ introDone }) => {
               {...reveal(introDone, 0.1)}
               className={`${reveal(introDone, 0.1).className} text-cs text-base font-bold uppercase tracking-wide text-title lg:text-2xl`}
             >
-              Hello, <span className="text-primary">my name is</span>
+              {t("greeting")} <span className="text-primary">{t("greetingAccent")}</span>
             </p>
 
             <h1
@@ -67,7 +71,7 @@ const Home = ({ introDone }) => {
               {...reveal(introDone, 0.34)}
               className={`${reveal(introDone, 0.34).className} mt-4 flex flex-wrap items-baseline justify-center gap-x-3 font-bold text-title lg:justify-start`}
             >
-              <span className="text-cs text-base lg:text-2xl">I am</span>
+              <span className="text-cs text-base lg:text-2xl">{t("iAm")}</span>
               <RotatingText
                 items={heroRoles}
                 className="font-accent text-2xl text-primary sm:text-3xl lg:text-4xl"
@@ -91,11 +95,11 @@ const Home = ({ introDone }) => {
             >
               <a
                 href={site.resume}
-                download="Berkant-Karakayis-Resume.pdf"
+                download={tc("cvFilename")}
                 className="btn text-cs inline-flex items-center gap-3"
               >
                 <LuDownload className="text-base" aria-hidden="true" />
-                Download CV
+                {tc("downloadCv")}
               </a>
 
               <a
@@ -106,7 +110,7 @@ const Home = ({ introDone }) => {
                 }}
                 className="hero__link text-cs group inline-flex items-center gap-3 px-2"
               >
-                View my work
+                {t("viewWork")}
                 <span className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--border-color)] transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white">
                   <LuArrowDown className="transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
                 </span>
@@ -150,7 +154,7 @@ const Home = ({ introDone }) => {
                 <div className="hero-flip__face hero-flip__face--back overflow-hidden rounded-full bg-primary shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">
                   <Image
                     src={profileImg}
-                    alt="Portrait of Berkant Karakayış"
+                    alt={t("portraitAlt")}
                     className="absolute inset-x-0 bottom-0 mx-auto h-[92%] w-auto object-contain object-bottom"
                     width={1570}
                     height={1448}
@@ -176,8 +180,8 @@ const Home = ({ introDone }) => {
                   setToggleUsed(true);
                 }}
                 aria-pressed={flipped}
-                aria-label={flipped ? "Show the 3D scene" : "Show my photo"}
-                title={flipped ? "Show the 3D scene" : "Show my photo"}
+                aria-label={flipped ? t("showScene") : t("showPhoto")}
+                title={flipped ? t("showScene") : t("showPhoto")}
                 className="hero-flip__toggle text-cs pointer-events-auto absolute bottom-0 left-1/2 grid h-12 w-12 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border-2 border-[color:var(--border-color)] bg-container text-lg text-title shadow-soft transition-colors duration-300 hover:border-primary hover:text-primary"
               >
                 {!toggleUsed && (
@@ -194,7 +198,7 @@ const Home = ({ introDone }) => {
                 className={`hero-flip__hint ${toggleUsed ? "is-gone" : ""}`}
                 aria-hidden="true"
               >
-                <span className="hero-flip__hint-label font-accent">Press me!</span>
+                <span className="hero-flip__hint-label font-accent">{t("pressMe")}</span>
                 <svg className="hero-flip__hint-arrow" viewBox="0 0 62 42" role="presentation">
                   <path d="M57 6C47 3 22 7 13 29" />
                   <path d="M11 32l13 1M11 32l8-10" />
@@ -261,13 +265,13 @@ const Home = ({ introDone }) => {
             e.preventDefault();
             scrollToSection("skills");
           }}
-          aria-label="Scroll to skills"
+          aria-label={t("scrollToSkills")}
           className={`absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-title opacity-0 lg:flex ${
             introDone ? "animate-home-reveal" : ""
           }`}
           style={{ animationDelay: "1.4s" }}
         >
-          Scroll
+          {t("scroll")}
           <span className="relative h-10 w-[2px] overflow-hidden rounded-full bg-[color:var(--glass-border)]">
             <span className="absolute inset-x-0 top-0 h-1/2 animate-scroll-hint rounded-full bg-primary" />
           </span>
@@ -279,7 +283,7 @@ const Home = ({ introDone }) => {
       </div>
 
       <div className="section__bg-wrapper">
-        <span className="bg__title">Developer</span>
+        <span className="bg__title" aria-hidden="true">{t("watermark")}</span>
       </div>
     </section>
   );

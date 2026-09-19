@@ -4,9 +4,11 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { m, useScroll, useSpring } from "framer-motion";
 import { BsSun, BsMoon } from "react-icons/bs";
-import { links } from "../../Data";
-import { SocialLinks } from "../ui/SocialLinks";
-import { useActiveSection, scrollToSection } from "../../hooks/useActiveSection";
+import { useTranslations } from "next-intl";
+import { links } from "@/Data";
+import { SocialLinks } from "@/components/ui/SocialLinks";
+import { LanguageSwitcher } from "@/components/header/LanguageSwitcher";
+import { useActiveSection, scrollToSection } from "@/hooks/useActiveSection";
 
 const shapeOne = "/assets/shape-1.webp";
 
@@ -28,6 +30,8 @@ const Header = ({ introDone, logoRef }) => {
   const [theme, setTheme] = useState(DEFAULT_THEME);
   const [themeReady, setThemeReady] = useState(false);
   const themeToggleRef = useRef(null);
+  const t = useTranslations("header");
+  const tNav = useTranslations("nav");
 
   const sectionIds = useMemo(() => links.map((l) => l.path), []);
   const activeLink = useActiveSection(sectionIds, "home");
@@ -137,7 +141,7 @@ const Header = ({ introDone, logoRef }) => {
         aria-hidden="true"
       />
 
-      <nav className="container flex items-center justify-between gap-6" aria-label="Primary">
+      <nav className="container flex items-center justify-between gap-6" aria-label={t("primaryNav")}>
         <span ref={logoRef} className="inline-flex">
           <a
             href="#home"
@@ -155,7 +159,7 @@ const Header = ({ introDone, logoRef }) => {
 
         {/* Desktop nav */}
         <ul className="header__nav hidden items-center gap-1 rounded-full p-1.5 lg:flex">
-          {links.map(({ name, path }) => {
+          {links.map(({ path }) => {
             const active = activeLink === path;
             return (
               <li key={path} className="relative">
@@ -170,7 +174,7 @@ const Header = ({ introDone, logoRef }) => {
                     active ? "text-white" : "text-title hover:text-primary"
                   }`}
                 >
-                  {name}
+                  {tNav(path)}
                 </a>
                 {active && (
                   <m.span
@@ -185,12 +189,14 @@ const Header = ({ introDone, logoRef }) => {
           })}
         </ul>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <LanguageSwitcher />
+
           <button
             ref={themeToggleRef}
             type="button"
             onClick={toggleTheme}
-            aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
+            aria-label={isDark ? t("switchToLight") : t("switchToDark")}
             aria-pressed={isDark}
             className="grid h-11 w-11 place-items-center rounded-full text-xl text-title transition-all duration-300 hover:bg-[color:var(--glass-bg)] hover:text-primary active:scale-95"
           >
@@ -200,7 +206,7 @@ const Header = ({ introDone, logoRef }) => {
           <button
             type="button"
             onClick={() => setShowMenu((v) => !v)}
-            aria-label={showMenu ? "Close menu" : "Open menu"}
+            aria-label={showMenu ? t("closeMenu") : t("openMenu")}
             aria-expanded={showMenu}
             aria-controls="mobile-menu"
             className="relative z-[140] grid h-11 w-11 place-items-center rounded-full text-title transition-colors duration-300 hover:bg-[color:var(--glass-bg)] lg:hidden"
@@ -231,7 +237,7 @@ const Header = ({ introDone, logoRef }) => {
       >
         <div className="flex h-full w-full flex-col items-center justify-center px-8 pt-20">
           <ul className="mb-10 flex flex-col items-center gap-1">
-            {links.map(({ name, path }, i) => (
+            {links.map(({ path }, i) => (
               <li
                 key={path}
                 className={`transition-all duration-500 ${
@@ -250,7 +256,7 @@ const Header = ({ introDone, logoRef }) => {
                     activeLink === path ? "text-primary" : "text-title"
                   }`}
                 >
-                  {name}
+                  {tNav(path)}
                 </a>
               </li>
             ))}
