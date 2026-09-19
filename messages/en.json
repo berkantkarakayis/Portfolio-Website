@@ -29,7 +29,6 @@
   "nav": {
     "home": "Home",
     "skills": "Skills",
-    "lab": "Lab",
     "work": "Work",
     "resume": "Resume",
     "services": "Work With Me",
@@ -154,70 +153,5 @@
     "title": "Page not found",
     "text": "The page you are looking for does not exist or has moved.",
     "back": "Back to home"
-  },
-  "lab": {
-    "title": "Lab",
-    "kicker": "Live",
-    "accent": "Experiments",
-    "intro": "Small, self-contained builds that show how I work: a Canvas game engine with provably fair outcomes, and a real-time feed that survives bad connections. Everything runs in your browser.",
-    "watermark": "Lab",
-    "slot": {
-      "title": "Canvas slot engine",
-      "desc": "Three reels rendered on an HTML5 Canvas by a small engine (fixed-step loop, tweens, DPR-aware). Every spin is provably fair: the server seed is committed as a hash before you spin.",
-      "canvasLabel": "Slot machine reels",
-      "spin": "Spin",
-      "spinning": "Spinning…",
-      "credits": "Credits",
-      "bet": "Bet",
-      "lastWin": "Last win",
-      "fps": "fps",
-      "reset": "Reset credits",
-      "fairTitle": "Provably fair",
-      "commitment": "Server seed hash (commitment for the next spin)",
-      "serverSeed": "Server seed (revealed after the spin)",
-      "clientSeed": "Client seed (yours, editable)",
-      "nonce": "Nonce",
-      "resultHash": "HMAC-SHA256(serverSeed, clientSeed:nonce)",
-      "mapping": "Digest → reels",
-      "verify": "Verify this spin",
-      "verified": "Verified — commitment and reels match",
-      "mismatch": "Mismatch — something was tampered with",
-      "how1": "Before each spin the engine picks a random server seed and shows only its SHA-256 hash, so the result is locked in but unknown.",
-      "how2": "The outcome is HMAC-SHA256(serverSeed, \"clientSeed:nonce\"); each reel reads 4 bytes of the digest modulo the symbol count.",
-      "how3": "After the spin the seed is revealed. Recompute it here or anywhere else — the reels cannot have been changed."
-    },
-    "tracker": {
-      "title": "Real-time tracker with reconnect-and-resume",
-      "desc": "A simulated football feed streams numbered events. Cut the connection: the server keeps going, the client backs off exponentially, reconnects and replays exactly what it missed.",
-      "live": "Live",
-      "status": {
-        "connected": "Connected — events arrive as they happen.",
-        "disconnected": "Disconnected — the server keeps producing events you are not seeing.",
-        "reconnecting": "Reconnecting in {seconds}s (attempt {attempt}, exponential backoff)…"
-      },
-      "disconnect": "Cut connection",
-      "reconnect": "Reconnect now",
-      "auto": "Auto-reconnect",
-      "lastSeq": "seq",
-      "minute": "{minute}'",
-      "replayed": "{count} events replayed so far",
-      "catchingUp": "Catching up… {count} to go",
-      "replayTag": "replayed",
-      "feed": "Event feed",
-      "diagram": "Data path",
-      "events": {
-        "kickoff": "Kick-off",
-        "goal": "GOAL",
-        "shot": "Shot on target",
-        "corner": "Corner",
-        "foul": "Foul",
-        "yellow": "Yellow card",
-        "var": "VAR check",
-        "sub": "Substitution",
-        "halftime": "Half time",
-        "fulltime": "Full time",
-        "possession": "Possession"
-      }
-    }
   }
 }

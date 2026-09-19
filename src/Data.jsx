@@ -35,24 +35,14 @@ export const site = {
   ],
 };
 
-/* Feature flags: flip to true when a section is ready to ship. */
-export const features = {
-  lab: false, // Lab section + nav tab (Canvas slot engine, reconnect demo)
-};
-
-const allLinks = [
+export const links = [
   { name: "Home", path: "home" },
   { name: "Skills", path: "skills" },
-  { name: "Lab", path: "lab", feature: "lab" },
   { name: "Work", path: "work" },
   { name: "Resume", path: "resume" },
   { name: "Work With Me", path: "services" },
   { name: "Contact", path: "contact" },
 ];
-
-export const links = allLinks.filter(
-  ({ feature }) => !feature || features[feature],
-);
 
 /* ------------------------------------------------------------------ */
 /*  Hero                                                               */

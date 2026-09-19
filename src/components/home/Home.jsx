@@ -24,16 +24,17 @@ const Home = ({ introDone }) => {
   const { site, heroRoles, heroStats } = useContent();
   const t = useTranslations("hero");
   const tc = useTranslations("common");
-  const [flipped, setFlipped] = useState(false);
+  // The card starts on its back face (the portrait); the first press reveals the
+  // 3D scene, and the heavy Spline runtime is only requested at that moment.
+  const [flipped, setFlipped] = useState(true);
+  const [splineRequested, setSplineRequested] = useState(false);
   const [splineReady, setSplineReady] = useState(false);
   // The "press me" hint retires once the toggle has done its job.
   const [toggleUsed, setToggleUsed] = useState(false);
 
   const handleSplineReady = useCallback(() => setSplineReady(true), []);
 
-  // The Spline runtime is heavy, so it still waits for the intro to finish —
-  // but it now loads on every viewport, with the portrait as the poster frame.
-  const showSpline = introDone;
+  const showSpline = introDone && splineRequested;
 
   return (
     <section className="relative bg-first pb-16 pt-24 lg:pb-20 lg:pt-0" id="home">
@@ -180,6 +181,7 @@ const Home = ({ introDone }) => {
                 type="button"
                 onClick={() => {
                   setFlipped((v) => !v);
+                  setSplineRequested(true);
                   setToggleUsed(true);
                 }}
                 aria-pressed={flipped}
@@ -205,8 +207,8 @@ const Home = ({ introDone }) => {
               >
                 <span className="hero-flip__hint-label font-accent">{t("pressMe")}</span>
                 <svg className="hero-flip__hint-arrow" viewBox="0 0 62 42" role="presentation">
-                  <path d="M57 6C47 3 22 7 13 29" />
-                  <path d="M11 32l13 1M11 32l8-10" />
+                  <path d="M56 6C46 3 22 8 12 31" />
+                  <path d="M12 31l10.2-6.2M12 31l-2.4-11.8" />
                 </svg>
               </div>
             </div>
