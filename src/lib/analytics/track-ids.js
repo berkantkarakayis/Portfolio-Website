@@ -20,6 +20,11 @@ export const TRACK_LABELS = {
   "email-copy": "Email copied",
   "footer-nav": "Footer nav",
   "back-to-top": "Back to top",
+  "lab-slot-spin": "Lab → Spin",
+  "lab-slot-verify": "Lab → Verify spin",
+  "lab-slot-reset": "Lab → Reset credits",
+  "lab-disconnect": "Lab → Cut connection",
+  "lab-reconnect": "Lab → Reconnect",
 };
 
 export const trackLabel = (id) => TRACK_LABELS[id] ?? id;

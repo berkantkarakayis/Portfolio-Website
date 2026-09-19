@@ -5,6 +5,7 @@ import { LazyMotion } from "framer-motion";
 import Header from "@/components/header/Header";
 import Home from "@/components/home/Home";
 import Skills from "@/components/skills/Skills";
+import Lab from "@/components/lab/Lab";
 import Portfolio from "@/components/portfolio/Portfolio";
 import Resume from "@/components/resume/Resume";
 import WorkWithMe from "@/components/services/WorkWithMe";
@@ -113,6 +114,7 @@ export default function PortfolioPage() {
         <Header introDone={introDone} logoRef={logoRef} />
         <Home introDone={introDone} />
         <Skills />
+        <Lab />
         <Portfolio />
         <Resume />
         <WorkWithMe />

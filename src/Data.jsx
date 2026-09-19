@@ -38,6 +38,7 @@ export const site = {
 export const links = [
   { name: "Home", path: "home" },
   { name: "Skills", path: "skills" },
+  { name: "Lab", path: "lab" },
   { name: "Work", path: "work" },
   { name: "Resume", path: "resume" },
   { name: "Work With Me", path: "services" },

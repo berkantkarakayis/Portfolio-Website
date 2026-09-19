@@ -29,6 +29,7 @@
   "nav": {
     "home": "Ana Sayfa",
     "skills": "Yetenekler",
+    "lab": "Lab",
     "work": "İşler",
     "resume": "Özgeçmiş",
     "services": "Birlikte Çalışalım",
@@ -443,6 +444,71 @@
       "retainer": {
         "label": "Aylık anlaşma",
         "note": "Sürekli ürün geliştirme"
+      }
+    }
+  },
+  "lab": {
+    "title": "Lab",
+    "kicker": "Canlı",
+    "accent": "Deneyler",
+    "intro": "Nasıl çalıştığımı gösteren küçük, kendi başına çalışan yapımlar: provably fair sonuçlar üreten bir Canvas oyun motoru ve kötü bağlantıya dayanan gerçek zamanlı bir akış. Hepsi tarayıcında çalışıyor.",
+    "watermark": "Lab",
+    "slot": {
+      "title": "Canvas slot motoru",
+      "desc": "Küçük bir motorun (sabit adımlı döngü, tween'ler, DPR farkındalığı) HTML5 Canvas üzerinde çizdiği üç makara. Her spin provably fair: sunucu seed'i, sen çevirmeden önce hash olarak taahhüt edilir.",
+      "canvasLabel": "Slot makinesi makaraları",
+      "spin": "Çevir",
+      "spinning": "Dönüyor…",
+      "credits": "Kredi",
+      "bet": "Bahis",
+      "lastWin": "Son kazanç",
+      "fps": "fps",
+      "reset": "Krediyi sıfırla",
+      "fairTitle": "Provably fair",
+      "commitment": "Sunucu seed hash'i (sonraki spin için taahhüt)",
+      "serverSeed": "Sunucu seed'i (spin sonrası açıklanır)",
+      "clientSeed": "İstemci seed'i (senin, düzenlenebilir)",
+      "nonce": "Nonce",
+      "resultHash": "HMAC-SHA256(serverSeed, clientSeed:nonce)",
+      "mapping": "Özet → makaralar",
+      "verify": "Bu spini doğrula",
+      "verified": "Doğrulandı — taahhüt ve makaralar eşleşiyor",
+      "mismatch": "Uyuşmazlık — bir şey değiştirilmiş",
+      "how1": "Her spinden önce motor rastgele bir sunucu seed'i seçer ve yalnızca SHA-256 hash'ini gösterir; sonuç kilitlenir ama bilinmez.",
+      "how2": "Sonuç HMAC-SHA256(serverSeed, \"clientSeed:nonce\") ile üretilir; her makara özetin 4 baytını sembol sayısına göre mod alır.",
+      "how3": "Spinden sonra seed açıklanır. Burada ya da başka bir yerde yeniden hesapla — makaralar değiştirilmiş olamaz."
+    },
+    "tracker": {
+      "title": "Reconnect-and-resume ile gerçek zamanlı takip",
+      "desc": "Simüle edilmiş bir futbol akışı numaralı olaylar yayınlar. Bağlantıyı kes: sunucu devam eder, istemci üstel geri çekilmeyle bekler, yeniden bağlanır ve kaçırdığı olayları birebir tekrar oynatır.",
+      "live": "Canlı",
+      "status": {
+        "connected": "Bağlı — olaylar olduğu anda geliyor.",
+        "disconnected": "Bağlantı kesik — sunucu görmediğin olayları üretmeye devam ediyor.",
+        "reconnecting": "{seconds} sn içinde yeniden bağlanılıyor ({attempt}. deneme, üstel geri çekilme)…"
+      },
+      "disconnect": "Bağlantıyı kes",
+      "reconnect": "Şimdi bağlan",
+      "auto": "Otomatik bağlan",
+      "lastSeq": "seq",
+      "minute": "{minute}'",
+      "replayed": "Şimdiye kadar {count} olay tekrar oynatıldı",
+      "catchingUp": "Yetişiyor… {count} kaldı",
+      "replayTag": "tekrar",
+      "feed": "Olay akışı",
+      "diagram": "Veri yolu",
+      "events": {
+        "kickoff": "Başlama vuruşu",
+        "goal": "GOL",
+        "shot": "İsabetli şut",
+        "corner": "Korner",
+        "foul": "Faul",
+        "yellow": "Sarı kart",
+        "var": "VAR incelemesi",
+        "sub": "Oyuncu değişikliği",
+        "halftime": "Devre arası",
+        "fulltime": "Maç sonu",
+        "possession": "Top hakimiyeti"
       }
     }
   }
