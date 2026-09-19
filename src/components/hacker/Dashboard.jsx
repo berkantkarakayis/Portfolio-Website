@@ -17,6 +17,7 @@ import { Sessions } from "./panels/Sessions";
 import { SessionDrawer } from "./panels/SessionDrawer";
 import { flag, fmtDay, fmtDateTime } from "./format";
 import { trackLabel } from "@/lib/analytics/track-ids";
+import { setSoundEnabled } from "./sound";
 
 const RANGES = ["7d", "30d", "90d"];
 const STATS_REFRESH_MS = 60_000;
@@ -24,7 +25,7 @@ const STATS_REFRESH_MS = 60_000;
 const Button = ({ active = false, children, ...rest }) => (
   <button
     type="button"
-    className={`rounded-full border px-3 py-1 text-xs transition-colors ${
+    className={`shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-xs transition-colors ${
       active
         ? "border-primary bg-primary text-[#020a04]"
         : "border-primary/40 text-[#b6ffb6] hover:border-primary hover:text-primary"
@@ -148,6 +149,10 @@ export const Dashboard = ({ label, onHide, onExit, onLogout }) => {
       case "logout":
         onLogout();
         return;
+      case "sound":
+        setSoundEnabled(arg !== "off");
+        setMessage(`sound ${arg !== "off" ? "on" : "off"}`);
+        return;
       case "help":
         setShowHelp(true);
         return;
@@ -165,25 +170,38 @@ export const Dashboard = ({ label, onHide, onExit, onLogout }) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="hm-root fixed inset-0 z-[400] overflow-y-auto bg-[#020a04] pb-20 text-[#7dff7d]"
+      className="hm-root fixed inset-0 z-[400] overflow-y-auto bg-[#020a04] pb-24 text-[#7dff7d]"
     >
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-        <header className="mb-5 flex flex-wrap items-center gap-3">
-          <div className="mr-auto">
-            <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-primary">Hacker mode // analytics</h2>
-            <p className="mt-1 text-xs text-[color:var(--muted-color)]">
-              operator {label ?? "—"} · {stats ? `generated ${fmtDateTime(stats.generatedAt)}${stats.cached ? " (cached)" : ""}` : "loading…"}
-            </p>
+      <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 sm:py-6">
+        <header className="mb-4 flex flex-col gap-3">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-primary sm:text-sm">Hacker mode // analytics</h2>
+              <p className="mt-1 truncate text-[11px] text-[color:var(--muted-color)] sm:text-xs">
+                operator {label ?? "…"} · {stats ? `generated ${fmtDateTime(stats.generatedAt)}${stats.cached ? " (cached)" : ""}` : "loading…"}
+              </p>
+            </div>
+            <Button onClick={onHide} title="Esc">hide</Button>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            {RANGES.map((r) => (
-              <Button key={r} active={range === r} onClick={() => setRange(r)}>{r}</Button>
-            ))}
+          <div className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="inline-flex shrink-0 rounded-full border border-primary/40 p-0.5" role="radiogroup" aria-label="Range">
+              {RANGES.map((r) => (
+                <button
+                  key={r}
+                  type="button"
+                  role="radio"
+                  aria-checked={range === r}
+                  onClick={() => setRange(r)}
+                  className={`rounded-full px-3 py-0.5 text-xs transition-colors ${range === r ? "bg-primary text-[#020a04]" : "text-[#b6ffb6] hover:text-primary"}`}
+                >
+                  {r}
+                </button>
+              ))}
+            </div>
             <Button active={auto} onClick={() => setAuto((v) => !v)} title="auto refresh">auto</Button>
             <Button onClick={refresh}>{loading ? "…" : "refresh"}</Button>
             <Button onClick={() => run("export json")}>json</Button>
             <Button onClick={() => run("export csv")}>csv</Button>
-            <Button onClick={onHide}>hide</Button>
           </div>
         </header>
 
@@ -207,7 +225,7 @@ export const Dashboard = ({ label, onHide, onExit, onLogout }) => {
         )}
 
         <m.div
-          className="mt-5 space-y-4"
+          className="mt-4 space-y-3 sm:mt-5 sm:space-y-4"
           initial="hidden"
           animate="show"
           variants={{ show: { transition: { staggerChildren: 0.04 } } }}
@@ -220,7 +238,7 @@ export const Dashboard = ({ label, onHide, onExit, onLogout }) => {
                 <Kpis stats={stats} />
               </m.div>
 
-              <div className="grid gap-4 lg:grid-cols-3">
+              <div className="grid gap-3 sm:gap-4 lg:grid-cols-3">
                 <Panel title="Sessions per day" sub={`last ${range}`} className="lg:col-span-2">
                   <AreaLine data={stats.byDay.map((d) => ({ label: fmtDay(d.day), value: d.sessions }))} />
                 </Panel>
@@ -229,7 +247,7 @@ export const Dashboard = ({ label, onHide, onExit, onLogout }) => {
                 </Panel>
               </div>
 
-              <div className="grid gap-4 lg:grid-cols-2">
+              <div className="grid gap-3 sm:gap-4 lg:grid-cols-2">
                 <Sections sections={stats.sections} sessions={total} />
                 <Panel title="Scroll depth" sub="sessions per 10% bucket">
                   <Bars
@@ -239,7 +257,7 @@ export const Dashboard = ({ label, onHide, onExit, onLogout }) => {
                 </Panel>
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
                 <RankList title="Countries" items={stats.countries} total={total} render={(k) => `${flag(k)} ${k}`} />
                 <RankList title="Cities" items={stats.cities} total={total} />
                 <RankList title="Referrers" items={stats.referrers} total={total} />
@@ -251,23 +269,33 @@ export const Dashboard = ({ label, onHide, onExit, onLogout }) => {
                 />
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
                 <RankList title="Devices" items={stats.devices} total={total} />
                 <RankList title="Operating systems" items={stats.os} total={total} />
                 <RankList title="Browsers" items={stats.browsers} total={total} />
                 <RankList title="Screen widths" items={stats.screens} total={total} />
               </div>
 
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
                 <RankList title="Language" items={stats.locales} total={total} render={(k) => k.toUpperCase()} />
                 <RankList title="Theme" items={stats.themes} total={total} />
                 <RankList title="Clicks" sub="tracked controls" items={stats.clicks} render={(k) => trackLabel(k)} max={12} />
                 <RankList title="Outbound links" items={stats.outbound} max={12} />
               </div>
 
+              <div className="grid gap-3 sm:gap-4 lg:grid-cols-2">
+                <RankList
+                  title="Networks / ISPs"
+                  sub={stats.flagged ? `${stats.flagged} session(s) via VPN, proxy or hosting` : "resolved from the visitor IP"}
+                  items={stats.networks ?? []}
+                  total={total}
+                />
+                <RankList title="GPUs" sub="WebGL renderer string" items={stats.gpus ?? []} total={total} />
+              </div>
+
               <Vitals vitals={stats.vitals} />
 
-              <div className="grid gap-4 lg:grid-cols-2">
+              <div className="grid gap-3 sm:gap-4 lg:grid-cols-2">
                 <Errors errors={stats.errors} />
                 <Live auto={auto} onSelect={setSelected} />
               </div>

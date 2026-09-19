@@ -8,6 +8,7 @@ export const COMMANDS = [
   ["export json|csv", "download every session in range"],
   ["auto on|off", "toggle auto refresh"],
   ["live / sessions", "jump to a panel"],
+  ["sound on|off", "boot and UI sounds"],
   ["exclude", "stop tracking this device"],
   ["hide / exit / logout", "leave the dashboard"],
   ["help", "this list"],

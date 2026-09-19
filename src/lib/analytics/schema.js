@@ -43,6 +43,20 @@ const contextSchema = z
     cs: str(10),
     touch: z.boolean(),
     wd: z.boolean(),
+    pf: str(40),
+    cores: count.nullable(),
+    mem: z.number().min(0).max(1024).nullable(),
+    gpu: str(120).nullable(),
+    depth: count.nullable(),
+    orient: str(30),
+    tzo: z.number().min(-900).max(900),
+    cookies: z.boolean(),
+    standalone: z.boolean(),
+    net: z.object({ down: z.number().nullable(), rtt: z.number().nullable(), save: z.boolean() }).nullable(),
+    bat: z.object({ lvl: count, chg: z.boolean() }).nullable(),
+    nav: z
+      .object({ dns: ms, tcp: ms, ttfb: ms, dom: ms, load: ms, type: str(20) })
+      .nullable(),
   })
   .partial();
 

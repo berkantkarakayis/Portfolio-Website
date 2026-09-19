@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { m } from "framer-motion";
 import { api } from "./api";
+import { sfx } from "./sound";
 
 const HINTS = {
   idle: "Esc to cancel",
@@ -37,6 +38,7 @@ export const Prompt = ({ onSuccess, onClose }) => {
         return;
       }
       if (httpStatus === 401) {
+        sfx.deny();
         setRemaining(data?.remaining ?? null);
         setStatus("denied");
         setCode("");

@@ -3,6 +3,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { useSecretSequence } from "@/hooks/useSecretSequence";
+import { api } from "@/components/hacker/api";
 
 const STAGE_KEY = "hm_stage";
 const UI_COOKIE = "hm_ui";
@@ -36,16 +37,32 @@ export const HackerModeProvider = ({ children }) => {
   const [stage, setStage] = useState("off");
   const [label, setLabel] = useState(null);
   const [resumable, setResumable] = useState(false);
+  const [everOpened, setEverOpened] = useState(false);
 
   // Restore an active session after a reload, or offer to resume one.
   useEffect(() => {
     const authed = hasUiCookie();
     const stored = readStage();
-    /* eslint-disable react-hooks/set-state-in-effect */
-    if (authed && stored) setStage(stored);
-    else setResumable(authed);
+    /* eslint-disable react-hooks/set-state-in-effect -- one-off sync with cookie + sessionStorage */
+    if (authed && stored) {
+      setStage(stored);
+      setEverOpened(true);
+    } else {
+      setResumable(authed);
+    }
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
+
+  // The label lives in the httpOnly cookie; ask the server for it when needed.
+  useEffect(() => {
+    if (stage === "off" || label) return undefined;
+    const controller = new AbortController();
+    api
+      .me(controller.signal)
+      .then(({ ok, data }) => ok && data?.label && setLabel(data.label))
+      .catch(() => {});
+    return () => controller.abort();
+  }, [stage, label]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -61,6 +78,7 @@ export const HackerModeProvider = ({ children }) => {
 
   const open = useCallback(() => {
     setResumable(false);
+    setEverOpened(true);
     setStage((current) => {
       if (current === "off") return hasUiCookie() ? "boot" : "prompt";
       if (current === "hidden") return "on";
@@ -78,13 +96,14 @@ export const HackerModeProvider = ({ children }) => {
 
   const value = useMemo(
     () => ({ stage, label, resumable, open, close, setStage, setLabel }),
+     
     [stage, label, resumable, open, close],
   );
 
   return (
     <HackerModeContext.Provider value={value}>
       {children}
-      {stage !== "off" && <HackerMode />}
+      {everOpened && <HackerMode />}
       {stage === "off" && resumable && (
         <button
           type="button"

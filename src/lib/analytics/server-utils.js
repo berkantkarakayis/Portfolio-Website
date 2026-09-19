@@ -10,7 +10,14 @@ export const getIp = (request) => {
   return request.headers.get("x-real-ip") ?? "0.0.0.0";
 };
 
-/** Daily-rotating salted hash; the raw IP is never stored. */
+/** ANALYTICS_IP_MODE=full stores the raw address next to the hash. */
+export const ipMode = () => (process.env.ANALYTICS_IP_MODE === "full" ? "full" : "hash");
+
+export const isPublicIp = (ip) =>
+  Boolean(ip) &&
+  !/^(127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|0\.0\.0\.0|::1$|fc|fd|fe80)/i.test(ip);
+
+/** Daily-rotating salted hash (used for uniqueness and rate limits). */
 export const hashIp = (ip, day = dayKey()) =>
   createHash("sha256")
     .update(`${ip}:${process.env.ANALYTICS_IP_SALT ?? "dev-salt"}:${day}`)

@@ -66,6 +66,9 @@ export const aggregate = (sessions, { range, days, now = Date.now() }) => {
   const screens = counter();
   const locales = counter();
   const themes = counter();
+  const networks = counter();
+  const gpus = counter();
+  let flagged = 0;
   const sections = new Map();
   const scrollHist = Array(10).fill(0);
   const clicks = new Map();
@@ -115,6 +118,9 @@ export const aggregate = (sessions, { range, days, now = Date.now() }) => {
     bump(screens, screenBucket(s.ctx?.scr ?? []));
     bump(locales, s.ctx?.loc ?? "en");
     bump(themes, s.ctx?.theme ?? "dark");
+    if (s.net?.org || s.net?.isp) bump(networks, s.net.org ?? s.net.isp);
+    if (s.ctx?.gpu) bump(gpus, s.ctx.gpu.replace(/^ANGLE \((.*)\)$/, "$1").slice(0, 60));
+    if (s.net?.proxy || s.net?.hosting || s.net?.vpn) flagged += 1;
 
     for (const [id, ms] of Object.entries(s.eng?.sec ?? {})) {
       const entry = sections.get(id) ?? { id, total: 0, sessions: 0 };
@@ -171,6 +177,9 @@ export const aggregate = (sessions, { range, days, now = Date.now() }) => {
     screens: top(screens, 10),
     locales: top(locales, 5),
     themes: top(themes, 3),
+    networks: top(networks, 15),
+    gpus: top(gpus, 10),
+    flagged,
     sections: [...sections.values()]
       .map((e) => ({ ...e, avg: e.sessions ? Math.round(e.total / e.sessions) : 0 }))
       .sort((a, b) => b.total - a.total),
@@ -205,6 +214,8 @@ export const summarize = (s) => ({
   br: s.ctx?.br ?? null,
   loc: s.ctx?.loc ?? null,
   ref: s.ctx?.refHost ?? null,
+  org: s.net?.org ?? s.net?.isp ?? null,
+  ip: s.ipRaw ?? null,
   bounce: isBounce(s),
   errs: (s.eng?.errs ?? []).length,
 });

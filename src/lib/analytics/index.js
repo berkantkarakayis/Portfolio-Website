@@ -1,5 +1,5 @@
 import { getIdentity } from "./ids";
-import { buildContext } from "./context";
+import { batterySnapshot, buildContext, navigationTiming } from "./context";
 import { startEngagement } from "./engagement";
 import { startEvents } from "./events";
 import { startErrors } from "./errors";
@@ -54,6 +54,22 @@ export const startAnalytics = () => {
   const stopEngagement = startEngagement(state, { track: events.track, markDirty });
   const stopErrors = startErrors(state, { track: events.track, markDirty });
   startVitals(state, { markDirty });
+
+  // Async enrichments land before the first snapshot goes out.
+  batterySnapshot().then((bat) => {
+    if (bat) {
+      state.ctx.bat = bat;
+      markDirty();
+    }
+  });
+  window.addEventListener(
+    "load",
+    () => {
+      state.ctx.nav = navigationTiming();
+      markDirty();
+    },
+    { once: true },
+  );
 
   // First snapshot goes out quickly so short visits are still recorded.
   const firstFlush = setTimeout(transport.flush, 3_000);

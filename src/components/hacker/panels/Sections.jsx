@@ -15,9 +15,9 @@ export const Sections = ({ sections, sessions }) => {
         <ul className="space-y-3">
           {sections.map((s) => (
             <li key={s.id} className="text-xs">
-              <div className="flex items-baseline justify-between gap-3">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
                 <span className="font-bold text-[#b6ffb6]">{label(s.id)}</span>
-                <span className="tabular-nums text-[color:var(--muted-color)]">
+                <span className="text-right text-[11px] tabular-nums text-[color:var(--muted-color)]">
                   {fmtDuration(s.total)} total · avg {fmtDuration(s.avg)} · {s.sessions}/{sessions} reached
                 </span>
               </div>

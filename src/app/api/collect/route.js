@@ -8,8 +8,10 @@ import {
   geoFrom,
   getIp,
   hashIp,
+  ipMode,
   isBot,
 } from "@/lib/analytics/server-utils";
+import { lookupNetwork } from "@/lib/analytics/network";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -54,21 +56,31 @@ export async function POST(request) {
     return empty(204);
   }
 
-  const ipHash = hashIp(getIp(request), today);
+  const ip = getIp(request);
+  const ipHash = hashIp(ip, today);
   const minute = Math.floor(now / 60_000);
   const hits = await store.incr(`a:rl:c:${ipHash}:${minute}`, 120);
   if (hits > RATE_LIMIT_PER_MINUTE) return empty(429);
 
-  const enriched = {
+  const headerGeo = geoFrom(request.headers);
+  const base = {
     ...doc,
-    geo: geoFrom(request.headers),
+    geo: headerGeo,
     ip: ipHash,
+    ipRaw: ipMode() === "full" ? ip : undefined,
     ua: userAgent.slice(0, 200),
     rx: now,
   };
 
-  after(() =>
-    swallow(store.writeSession({ sid: doc.sid, doc: enriched, day: dayKey(doc.t0), now })),
-  );
+  after(async () => {
+    // Network lookup runs after the response; the edge geo wins when present.
+    const net = await lookupNetwork(store, ip, ipHash).catch(() => null);
+    const geo =
+      headerGeo ??
+      (net?.co ? { co: net.co, reg: net.reg, city: net.city, lat: net.lat, lon: net.lon, tz: net.tz, src: net.src } : null);
+    await swallow(
+      store.writeSession({ sid: doc.sid, doc: { ...base, geo, net }, day: dayKey(doc.t0), now }),
+    );
+  });
   return empty(204);
 }

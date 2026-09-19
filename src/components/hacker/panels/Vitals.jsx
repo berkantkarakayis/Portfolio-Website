@@ -6,7 +6,7 @@ import { RATING_COLOR, VITALS, fmtVital, vitalRating } from "../format";
 
 export const Vitals = ({ vitals }) => (
   <Panel title="Web vitals" sub="p75 across sessions in range">
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
       {Object.entries(VITALS).map(([name, meta]) => {
         const entry = vitals[name] ?? { p75: null, n: 0 };
         const rating = vitalRating(name, entry.p75);

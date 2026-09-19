@@ -80,12 +80,32 @@ export const SessionDrawer = ({ sid, onClose }) => {
           <Row k="last seen" v={fmtDateTime(s.rx ?? s.t1)} />
           <Row k="visitor" v={`${s.ret ? "returning" : "new"} · visit #${s.n ?? 1} · ${s.pv ?? 1} page view(s)`} />
           <Row k="where" v={s.geo ? `${flag(s.geo.co)} ${[s.geo.city, s.geo.reg, s.geo.co].filter(Boolean).join(", ")}` : "unknown (no geo header)"} />
-          <Row k="timezone" v={s.ctx?.tz} />
+          {s.ipRaw && <Row k="ip address" v={<span className="font-mono">{s.ipRaw}</span>} />}
+          <Row k="ip hash" v={<span className="font-mono text-[10px]">{s.ip}</span>} />
+          {s.net && (
+            <>
+              <Row k="network" v={[s.net.org ?? s.net.isp, s.net.asn].filter(Boolean).join(" · ") || "—"} />
+              {s.net.hostname && <Row k="hostname" v={<span className="break-all text-[10px]">{s.net.hostname}</span>} />}
+              <Row
+                k="flags"
+                v={[s.net.mobile && "mobile network", s.net.vpn && "vpn", s.net.proxy && "proxy", s.net.hosting && "hosting/datacenter"].filter(Boolean).join(", ") || "none"}
+              />
+              <Row k="geo source" v={s.geo?.src ?? (s.geo ? "edge headers" : "—")} />
+            </>
+          )}
+          <Row k="timezone" v={`${s.ctx?.tz ?? "—"} (UTC${s.ctx?.tzo != null ? (s.ctx.tzo <= 0 ? "+" : "-") + Math.abs(s.ctx.tzo) / 60 : "?"})`} />
           <Row k="device" v={`${s.ctx?.dev} · ${s.ctx?.os} · ${s.ctx?.br} ${s.ctx?.brv ?? ""}`} />
           <Row k="screen" v={`${s.ctx?.scr?.join("×")} @${s.ctx?.dpr}x · viewport ${s.ctx?.vp?.join("×")}`} />
           <Row k="language" v={`${s.ctx?.loc} · ${s.ctx?.lang}`} />
           <Row k="theme" v={`${s.ctx?.theme} (system ${s.ctx?.cs})${s.ctx?.rm ? " · reduced motion" : ""}`} />
-          <Row k="connection" v={s.ctx?.conn} />
+          <Row k="connection" v={s.ctx?.net ? `${s.ctx.conn ?? ""} · ${s.ctx.net.down ?? "?"} Mbps · rtt ${s.ctx.net.rtt ?? "?"} ms${s.ctx.net.save ? " · data saver" : ""}` : s.ctx?.conn} />
+          <Row k="hardware" v={`${s.ctx?.pf ?? ""} · ${s.ctx?.cores ?? "?"} cores · ${s.ctx?.mem ? `${s.ctx.mem} GB` : "? GB"} · ${s.ctx?.depth ?? "?"}-bit · ${s.ctx?.orient ?? ""}`} />
+          {s.ctx?.gpu && <Row k="gpu" v={<span className="break-all text-[10px]">{s.ctx.gpu}</span>} />}
+          {s.ctx?.bat && <Row k="battery" v={`${s.ctx.bat.lvl}%${s.ctx.bat.chg ? " · charging" : ""}`} />}
+          <Row k="cookies / pwa" v={`${s.ctx?.cookies ? "cookies on" : "cookies off"}${s.ctx?.standalone ? " · installed app" : ""}`} />
+          {s.ctx?.nav && (
+            <Row k="page load" v={`dns ${s.ctx.nav.dns} · tcp ${s.ctx.nav.tcp} · ttfb ${s.ctx.nav.ttfb} · dom ${s.ctx.nav.dom} · load ${s.ctx.nav.load} ms`} />
+          )}
           <Row k="landing" v={`${s.ctx?.path}${s.ctx?.hash ?? ""}`} />
           <Row k="referrer" v={s.ctx?.ref ?? "direct"} />
           {s.ctx?.utm && <Row k="utm" v={JSON.stringify(s.ctx.utm)} />}

@@ -9,6 +9,7 @@ import { BootSequence } from "./BootSequence";
 import { Dashboard } from "./Dashboard";
 import { StatusBar } from "./StatusBar";
 import { api } from "./api";
+import { sfx } from "./sound";
 
 const LOCKING_STAGES = new Set(["prompt", "boot", "on"]);
 
@@ -34,9 +35,13 @@ export const HackerMode = () => {
 
   const hide = useCallback(() => setStage("hidden"), [setStage]);
   const show = useCallback(() => setStage("on"), [setStage]);
-  const exit = useCallback(() => setStage("closing"), [setStage]);
+  const exit = useCallback(() => {
+    sfx.powerOff();
+    setStage("closing");
+  }, [setStage]);
   const logout = useCallback(async () => {
     await api.logout().catch(() => {});
+    sfx.powerOff();
     setLabel(null);
     setStage("closing");
   }, [setLabel, setStage]);
@@ -57,6 +62,7 @@ export const HackerMode = () => {
   }, [stage, close, hide, show]);
 
   const active = stage === "on" || stage === "hidden";
+  if (stage === "off") return null;
 
   return createPortal(
     <>
