@@ -40,6 +40,7 @@ export const links = [
   { name: "Skills", path: "skills" },
   { name: "Work", path: "work" },
   { name: "Resume", path: "resume" },
+  { name: "Systems", path: "systems" },
   { name: "Work With Me", path: "services" },
   { name: "Contact", path: "contact" },
 ];

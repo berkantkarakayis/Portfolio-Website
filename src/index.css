@@ -343,6 +343,17 @@ img {
   pointer-events: none;
 }
 
+/* Command palette: nearly opaque so it stays legible over busy sections */
+.palette-surface {
+  border: 1px solid var(--glass-border);
+  background: color-mix(in srgb, var(--container-color) 94%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow:
+    var(--shadow-card),
+    inset 0 1px 0 var(--glass-highlight);
+}
+
 .chip {
   display: inline-flex;
   align-items: center;

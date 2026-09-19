@@ -20,6 +20,9 @@ export const TRACK_LABELS = {
   "email-copy": "Email copied",
   "footer-nav": "Footer nav",
   "back-to-top": "Back to top",
+  "systems-tab": "Systems → tab",
+  "palette-open": "Command palette opened",
+  palette: "Command palette → run",
 };
 
 export const trackLabel = (id) => TRACK_LABELS[id] ?? id;

@@ -31,6 +31,7 @@
     "skills": "Skills",
     "work": "Work",
     "resume": "Resume",
+    "systems": "Systems",
     "services": "Work With Me",
     "contact": "Contact"
   },
@@ -41,7 +42,9 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "language": "Language",
-    "switchTo": "Switch to {language}"
+    "switchTo": "Switch to {language}",
+    "openPalette": "Open command palette (⌘K)",
+    "searchMenu": "Search & navigate"
   },
   "common": {
     "cvFilename": "Berkant-Karakayis-Resume.pdf",
@@ -59,7 +62,8 @@
     "showScene": "Show the 3D scene",
     "showPhoto": "Show my photo",
     "portraitAlt": "Portrait of Berkant Karakayış",
-    "watermark": "Developer"
+    "watermark": "Developer",
+    "paletteTip": "Press to search & jump anywhere"
   },
   "skills": {
     "title": "Professional Skills",
@@ -153,5 +157,236 @@
     "title": "Page not found",
     "text": "The page you are looking for does not exist or has moved.",
     "back": "Back to home"
+  },
+  "systems": {
+    "title": "Systems I Build",
+    "kicker": "How the",
+    "accent": "Pieces Fit",
+    "watermark": "Systems",
+    "intro": "Three architectures from production work, drawn as living diagrams. Hover a node to see what it does and what it talks to; the moving dots are the data. No client data is shown, only how the systems are put together.",
+    "hint": "Hover or focus a node to see its role.",
+    "decisions": "Key decisions",
+    "stack": "Stack",
+    "nda": "Client names, endpoints and numbers are intentionally left out; the shapes are real.",
+    "legend": {
+      "client": "Client / UI",
+      "core": "Service",
+      "store": "State / data",
+      "external": "External"
+    },
+    "gaming": {
+      "tab": "Real-time game platform",
+      "title": "Real-time game platform",
+      "summary": "Canvas game clients, a WebSocket game server that owns the truth, provably fair RNG and an idempotent wallet behind one gateway.",
+      "nodes": {
+        "player": {
+          "title": "Player",
+          "desc": "Any browser or in-app webview; treated as untrusted input."
+        },
+        "client": {
+          "title": "Canvas client",
+          "desc": "Shared HTML5 Canvas engine: rendering, animation, assets, sound and UI state as reusable modules, so a new game is mostly configuration."
+        },
+        "gateway": {
+          "title": "API gateway",
+          "desc": "Fastify edge: auth (JWT / OAuth 2.0 / 2FA), rate limits, WebSocket upgrade and routing to game servers over gRPC."
+        },
+        "server": {
+          "title": "Game server",
+          "desc": "Node.js + WebSocket, server-authoritative: the client only sends intents, the server decides every outcome and broadcasts state."
+        },
+        "rng": {
+          "title": "Provably fair RNG",
+          "desc": "HMAC-SHA256 over server seed, client seed and nonce; the seed hash is committed before the bet and revealed afterwards."
+        },
+        "wallet": {
+          "title": "Wallet settlement",
+          "desc": "Debit and credit with idempotency keys, so a retried request can never double-charge or double-pay."
+        },
+        "redis": {
+          "title": "Redis",
+          "desc": "Round state, session mapping and pub/sub so any server instance can serve a reconnecting player."
+        },
+        "events": {
+          "title": "Event bus",
+          "desc": "Kafka / RabbitMQ topics for bets, results and settlements consumed by downstream services."
+        },
+        "analytics": {
+          "title": "Analytics",
+          "desc": "ClickHouse pipeline for RTP monitoring, funnels and operator reporting."
+        }
+      },
+      "decisions": {
+        "authoritative": {
+          "title": "Server-authoritative state",
+          "desc": "The client never decides an outcome. Intents go up, results and full state come down."
+        },
+        "idempotent": {
+          "title": "Idempotent settlement",
+          "desc": "Every wallet write carries a key; retries after a timeout are safe by construction."
+        },
+        "resume": {
+          "title": "Reconnect-and-resume",
+          "desc": "Sequence numbers on every message; a dropped player resumes from the last acknowledged round."
+        },
+        "fair": {
+          "title": "Provably fair by default",
+          "desc": "Seed commitment before play, reveal after, so players can verify any round themselves."
+        }
+      }
+    },
+    "broadcast": {
+      "tab": "Live broadcast graphics",
+      "title": "Live broadcast graphics",
+      "summary": "A sports data feed becomes on-air match graphics for six sports, with fan-out across instances and catch-up in about a second.",
+      "nodes": {
+        "feed": {
+          "title": "Data feed",
+          "desc": "Upstream provider WebSocket with match status snapshots; reconnects with backoff when it drops."
+        },
+        "ingest": {
+          "title": "Ingest",
+          "desc": "Normalises status codes and coordinates, keeps the latest snapshot per match and publishes changes."
+        },
+        "pubsub": {
+          "title": "Redis pub/sub",
+          "desc": "Fan-out channel so every socket instance receives every match update."
+        },
+        "socketA": {
+          "title": "Socket server A",
+          "desc": "socket.io instance with one room per match; clients join by match id."
+        },
+        "socketB": {
+          "title": "Socket server B",
+          "desc": "Second instance behind the same nginx upstream; horizontal scale without sticky state."
+        },
+        "admin": {
+          "title": "Admin panel",
+          "desc": "Operator UI for enabling matches, themes and sponsor slots."
+        },
+        "tv": {
+          "title": "TV overlay",
+          "desc": "Full-screen browser scene rendered on the broadcast machine."
+        },
+        "iframe": {
+          "title": "Embedded tracker",
+          "desc": "Operator websites embed the same scene as an iframe with their own theme."
+        },
+        "cache": {
+          "title": "Snapshot cache",
+          "desc": "Latest state per match with a TTL, served over REST when a client first connects."
+        }
+      },
+      "decisions": {
+        "snapshot": {
+          "title": "Snapshot first, then stream",
+          "desc": "A new or reconnecting client loads the cached snapshot, then attaches to the stream. Nothing is missed."
+        },
+        "fanout": {
+          "title": "Pub/sub fan-out",
+          "desc": "Instances are stateless; Redis carries every update so any of them can serve any client."
+        },
+        "rooms": {
+          "title": "One room per match",
+          "desc": "Clients receive only the match they watch, which keeps bandwidth and rendering cost flat."
+        },
+        "embed": {
+          "title": "Themeable embed",
+          "desc": "The same React scene runs on TV and inside operator sites, themed from config."
+        }
+      }
+    },
+    "multibrand": {
+      "tab": "Multi-brand frontend",
+      "title": "Config-driven multi-brand frontend",
+      "summary": "One React + TypeScript codebase shipping several brands: tokens, components and permissions all come from configuration.",
+      "nodes": {
+        "config": {
+          "title": "Brand config",
+          "desc": "Per-brand JSON: colours, fonts, feature flags, enabled modules and locale list."
+        },
+        "tokens": {
+          "title": "Design tokens",
+          "desc": "CSS variables generated from config; Tailwind reads them, so every component re-skins without code changes."
+        },
+        "components": {
+          "title": "Component library",
+          "desc": "Shared UI kit with framer-motion transitions; brands compose pages from the same pieces."
+        },
+        "rbac": {
+          "title": "Roles & flags",
+          "desc": "Route-level role checks and feature flags decide what each user and brand can see."
+        },
+        "brandA": {
+          "title": "Brand A",
+          "desc": "Casino-first brand: slots, live casino, tournaments."
+        },
+        "brandB": {
+          "title": "Brand B",
+          "desc": "Sportsbook-first brand with the same component kit and a different token set."
+        },
+        "brandC": {
+          "title": "Brand C",
+          "desc": "White-label demo brand switched on by config alone."
+        },
+        "cms": {
+          "title": "Strapi CMS",
+          "desc": "Centralised content: pages, promotions and translations pulled over REST."
+        },
+        "ci": {
+          "title": "CI/CD",
+          "desc": "GitHub Actions builds each brand, ships Docker images behind nginx and PM2."
+        }
+      },
+      "decisions": {
+        "configDriven": {
+          "title": "Config over code",
+          "desc": "Adding a brand means adding a JSON file, not a fork."
+        },
+        "rbac": {
+          "title": "Role-based access at the route",
+          "desc": "Permissions are enforced where navigation happens, not sprinkled through components."
+        },
+        "caching": {
+          "title": "Server state with TanStack Query",
+          "desc": "Caching, retries and background refresh handled centrally; Redux Toolkit keeps only UI and session state."
+        },
+        "i18n": {
+          "title": "i18n from day one",
+          "desc": "i18next namespaces per module; new languages are content, not code."
+        }
+      }
+    }
+  },
+  "live": {
+    "now": "{count, plural, one {# person browsing right now} other {# people browsing right now}}",
+    "month": "{visitors, plural, one {# visitor} other {# visitors}} from {countries, plural, one {# country} other {# countries}} in the last 30 days",
+    "top": "Most visits from"
+  },
+  "palette": {
+    "title": "Command palette",
+    "placeholder": "Type a command or search…",
+    "hint": "↑↓ navigate · ↵ select · esc close",
+    "results": "results",
+    "empty": "Nothing matches \"{query}\"",
+    "copied": "Email copied",
+    "groups": {
+      "recent": "Recent",
+      "navigate": "Go to",
+      "actions": "Actions",
+      "skills": "Skills",
+      "socials": "Elsewhere"
+    },
+    "actions": {
+      "cv": "Download CV",
+      "email": "Email me",
+      "copyEmail": "Copy email address",
+      "theme": "Toggle dark / light theme",
+      "locale": "Switch to {language}",
+      "open": "Open {name}"
+    },
+    "nudge": "Search, jump to a section, switch theme or language",
+    "nudgeShort": "Search & navigate",
+    "dismiss": "Dismiss"
   }
 }

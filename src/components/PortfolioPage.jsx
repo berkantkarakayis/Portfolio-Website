@@ -5,6 +5,7 @@ import { LazyMotion } from "framer-motion";
 import Header from "@/components/header/Header";
 import Home from "@/components/home/Home";
 import Skills from "@/components/skills/Skills";
+import Systems from "@/components/systems/Systems";
 import Portfolio from "@/components/portfolio/Portfolio";
 import Resume from "@/components/resume/Resume";
 import WorkWithMe from "@/components/services/WorkWithMe";
@@ -12,6 +13,8 @@ import Contact from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
 import { HackerModeProvider } from "@/components/hacker/HackerModeProvider";
+import { CommandPalette } from "@/components/palette/CommandPalette";
+import { PaletteHint } from "@/components/palette/PaletteHint";
 
 // Loaded on demand so the animation runtime stays out of the initial bundle.
 const loadMotionFeatures = () =>
@@ -115,10 +118,13 @@ export default function PortfolioPage() {
         <Skills />
         <Portfolio />
         <Resume />
+        <Systems />
         <WorkWithMe />
         <Contact />
         <Footer />
         <BackToTop />
+        <CommandPalette />
+        <PaletteHint />
       </main>
       </HackerModeProvider>
     </LazyMotion>

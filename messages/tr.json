@@ -31,6 +31,7 @@
     "skills": "Yetenekler",
     "work": "İşler",
     "resume": "Özgeçmiş",
+    "systems": "Sistemler",
     "services": "Birlikte Çalışalım",
     "contact": "İletişim"
   },
@@ -41,7 +42,9 @@
     "openMenu": "Menüyü aç",
     "closeMenu": "Menüyü kapat",
     "language": "Dil",
-    "switchTo": "{language} diline geç"
+    "switchTo": "{language} diline geç",
+    "openPalette": "Komut paletini aç (⌘K)",
+    "searchMenu": "Ara ve gez"
   },
   "common": {
     "cvFilename": "Berkant-Karakayis-CV.pdf",
@@ -59,7 +62,8 @@
     "showScene": "3D sahneyi göster",
     "showPhoto": "Fotoğrafımı göster",
     "portraitAlt": "Berkant Karakayış'ın portresi",
-    "watermark": "Geliştirici"
+    "watermark": "Geliştirici",
+    "paletteTip": "Aramak ve bölümlere atlamak için bas"
   },
   "skills": {
     "title": "Profesyonel Yetenekler",
@@ -445,5 +449,236 @@
         "note": "Sürekli ürün geliştirme"
       }
     }
+  },
+  "systems": {
+    "title": "Kurduğum Sistemler",
+    "kicker": "Parçalar",
+    "accent": "Nasıl Birleşiyor",
+    "watermark": "Sistemler",
+    "intro": "Üretimden üç mimari, canlı diyagram olarak. Bir düğümün üzerine gel: ne yaptığını ve kiminle konuştuğunu gör; hareket eden noktalar veri. Müşteri verisi yok, yalnızca sistemlerin nasıl kurulduğu var.",
+    "hint": "Rolünü görmek için bir düğümün üzerine gel ya da odaklan.",
+    "decisions": "Kritik kararlar",
+    "stack": "Stack",
+    "nda": "Müşteri adları, uç noktalar ve sayılar bilerek dışarıda bırakıldı; biçimler gerçek.",
+    "legend": {
+      "client": "İstemci / UI",
+      "core": "Servis",
+      "store": "Durum / veri",
+      "external": "Harici"
+    },
+    "gaming": {
+      "tab": "Gerçek zamanlı oyun platformu",
+      "title": "Gerçek zamanlı oyun platformu",
+      "summary": "Canvas oyun istemcileri, gerçeğin sahibi bir WebSocket oyun sunucusu, provably fair RNG ve tek gateway arkasında idempotent cüzdan.",
+      "nodes": {
+        "player": {
+          "title": "Oyuncu",
+          "desc": "Herhangi bir tarayıcı ya da uygulama içi webview; güvenilmeyen girdi olarak ele alınır."
+        },
+        "client": {
+          "title": "Canvas istemci",
+          "desc": "Ortak HTML5 Canvas motoru: render, animasyon, asset, ses ve UI durumu yeniden kullanılabilir modüller; yeni oyun çoğunlukla konfigürasyon."
+        },
+        "gateway": {
+          "title": "API gateway",
+          "desc": "Fastify kenar katmanı: kimlik doğrulama (JWT / OAuth 2.0 / 2FA), rate limit, WebSocket upgrade ve gRPC ile oyun sunucularına yönlendirme."
+        },
+        "server": {
+          "title": "Oyun sunucusu",
+          "desc": "Node.js + WebSocket, sunucu otoriteli: istemci sadece niyet gönderir, her sonucu sunucu belirler ve durumu yayınlar."
+        },
+        "rng": {
+          "title": "Provably fair RNG",
+          "desc": "Sunucu seed'i, istemci seed'i ve nonce üzerinde HMAC-SHA256; seed hash'i bahisten önce taahhüt edilir, sonra açıklanır."
+        },
+        "wallet": {
+          "title": "Cüzdan settlement",
+          "desc": "Idempotency anahtarlı borç ve alacak; tekrarlanan bir istek asla çift tahsilat ya da çift ödeme yapamaz."
+        },
+        "redis": {
+          "title": "Redis",
+          "desc": "Tur durumu, oturum eşlemesi ve pub/sub; yeniden bağlanan oyuncuya herhangi bir instance hizmet verebilir."
+        },
+        "events": {
+          "title": "Olay veri yolu",
+          "desc": "Bahis, sonuç ve settlement için Kafka / RabbitMQ topic'leri; alt servisler tüketir."
+        },
+        "analytics": {
+          "title": "Analitik",
+          "desc": "RTP izleme, funnel ve operatör raporlaması için ClickHouse pipeline'ı."
+        }
+      },
+      "decisions": {
+        "authoritative": {
+          "title": "Sunucu otoriteli durum",
+          "desc": "İstemci hiçbir sonucu belirlemez. Niyetler yukarı, sonuçlar ve tam durum aşağı akar."
+        },
+        "idempotent": {
+          "title": "Idempotent settlement",
+          "desc": "Her cüzdan yazımı bir anahtar taşır; zaman aşımı sonrası tekrarlar tasarım gereği güvenlidir."
+        },
+        "resume": {
+          "title": "Reconnect-and-resume",
+          "desc": "Her mesajda sıra numarası; bağlantısı kopan oyuncu son onaylanan turdan devam eder."
+        },
+        "fair": {
+          "title": "Varsayılan olarak provably fair",
+          "desc": "Oyundan önce seed taahhüdü, sonra açıklama; oyuncu her turu kendisi doğrulayabilir."
+        }
+      }
+    },
+    "broadcast": {
+      "tab": "Canlı yayın grafiği",
+      "title": "Canlı yayın grafiği",
+      "summary": "Bir spor veri akışı altı spor için yayın grafiğine dönüşür; instance'lar arası fan-out ve yaklaşık bir saniyede yetişme.",
+      "nodes": {
+        "feed": {
+          "title": "Veri akışı",
+          "desc": "Sağlayıcının WebSocket'i, maç durumu snapshot'ları gönderir; koptuğunda geri çekilmeyle yeniden bağlanır."
+        },
+        "ingest": {
+          "title": "Ingest",
+          "desc": "Durum kodlarını ve koordinatları normalize eder, maç başına son snapshot'ı tutar ve değişiklikleri yayınlar."
+        },
+        "pubsub": {
+          "title": "Redis pub/sub",
+          "desc": "Her socket instance'ının her maç güncellemesini almasını sağlayan fan-out kanalı."
+        },
+        "socketA": {
+          "title": "Socket sunucusu A",
+          "desc": "Maç başına bir oda ile socket.io instance'ı; istemciler maç kimliğiyle odaya girer."
+        },
+        "socketB": {
+          "title": "Socket sunucusu B",
+          "desc": "Aynı nginx upstream'i arkasında ikinci instance; yapışkan durum olmadan yatay ölçek."
+        },
+        "admin": {
+          "title": "Admin paneli",
+          "desc": "Maçları, temaları ve sponsor alanlarını açan operatör arayüzü."
+        },
+        "tv": {
+          "title": "TV overlay",
+          "desc": "Yayın makinesinde tam ekran render edilen tarayıcı sahnesi."
+        },
+        "iframe": {
+          "title": "Gömülü tracker",
+          "desc": "Operatör siteleri aynı sahneyi kendi temalarıyla iframe olarak gömer."
+        },
+        "cache": {
+          "title": "Snapshot önbelleği",
+          "desc": "Maç başına TTL'li son durum; istemci ilk bağlandığında REST ile sunulur."
+        }
+      },
+      "decisions": {
+        "snapshot": {
+          "title": "Önce snapshot, sonra akış",
+          "desc": "Yeni ya da yeniden bağlanan istemci önbellekten snapshot alır, sonra akışa bağlanır. Hiçbir şey kaçmaz."
+        },
+        "fanout": {
+          "title": "Pub/sub fan-out",
+          "desc": "Instance'lar durumsuz; her güncellemeyi Redis taşır, hangisi olsa hizmet verir."
+        },
+        "rooms": {
+          "title": "Maç başına bir oda",
+          "desc": "İstemci yalnızca izlediği maçı alır; bant genişliği ve render maliyeti sabit kalır."
+        },
+        "embed": {
+          "title": "Temalanabilir gömme",
+          "desc": "Aynı React sahnesi TV'de ve operatör sitelerinde config'den temalanarak çalışır."
+        }
+      }
+    },
+    "multibrand": {
+      "tab": "Çok markalı frontend",
+      "title": "Config-driven çok markalı frontend",
+      "summary": "Birden fazla markayı yayına alan tek React + TypeScript kod tabanı: token'lar, bileşenler ve izinler konfigürasyondan gelir.",
+      "nodes": {
+        "config": {
+          "title": "Marka config'i",
+          "desc": "Marka başına JSON: renkler, fontlar, feature flag'ler, açık modüller ve dil listesi."
+        },
+        "tokens": {
+          "title": "Tasarım token'ları",
+          "desc": "Config'den üretilen CSS değişkenleri; Tailwind bunları okur, her bileşen kod değişmeden yeniden giyinir."
+        },
+        "components": {
+          "title": "Bileşen kütüphanesi",
+          "desc": "framer-motion geçişli ortak UI kiti; markalar sayfalarını aynı parçalardan kurar."
+        },
+        "rbac": {
+          "title": "Roller ve flag'ler",
+          "desc": "Rota seviyesinde rol kontrolü ve feature flag'ler; her kullanıcı ve marka neyi görecek buradan belirlenir."
+        },
+        "brandA": {
+          "title": "Marka A",
+          "desc": "Casino odaklı marka: slotlar, canlı casino, turnuvalar."
+        },
+        "brandB": {
+          "title": "Marka B",
+          "desc": "Aynı bileşen kiti, farklı token setiyle sportsbook odaklı marka."
+        },
+        "brandC": {
+          "title": "Marka C",
+          "desc": "Yalnızca config ile açılan white-label demo marka."
+        },
+        "cms": {
+          "title": "Strapi CMS",
+          "desc": "Merkezi içerik: sayfalar, promosyonlar ve çeviriler REST ile çekilir."
+        },
+        "ci": {
+          "title": "CI/CD",
+          "desc": "GitHub Actions her markayı derler, Docker imajlarını nginx ve PM2 arkasına yayınlar."
+        }
+      },
+      "decisions": {
+        "configDriven": {
+          "title": "Kod yerine config",
+          "desc": "Marka eklemek bir JSON dosyası eklemektir, fork değil."
+        },
+        "rbac": {
+          "title": "Rotada rol bazlı erişim",
+          "desc": "İzinler bileşenlere serpiştirilmez, navigasyonun olduğu yerde uygulanır."
+        },
+        "caching": {
+          "title": "TanStack Query ile sunucu durumu",
+          "desc": "Önbellek, tekrar deneme ve arka plan yenileme merkezi; Redux Toolkit yalnızca UI ve oturum durumunu tutar."
+        },
+        "i18n": {
+          "title": "İlk günden i18n",
+          "desc": "Modül başına i18next namespace'leri; yeni dil kod değil içeriktir."
+        }
+      }
+    }
+  },
+  "live": {
+    "now": "Şu an {count} kişi sitede",
+    "month": "Son 30 günde {countries} ülkeden {visitors} ziyaretçi",
+    "top": "En çok ziyaret"
+  },
+  "palette": {
+    "title": "Komut paleti",
+    "placeholder": "Bir komut yaz ya da ara…",
+    "hint": "↑↓ gez · ↵ seç · esc kapat",
+    "results": "sonuç",
+    "empty": "\"{query}\" ile eşleşen bir şey yok",
+    "copied": "E-posta kopyalandı",
+    "groups": {
+      "recent": "Son kullanılan",
+      "navigate": "Git",
+      "actions": "Eylemler",
+      "skills": "Yetenekler",
+      "socials": "Diğer"
+    },
+    "actions": {
+      "cv": "CV indir",
+      "email": "E-posta gönder",
+      "copyEmail": "E-posta adresini kopyala",
+      "theme": "Koyu / açık temayı değiştir",
+      "locale": "{language} diline geç",
+      "open": "{name} aç"
+    },
+    "nudge": "Ara, bir bölüme atla, tema ya da dil değiştir",
+    "nudgeShort": "Ara ve gez",
+    "dismiss": "Kapat"
   }
 }

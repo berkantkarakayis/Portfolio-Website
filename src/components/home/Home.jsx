@@ -2,7 +2,13 @@
 
 import React, { useCallback, useState } from "react";
 import Image from "next/image";
-import { LuArrowDown, LuBoxes, LuDownload, LuUserRound } from "react-icons/lu";
+import {
+  LuArrowDown,
+  LuBoxes,
+  LuDownload,
+  LuSearch,
+  LuUserRound,
+} from "react-icons/lu";
 import { useTranslations } from "next-intl";
 import { useContent } from "@/i18n/content";
 import { SplineScene } from "@/components/ui/SplineScene";
@@ -10,6 +16,8 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 import { RotatingText } from "@/components/ui/RotatingText";
 import { CountUp } from "@/components/ui/CountUp";
 import { scrollToSection } from "@/hooks/useActiveSection";
+import { PALETTE_OPEN_EVENT } from "@/components/palette/CommandPalette";
+import { useShortcutLabel } from "@/components/palette/useShortcutLabel";
 
 const shapeOne = "/assets/shape-1.webp";
 const shapeTwo = "/assets/shape-2.webp";
@@ -24,6 +32,7 @@ const Home = ({ introDone }) => {
   const { site, heroRoles, heroStats } = useContent();
   const t = useTranslations("hero");
   const tc = useTranslations("common");
+  const shortcut = useShortcutLabel();
   // The card starts on its back face (the portrait); the first press reveals the
   // 3D scene, and the heavy Spline runtime is only requested at that moment.
   const [flipped, setFlipped] = useState(true);
@@ -37,8 +46,11 @@ const Home = ({ introDone }) => {
   const showSpline = introDone && splineRequested;
 
   return (
-    <section className="relative bg-first pb-16 pt-24 lg:pb-20 lg:pt-0" id="home">
-      <div className="relative grid min-h-[100svh] items-center pt-2 lg:pt-4">
+    <section
+      className="relative bg-first pb-16 pt-24 lg:pb-20 lg:pt-20"
+      id="home"
+    >
+      <div className="relative grid min-h-[100svh] items-center pt-2 lg:min-h-[calc(100svh-7rem)] lg:pt-2">
         <div className="container relative z-10 flex w-full flex-col-reverse gap-2 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
           {/* -------- Copy -------- */}
           <div className="w-full lg:w-1/2 max-lg:flex max-lg:flex-col max-lg:items-center max-lg:text-center">
@@ -57,7 +69,8 @@ const Home = ({ introDone }) => {
               {...reveal(introDone, 0.1)}
               className={`${reveal(introDone, 0.1).className} text-cs text-base font-bold uppercase tracking-wide text-title lg:text-2xl`}
             >
-              {t("greeting")} <span className="text-primary">{t("greetingAccent")}</span>
+              {t("greeting")}{" "}
+              <span className="text-primary">{t("greetingAccent")}</span>
             </p>
 
             <h1
@@ -86,7 +99,10 @@ const Home = ({ introDone }) => {
               {site.tagline}
             </p>
 
-            <div {...reveal(introDone, 0.7)} className={`${reveal(introDone, 0.7).className} mb-8`}>
+            <div
+              {...reveal(introDone, 0.7)}
+              className={`${reveal(introDone, 0.7).className} mb-8`}
+            >
               <SocialLinks />
             </div>
 
@@ -116,10 +132,30 @@ const Home = ({ introDone }) => {
               >
                 {t("viewWork")}
                 <span className="grid h-9 w-9 place-items-center rounded-full border border-[color:var(--border-color)] transition-all duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-white">
-                  <LuArrowDown className="transition-transform duration-300 group-hover:translate-y-0.5" aria-hidden="true" />
+                  <LuArrowDown
+                    className="transition-transform duration-300 group-hover:translate-y-0.5"
+                    aria-hidden="true"
+                  />
                 </span>
               </a>
             </div>
+
+            <button
+              type="button"
+              onClick={() =>
+                window.dispatchEvent(new Event(PALETTE_OPEN_EVENT))
+              }
+              data-track="palette-open"
+              data-track-value="hero"
+              {...reveal(introDone, 1.0)}
+              className={`${reveal(introDone, 1.0).className} group mt-7 inline-flex items-center gap-2 text-xs text-[color:var(--muted-color)] transition-colors hover:text-primary`}
+            >
+              <kbd className="hidden rounded-md border border-[color:var(--glass-border)] bg-[color:var(--glass-bg)] px-1.5 py-0.5 font-mono text-[10px] font-bold text-title group-hover:border-primary md:inline-block">
+                {shortcut}
+              </kbd>
+              <LuSearch className="md:hidden" aria-hidden="true" />
+              <span>{t("paletteTip")}</span>
+            </button>
           </div>
 
           {/* -------- Visual -------- */}
@@ -130,7 +166,9 @@ const Home = ({ introDone }) => {
             style={{ animationDelay: "0.4s" }}
           >
             <div className="hero-flip relative z-10 aspect-square w-full">
-              <div className={`hero-flip__inner ${flipped ? "is-flipped" : ""}`}>
+              <div
+                className={`hero-flip__inner ${flipped ? "is-flipped" : ""}`}
+              >
                 {/* Front: the 3D scene, with the portrait as its poster. */}
                 <div className="hero-flip__face overflow-hidden rounded-full bg-primary shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">
                   <Image
@@ -197,7 +235,11 @@ const Home = ({ introDone }) => {
                     aria-hidden="true"
                   />
                 )}
-                {flipped ? <LuBoxes aria-hidden="true" /> : <LuUserRound aria-hidden="true" />}
+                {flipped ? (
+                  <LuBoxes aria-hidden="true" />
+                ) : (
+                  <LuUserRound aria-hidden="true" />
+                )}
               </button>
 
               {/* Hand-drawn nudge so the toggle reads as a control, not decoration. */}
@@ -205,8 +247,14 @@ const Home = ({ introDone }) => {
                 className={`hero-flip__hint ${toggleUsed ? "is-gone" : ""}`}
                 aria-hidden="true"
               >
-                <span className="hero-flip__hint-label font-accent">{t("pressMe")}</span>
-                <svg className="hero-flip__hint-arrow" viewBox="0 0 62 42" role="presentation">
+                <span className="hero-flip__hint-label font-accent">
+                  {t("pressMe")}
+                </span>
+                <svg
+                  className="hero-flip__hint-arrow"
+                  viewBox="0 0 62 42"
+                  role="presentation"
+                >
                   <path d="M56 6C46 3 22 8 12 31" />
                   <path d="M12 31l10.2-6.2M12 31l-2.4-11.8" />
                 </svg>
@@ -286,12 +334,20 @@ const Home = ({ introDone }) => {
         </a>
 
         <div className="section__deco deco__left">
-          <img src={shapeOne} alt="" className="shape" loading="lazy" decoding="async" />
+          <img
+            src={shapeOne}
+            alt=""
+            className="shape"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
 
       <div className="section__bg-wrapper">
-        <span className="bg__title" aria-hidden="true">{t("watermark")}</span>
+        <span className="bg__title" aria-hidden="true">
+          {t("watermark")}
+        </span>
       </div>
     </section>
   );

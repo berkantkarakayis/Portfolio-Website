@@ -5,6 +5,7 @@ import { SiNextdotjs, SiTailwindcss } from "react-icons/si";
 import { useTranslations } from "next-intl";
 import { useContent } from "@/i18n/content";
 import { SocialLinks } from "@/components/ui/SocialLinks";
+import { LiveStats } from "@/components/live/LiveStats";
 import { scrollToSection } from "@/hooks/useActiveSection";
 
 const Footer = () => {
@@ -79,7 +80,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container mt-12 flex flex-col items-center justify-between gap-4 border-t border-[color:var(--glass-border)] pt-6 text-xs font-bold text-text sm:flex-row sm:flex-wrap">
+      <LiveStats className="container mt-12 flex justify-center" />
+
+      <div className="container mt-8 flex flex-col items-center justify-between gap-4 border-t border-[color:var(--glass-border)] pt-6 text-xs font-bold text-text sm:flex-row sm:flex-wrap">
         <p className="text-cs">
           <span className="text-primary">&copy; {year}</span> {t("rights", { name: site.name })}
         </p>

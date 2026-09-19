@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { m, useScroll, useSpring } from "framer-motion";
 import { BsSun, BsMoon } from "react-icons/bs";
+import { LuSearch } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 import { links } from "@/Data";
 import { SocialLinks } from "@/components/ui/SocialLinks";
@@ -11,6 +12,8 @@ import { LanguageSwitcher } from "@/components/header/LanguageSwitcher";
 import { useActiveSection, scrollToSection } from "@/hooks/useActiveSection";
 import { useMultiTap } from "@/hooks/useMultiTap";
 import { useHackerMode } from "@/components/hacker/HackerModeProvider";
+import { PALETTE_OPEN_EVENT, THEME_TOGGLE_EVENT } from "@/components/palette/CommandPalette";
+import { useShortcutLabel } from "@/components/palette/useShortcutLabel";
 
 const shapeOne = "/assets/shape-1.webp";
 
@@ -36,6 +39,7 @@ const Header = ({ introDone, logoRef }) => {
   const tNav = useTranslations("nav");
   // Five quick taps on the logo open Hacker Mode on touch devices.
   const { open: openHackerMode } = useHackerMode();
+  const shortcut = useShortcutLabel();
   const onLogoTap = useMultiTap(openHackerMode);
 
   const sectionIds = useMemo(() => links.map((l) => l.path), []);
@@ -110,6 +114,13 @@ const Header = ({ introDone, logoRef }) => {
     }
   }, [theme, themeReady]);
 
+  // The command palette toggles the theme through a window event.
+  useEffect(() => {
+    const onToggle = () => toggleTheme();
+    window.addEventListener(THEME_TOGGLE_EVENT, onToggle);
+    return () => window.removeEventListener(THEME_TOGGLE_EVENT, onToggle);
+  });
+
   /* ---------------- scroll state ---------------- */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY >= 40);
@@ -164,7 +175,7 @@ const Header = ({ introDone, logoRef }) => {
         </span>
 
         {/* Desktop nav */}
-        <ul className="header__nav hidden items-center gap-1 rounded-full p-1.5 lg:flex">
+        <ul className="header__nav hidden items-center gap-0.5 rounded-full p-1.5 lg:flex xl:gap-1">
           {links.map(({ path }) => {
             const active = activeLink === path;
             return (
@@ -178,7 +189,7 @@ const Header = ({ introDone, logoRef }) => {
                   aria-current={active ? "location" : undefined}
                   data-track="nav"
                   data-track-value={path}
-                  className={`relative z-10 block rounded-full px-4 py-2 text-xs font-bold tracking-[0.08em] uppercase transition-colors duration-300 ${
+                  className={`relative z-10 block whitespace-nowrap rounded-full px-3 py-2 text-[11px] font-bold uppercase tracking-[0.06em] transition-colors duration-300 xl:px-4 xl:text-xs xl:tracking-[0.08em] ${
                     active ? "text-white" : "text-title hover:text-primary"
                   }`}
                 >
@@ -198,7 +209,28 @@ const Header = ({ introDone, logoRef }) => {
         </ul>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <LanguageSwitcher />
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event(PALETTE_OPEN_EVENT))}
+            aria-label={t("openPalette")}
+            title={t("openPalette")}
+            data-track="palette-open"
+            className="header__nav hidden h-9 items-center gap-2 rounded-full px-3 text-[11px] font-bold text-title transition-colors hover:text-primary xl:inline-flex"
+          >
+            <LuSearch aria-hidden="true" />
+            <kbd className="rounded border border-[color:var(--glass-border)] px-1 py-px font-mono text-[10px] leading-none">{shortcut}</kbd>
+          </button>
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event(PALETTE_OPEN_EVENT))}
+            aria-label={t("openPalette")}
+            data-track="palette-open"
+            className="hidden h-11 w-11 place-items-center rounded-full text-lg text-title transition-colors hover:bg-[color:var(--glass-bg)] hover:text-primary lg:grid xl:hidden"
+          >
+            <LuSearch aria-hidden="true" />
+          </button>
+
+          <LanguageSwitcher className="hidden lg:inline-flex" />
 
           <button
             ref={themeToggleRef}
@@ -274,6 +306,29 @@ const Header = ({ introDone, logoRef }) => {
               </li>
             ))}
           </ul>
+
+          <div
+            className={`mb-8 flex flex-wrap items-center justify-center gap-3 transition-all duration-500 ${
+              showMenu ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+            }`}
+            style={{ transitionDelay: showMenu ? `${120 + links.length * 50}ms` : "0ms" }}
+          >
+            <LanguageSwitcher />
+            <button
+              type="button"
+              tabIndex={showMenu ? 0 : -1}
+              onClick={() => {
+                setShowMenu(false);
+                setTimeout(() => window.dispatchEvent(new Event(PALETTE_OPEN_EVENT)), 150);
+              }}
+              data-track="palette-open"
+              data-track-value="drawer"
+              className="header__nav inline-flex h-11 items-center gap-2 rounded-full px-4 text-xs font-bold text-title transition-colors hover:text-primary"
+            >
+              <LuSearch aria-hidden="true" />
+              {t("searchMenu")}
+            </button>
+          </div>
 
           <SocialLinks size="text-lg" />
         </div>
