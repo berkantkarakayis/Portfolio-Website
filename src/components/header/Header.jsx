@@ -10,19 +10,22 @@ import { useActiveSection, scrollToSection } from "../../hooks/useActiveSection"
 
 const shapeOne = "/assets/shape-1.webp";
 
+const DEFAULT_THEME = "dark-theme";
+
 const getStorageTheme = () => {
-  if (typeof window === "undefined") return "light-theme";
+  if (typeof window === "undefined") return DEFAULT_THEME;
   try {
-    return localStorage.getItem("theme") || "light-theme";
+    const stored = localStorage.getItem("theme");
+    return stored === "light-theme" || stored === "dark-theme" ? stored : DEFAULT_THEME;
   } catch {
-    return "light-theme";
+    return DEFAULT_THEME;
   }
 };
 
 const Header = ({ introDone, logoRef }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState("light-theme");
+  const [theme, setTheme] = useState(DEFAULT_THEME);
   const [themeReady, setThemeReady] = useState(false);
   const themeToggleRef = useRef(null);
 

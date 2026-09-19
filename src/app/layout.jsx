@@ -121,13 +121,13 @@ const jsonLd = {
 };
 
 // Applies the stored theme before first paint to avoid a flash.
-const themeScript = `(function(){var d=document.documentElement;var c='light-theme';try{var t=localStorage.getItem('theme');if(t==='dark-theme'||t==='light-theme')c=t;}catch(e){}d.classList.remove('light-theme','dark-theme');d.classList.add(c);})();`;
+const themeScript = `(function(){var d=document.documentElement;var c='dark-theme';try{var t=localStorage.getItem('theme');if(t==='dark-theme'||t==='light-theme')c=t;}catch(e){}d.classList.remove('light-theme','dark-theme');d.classList.add(c);})();`;
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`light-theme ${jost.variable} ${caveat.variable}`}
+      className={`dark-theme ${jost.variable} ${caveat.variable}`}
       suppressHydrationWarning
     >
       <head>
