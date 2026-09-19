@@ -43,6 +43,8 @@ export const LanguageSwitcher = ({ className = "" }) => {
             href={href}
             hrefLang={code}
             lang={code}
+            data-track="locale"
+            data-track-value={code}
             aria-current={active ? "true" : undefined}
             aria-label={
               active ? localeNames[code] : t("switchTo", { language: localeNames[code] })

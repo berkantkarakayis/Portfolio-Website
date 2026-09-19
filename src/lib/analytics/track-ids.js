@@ -1,0 +1,25 @@
+/** Human labels for `data-track` ids, shared with the Hacker Mode dashboard. */
+export const TRACK_LABELS = {
+  "cv-download": "CV download",
+  "view-work": "Hero → View my work",
+  "hero-flip": "Hero flip (3D / photo)",
+  "scroll-hint": "Hero scroll hint",
+  nav: "Header nav",
+  "menu-toggle": "Mobile menu",
+  "theme-toggle": "Theme toggle",
+  locale: "Language switch",
+  filter: "Portfolio filter",
+  "show-more": "Portfolio show more",
+  "show-less": "Portfolio show less",
+  "project-live": "Project → Live",
+  "project-code": "Project → Code",
+  "resume-toggle": "Resume item expand",
+  "service-cta": "Service → Start a conversation",
+  "lets-talk": "Services → Let's talk",
+  email: "Email link",
+  "email-copy": "Email copied",
+  "footer-nav": "Footer nav",
+  "back-to-top": "Back to top",
+};
+
+export const trackLabel = (id) => TRACK_LABELS[id] ?? id;

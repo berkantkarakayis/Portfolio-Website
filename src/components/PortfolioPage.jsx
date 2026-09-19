@@ -11,6 +11,7 @@ import WorkWithMe from "@/components/services/WorkWithMe";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
+import { HackerModeProvider } from "@/components/hacker/HackerModeProvider";
 
 // Loaded on demand so the animation runtime stays out of the initial bundle.
 const loadMotionFeatures = () =>
@@ -94,6 +95,7 @@ export default function PortfolioPage() {
 
   return (
     <LazyMotion features={loadMotionFeatures} strict>
+      <HackerModeProvider>
       <main className="main">
         {!introDone && (
           <div
@@ -118,6 +120,7 @@ export default function PortfolioPage() {
         <Footer />
         <BackToTop />
       </main>
+      </HackerModeProvider>
     </LazyMotion>
   );
 }

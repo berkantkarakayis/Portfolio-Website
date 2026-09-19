@@ -73,6 +73,8 @@ const TimelineItem = ({ item, defaultOpen = false, last = false }) => {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls={panelId}
+          data-track="resume-toggle"
+          data-track-value={item.id}
           className="flex w-full items-start justify-between gap-4 text-left"
         >
           <div>
@@ -217,6 +219,8 @@ const Resume = () => {
             <a
               href={site.resume}
               download={tc("cvFilename")}
+              data-track="cv-download"
+              data-track-value="resume"
               className="btn btn--primary text-cs inline-flex w-full items-center justify-center gap-3"
             >
               <LuDownload aria-hidden="true" />

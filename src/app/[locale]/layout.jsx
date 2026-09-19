@@ -8,6 +8,7 @@ import { routing } from "@/i18n/routing";
 import { TIME_ZONE } from "@/i18n/request";
 import { ClientProvider } from "@/i18n/ClientProvider";
 import { getContent } from "@/i18n/content";
+import { Analytics } from "@/components/analytics/Analytics";
 
 // Self-hosted at build time: no render-blocking request to fonts.googleapis.com.
 // latin-ext covers Turkish glyphs (ş, ğ, İ, ı) in both languages.
@@ -167,6 +168,7 @@ export default async function LocaleLayout({ children, params }) {
         <ClientProvider locale={locale} messages={messages} timeZone={TIME_ZONE}>
           {children}
         </ClientProvider>
+        <Analytics />
       </body>
     </html>
   );

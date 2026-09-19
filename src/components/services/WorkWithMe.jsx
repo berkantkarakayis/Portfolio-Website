@@ -68,6 +68,8 @@ const WorkWithMe = () => {
                     e.preventDefault();
                     scrollToSection("contact");
                   }}
+                  data-track="service-cta"
+                  data-track-value={id}
                   className="group inline-flex items-center gap-3 text-sm font-bold text-title transition-colors hover:text-primary"
                 >
                   {t("startConversation")}
@@ -106,6 +108,7 @@ const WorkWithMe = () => {
                 e.preventDefault();
                 scrollToSection("contact");
               }}
+              data-track="lets-talk"
               className="btn btn--primary text-cs inline-flex items-center justify-center gap-3"
             >
               {t("letsTalk")}
@@ -113,6 +116,8 @@ const WorkWithMe = () => {
             </a>
             <a
               href={`mailto:${site.email}?subject=${encodeURIComponent(t("mailSubject"))}`}
+              data-track="email"
+              data-track-value="services"
               className="btn text-cs inline-flex items-center justify-center gap-3"
             >
               <LuMail aria-hidden="true" />

@@ -96,6 +96,8 @@ const Home = ({ introDone }) => {
               <a
                 href={site.resume}
                 download={tc("cvFilename")}
+                data-track="cv-download"
+                data-track-value="hero"
                 className="btn text-cs inline-flex items-center gap-3"
               >
                 <LuDownload className="text-base" aria-hidden="true" />
@@ -108,6 +110,7 @@ const Home = ({ introDone }) => {
                   e.preventDefault();
                   scrollToSection("work");
                 }}
+                data-track="view-work"
                 className="hero__link text-cs group inline-flex items-center gap-3 px-2"
               >
                 {t("viewWork")}
@@ -180,6 +183,8 @@ const Home = ({ introDone }) => {
                   setToggleUsed(true);
                 }}
                 aria-pressed={flipped}
+                data-track="hero-flip"
+                data-track-value={flipped ? "photo" : "scene"}
                 aria-label={flipped ? t("showScene") : t("showPhoto")}
                 title={flipped ? t("showScene") : t("showPhoto")}
                 className="hero-flip__toggle text-cs pointer-events-auto absolute bottom-0 left-1/2 grid h-12 w-12 -translate-x-1/2 translate-y-1/2 place-items-center rounded-full border-2 border-[color:var(--border-color)] bg-container text-lg text-title shadow-soft transition-colors duration-300 hover:border-primary hover:text-primary"
@@ -266,6 +271,7 @@ const Home = ({ introDone }) => {
             scrollToSection("skills");
           }}
           aria-label={t("scrollToSkills")}
+          data-track="scroll-hint"
           className={`absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-title opacity-0 lg:flex ${
             introDone ? "animate-home-reveal" : ""
           }`}

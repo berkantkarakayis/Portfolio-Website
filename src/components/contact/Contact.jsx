@@ -14,6 +14,7 @@ import {
 } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 import { useContent } from "@/i18n/content";
+import { emitTrack } from "@/lib/analytics/emit";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 
@@ -57,6 +58,7 @@ const Contact = () => {
 
     // Honeypot: bots fill the hidden "company" field.
     if (form.company) {
+      emitTrack("contact", { ok: true, honeypot: true });
       setStatus("success");
       setForm(EMPTY);
       return;
@@ -81,10 +83,12 @@ const Contact = () => {
         signal: controller.signal,
       });
       if (!res.ok) throw new Error(`Request failed with ${res.status}`);
+      emitTrack("contact", { ok: true });
       setStatus("success");
       setForm(EMPTY);
     } catch (err) {
       if (err?.name === "AbortError") return;
+      emitTrack("contact", { ok: false });
       setStatus("error");
     }
   };
@@ -128,12 +132,18 @@ const Contact = () => {
           <StaggerItem>
             <InfoCard icon={LuMail} title={t("email")}>
               <div className="flex flex-wrap items-center gap-3">
-                <a className="font-semibold text-primary hover:underline" href={`mailto:${site.email}`}>
+                <a
+                  className="font-semibold text-primary hover:underline"
+                  href={`mailto:${site.email}`}
+                  data-track="email"
+                  data-track-value="contact"
+                >
                   {site.email}
                 </a>
                 <button
                   type="button"
                   onClick={copyEmail}
+                  data-track="email-copy"
                   className="chip"
                   aria-live="polite"
                 >

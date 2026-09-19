@@ -9,6 +9,8 @@ import { links } from "@/Data";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { LanguageSwitcher } from "@/components/header/LanguageSwitcher";
 import { useActiveSection, scrollToSection } from "@/hooks/useActiveSection";
+import { useMultiTap } from "@/hooks/useMultiTap";
+import { useHackerMode } from "@/components/hacker/HackerModeProvider";
 
 const shapeOne = "/assets/shape-1.webp";
 
@@ -32,6 +34,9 @@ const Header = ({ introDone, logoRef }) => {
   const themeToggleRef = useRef(null);
   const t = useTranslations("header");
   const tNav = useTranslations("nav");
+  // Five quick taps on the logo open Hacker Mode on touch devices.
+  const { open: openHackerMode } = useHackerMode();
+  const onLogoTap = useMultiTap(openHackerMode);
 
   const sectionIds = useMemo(() => links.map((l) => l.path), []);
   const activeLink = useActiveSection(sectionIds, "home");
@@ -147,6 +152,7 @@ const Header = ({ introDone, logoRef }) => {
             href="#home"
             onClick={(e) => {
               e.preventDefault();
+              onLogoTap();
               goTo("home");
             }}
             className={`text-cs text-2xl font-bold text-title transition-all duration-500 ease-in-out hover:text-primary ${
@@ -170,6 +176,8 @@ const Header = ({ introDone, logoRef }) => {
                     goTo(path);
                   }}
                   aria-current={active ? "location" : undefined}
+                  data-track="nav"
+                  data-track-value={path}
                   className={`relative z-10 block rounded-full px-4 py-2 text-xs font-bold tracking-[0.08em] uppercase transition-colors duration-300 ${
                     active ? "text-white" : "text-title hover:text-primary"
                   }`}
@@ -198,6 +206,8 @@ const Header = ({ introDone, logoRef }) => {
             onClick={toggleTheme}
             aria-label={isDark ? t("switchToLight") : t("switchToDark")}
             aria-pressed={isDark}
+            data-track="theme-toggle"
+            data-track-value={isDark ? "light" : "dark"}
             className="grid h-11 w-11 place-items-center rounded-full text-xl text-title transition-all duration-300 hover:bg-[color:var(--glass-bg)] hover:text-primary active:scale-95"
           >
             {themeReady && isDark ? <BsSun /> : <BsMoon />}
@@ -209,6 +219,7 @@ const Header = ({ introDone, logoRef }) => {
             aria-label={showMenu ? t("closeMenu") : t("openMenu")}
             aria-expanded={showMenu}
             aria-controls="mobile-menu"
+            data-track="menu-toggle"
             className="relative z-[140] grid h-11 w-11 place-items-center rounded-full text-title transition-colors duration-300 hover:bg-[color:var(--glass-bg)] lg:hidden"
           >
             <span className="relative block h-5 w-6">
@@ -248,6 +259,8 @@ const Header = ({ introDone, logoRef }) => {
                 <a
                   href={`#${path}`}
                   tabIndex={showMenu ? 0 : -1}
+                  data-track="nav"
+                  data-track-value={path}
                   onClick={(e) => {
                     e.preventDefault();
                     goTo(path);

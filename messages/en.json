@@ -146,7 +146,8 @@
     "getInTouch": "Get in touch",
     "downloadCv": "Download CV ↓",
     "rights": "{name}. All rights reserved.",
-    "builtWith": "Built with"
+    "builtWith": "Built with",
+    "privacyNote": "Privacy-friendly first-party analytics · no cookies for tracking"
   },
   "notFound": {
     "title": "Page not found",

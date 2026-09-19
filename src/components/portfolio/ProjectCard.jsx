@@ -114,9 +114,11 @@ const Cover = ({ title, cover }) => {
 
 /* ------------------------------------------------------------------ */
 
-const LinkButton = ({ href, label, children, primary = false }) => (
+const LinkButton = ({ href, label, children, primary = false, trackId, trackValue }) => (
   <a
     href={href}
+    data-track={trackId}
+    data-track-value={trackValue}
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
@@ -191,12 +193,23 @@ export const ProjectCard = ({ project, featured = false, layout = true }) => {
           <div className="absolute inset-0 flex items-end justify-between gap-3 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
             <div className="flex flex-wrap gap-2">
               {live && (
-                <LinkButton href={live} label={t("openLive", { title })} primary>
+                <LinkButton
+                  href={live}
+                  label={t("openLive", { title })}
+                  primary
+                  trackId="project-live"
+                  trackValue={project.id}
+                >
                   {t("live")} <LuArrowUpRight aria-hidden="true" />
                 </LinkButton>
               )}
               {github && (
-                <LinkButton href={github} label={t("onGitHub", { title })}>
+                <LinkButton
+                  href={github}
+                  label={t("onGitHub", { title })}
+                  trackId="project-code"
+                  trackValue={project.id}
+                >
                   <FaGithub aria-hidden="true" /> {t("code")}
                 </LinkButton>
               )}
@@ -240,12 +253,26 @@ export const ProjectCard = ({ project, featured = false, layout = true }) => {
           {/* Persistent links for touch devices */}
           <div className="mt-5 flex items-center gap-4 text-sm font-bold text-title lg:hidden">
             {live && (
-              <a href={live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-primary">
+              <a
+                href={live}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="project-live"
+                data-track-value={project.id}
+                className="inline-flex items-center gap-1.5 text-primary"
+              >
                 {t("live")} <LuArrowUpRight aria-hidden="true" />
               </a>
             )}
             {github && (
-              <a href={github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 hover:text-primary">
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-track="project-code"
+                data-track-value={project.id}
+                className="inline-flex items-center gap-1.5 hover:text-primary"
+              >
                 <FaGithub aria-hidden="true" /> {t("code")}
               </a>
             )}

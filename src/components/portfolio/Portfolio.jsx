@@ -27,6 +27,8 @@ const FilterTabs = ({ active, onChange, counts, categories, label: groupLabel })
           type="button"
           role="tab"
           aria-selected={selected}
+          data-track="filter"
+          data-track-value={id}
           onClick={() => onChange(id)}
           className={`relative rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.08em] transition-colors duration-300 ${
             selected ? "text-white" : "text-title hover:text-primary"
@@ -146,6 +148,7 @@ const Portfolio = () => {
             <button
               type="button"
               onClick={() => setExpanded(true)}
+              data-track="show-more"
               className="btn text-cs inline-flex items-center gap-3"
             >
               {t("showMore", { count: hiddenCount })}
@@ -158,6 +161,7 @@ const Portfolio = () => {
             <button
               type="button"
               onClick={() => setExpanded(false)}
+              data-track="show-less"
               className="text-cs text-xs font-bold text-title transition-colors hover:text-primary"
             >
               {t("showLess")}

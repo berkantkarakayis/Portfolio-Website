@@ -146,7 +146,8 @@
     "getInTouch": "İletişime geç",
     "downloadCv": "CV İndir ↓",
     "rights": "{name}. Tüm hakları saklıdır.",
-    "builtWith": "Yapım:"
+    "builtWith": "Yapım:",
+    "privacyNote": "Gizlilik dostu birinci taraf analitik · takip çerezi yok"
   },
   "notFound": {
     "title": "Sayfa bulunamadı",
@@ -167,8 +168,14 @@
       "React & Node.js Uzmanı"
     ],
     "heroStats": {
-      "years": { "label": "Yıllık", "accent": "Deneyim" },
-      "projects": { "label": "Yayınlanan", "accent": "Ürün" }
+      "years": {
+        "label": "Yıllık",
+        "accent": "Deneyim"
+      },
+      "projects": {
+        "label": "Yayınlanan",
+        "accent": "Ürün"
+      }
     },
     "skillGroups": {
       "frontend": {
@@ -238,26 +245,50 @@
       }
     },
     "certificates": {
-      "techcareer": { "name": "Full-Stack Geliştirme Bootcamp'i" },
-      "cisco": { "name": "Siber Güvenlik" },
-      "btk": { "name": "Yapay Zekâ ve Algoritmalara Giriş" }
+      "techcareer": {
+        "name": "Full-Stack Geliştirme Bootcamp'i"
+      },
+      "cisco": {
+        "name": "Siber Güvenlik"
+      },
+      "btk": {
+        "name": "Yapay Zekâ ve Algoritmalara Giriş"
+      }
     },
     "languages": {
-      "tr": { "name": "Türkçe", "level": "Ana dil" },
-      "en": { "name": "İngilizce", "level": "Orta-Üstü (B2)" }
+      "tr": {
+        "name": "Türkçe",
+        "level": "Ana dil"
+      },
+      "en": {
+        "name": "İngilizce",
+        "level": "Orta-Üstü (B2)"
+      }
     },
     "projectCategories": {
-      "all": { "label": "Tümü" },
-      "professional": { "label": "Profesyonel" },
-      "personal": { "label": "Kişisel" },
-      "mobile": { "label": "Mobil & Masaüstü" },
-      "experiments": { "label": "Denemeler" }
+      "all": {
+        "label": "Tümü"
+      },
+      "professional": {
+        "label": "Profesyonel"
+      },
+      "personal": {
+        "label": "Kişisel"
+      },
+      "mobile": {
+        "label": "Mobil & Masaüstü"
+      },
+      "experiments": {
+        "label": "Denemeler"
+      }
     },
     "projects": {
       "fast-games-api": {
         "role": "Bağımsız geliştirdim",
         "description": "Platform entegrasyonları için casino oyun API'si ve ekosistemi. Ortak HTML5 Canvas motorunu ve üzerinde 70'ten fazla üretim oyununu, provably fair RNG ve ayarlanabilir RTP ile ben geliştirdim.",
-        "cover": { "sub": "tek ortak motor üzerinde üretim oyunu" }
+        "cover": {
+          "sub": "tek ortak motor üzerinde üretim oyunu"
+        }
       },
       "genius-tracker": {
         "role": "Bağımsız geliştirdim",
@@ -300,7 +331,9 @@
       "threejs-podium": {
         "title": "Three.js Podyum",
         "description": "Three.js ve Vite ile geliştirilen etkileşimli 3D podyum vitrini: orbit kontrolleri, ışık düzenleri ve podyum durumları arasında animasyonlu geçişler.",
-        "cover": { "sub": "Three.js ile yapılan WebGL podyum" }
+        "cover": {
+          "sub": "Three.js ile yapılan WebGL podyum"
+        }
       },
       "decrypted-text": {
         "title": "Kaydırarak Şifre Çöz",
@@ -315,12 +348,16 @@
       },
       "pofu-no-contact": {
         "description": "Ayrılık sonrası temassızlık serisini korumaya yardımcı olan iOS uygulaması. Günlük check-in'ler, SOS panik butonu, gönderilmemiş mektuplar, nefes egzersizleri, ruh hali günlüğü ve AI yol arkadaşı ayı; ayrıca widget'lar ve anonim destek forumu.",
-        "cover": { "sub": "Temassızlık yol arkadaşı · iOS" },
+        "cover": {
+          "sub": "Temassızlık yol arkadaşı · iOS"
+        },
         "status": "App Store · Türkiye"
       },
       "manifesta": {
         "description": "Kadınlar için manifestasyon, olumlama ve niyet belirleme uygulaması. Token tabanlı SwiftUI tasarım sistemi, tamamen bileşenleştirilmiş özellik modülleri, ana ekran widget'ları ve Supabase backend.",
-        "cover": { "sub": "Günlük niyetler · iOS" },
+        "cover": {
+          "sub": "Günlük niyetler · iOS"
+        },
         "status": "Geliştirme aşamasında"
       },
       "ticket-hologram": {
@@ -395,9 +432,18 @@
       }
     },
     "engagementModels": {
-      "hourly": { "label": "Saatlik", "note": "Hata düzeltmeleri, denetimler, küçük özellikler" },
-      "project": { "label": "Proje bazlı", "note": "Tanımlı kapsam, sabit takvim" },
-      "retainer": { "label": "Aylık anlaşma", "note": "Sürekli ürün geliştirme" }
+      "hourly": {
+        "label": "Saatlik",
+        "note": "Hata düzeltmeleri, denetimler, küçük özellikler"
+      },
+      "project": {
+        "label": "Proje bazlı",
+        "note": "Tanımlı kapsam, sabit takvim"
+      },
+      "retainer": {
+        "label": "Aylık anlaşma",
+        "note": "Sürekli ürün geliştirme"
+      }
     }
   }
 }

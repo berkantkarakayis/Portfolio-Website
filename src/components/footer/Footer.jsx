@@ -45,6 +45,8 @@ const Footer = () => {
                     e.preventDefault();
                     scrollToSection(path);
                   }}
+                  data-track="footer-nav"
+                  data-track-value={path}
                   className="text-sm font-semibold text-title transition-colors hover:text-primary"
                 >
                   {tNav(path)}
@@ -56,13 +58,20 @@ const Footer = () => {
 
         <div>
           <p className="text-cs mb-4 text-xs font-bold tracking-[0.2em] text-primary">{t("getInTouch")}</p>
-          <a href={`mailto:${site.email}`} className="text-sm font-semibold text-title transition-colors hover:text-primary">
+          <a
+            href={`mailto:${site.email}`}
+            data-track="email"
+            data-track-value="footer"
+            className="text-sm font-semibold text-title transition-colors hover:text-primary"
+          >
             {site.email}
           </a>
           <p className="mt-2 text-sm text-text">{site.availability}</p>
           <a
             href={site.resume}
             download={tc("cvFilename")}
+            data-track="cv-download"
+            data-track-value="footer"
             className="mt-4 inline-block text-sm font-semibold text-primary hover:underline"
           >
             {t("downloadCv")}
@@ -70,13 +79,16 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container mt-12 flex flex-col items-center justify-between gap-4 border-t border-[color:var(--glass-border)] pt-6 text-xs font-bold text-text sm:flex-row">
+      <div className="container mt-12 flex flex-col items-center justify-between gap-4 border-t border-[color:var(--glass-border)] pt-6 text-xs font-bold text-text sm:flex-row sm:flex-wrap">
         <p className="text-cs">
           <span className="text-primary">&copy; {year}</span> {t("rights", { name: site.name })}
         </p>
         <p className="inline-flex items-center gap-2">
           {t("builtWith")} <SiNextdotjs aria-hidden="true" title="Next.js" /> Next.js &amp;{" "}
           <SiTailwindcss aria-hidden="true" title="Tailwind CSS" /> Tailwind
+        </p>
+        <p className="basis-full text-center text-[11px] font-medium text-[color:var(--muted-color)]">
+          {t("privacyNote")}
         </p>
       </div>
     </footer>
