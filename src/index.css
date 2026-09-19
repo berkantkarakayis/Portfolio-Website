@@ -781,6 +781,22 @@ img {
   }
 }
 
+/* Skills bento card: near-opaque surface so chips and proof cards stay legible */
+.skill-card {
+  background: color-mix(in srgb, var(--container-color) 88%, transparent);
+}
+
+/* A card showing a proof popover must paint above its siblings (each card and
+   its motion wrapper is a stacking context). */
+.skills-grid > * {
+  position: relative;
+}
+
+.skills-grid > *:has([aria-expanded="true"]),
+.skill-card:has([aria-expanded="true"]) {
+  z-index: 40;
+}
+
 /* Skills bento card: hairline accent on top + icon lift on hover */
 .skill-card::after {
   content: "";

@@ -39,6 +39,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
 import { GroupIcon } from "@/components/ui/icons";
+import { SkillChip } from "@/components/skills/SkillChip";
+import { proofFor } from "@/lib/skillProof";
 
 const shapeOne = "/assets/shape-1.webp";
 
@@ -75,8 +77,9 @@ const techLogos = [
 ];
 
 const Skills = () => {
-  const { skillGroups } = useContent();
+  const { skillGroups, projects, experience } = useContent();
   const t = useTranslations("skills");
+  const content = { projects, experience };
 
   return (
     <section className="section relative scroll-mt-20 bg-[image:var(--second-gradient)]" id="skills">
@@ -87,7 +90,7 @@ const Skills = () => {
       </div>
 
       <StaggerGroup
-        className="container grid gap-6 md:grid-cols-2 xl:grid-cols-6"
+        className="skills-grid container grid gap-6 md:grid-cols-2 xl:grid-cols-6"
         stagger={0.07}
       >
         {skillGroups.map(({ id, title, icon, blurb, items, span }) => {
@@ -105,7 +108,7 @@ const Skills = () => {
                     : "xl:col-span-2"
               }`}
             >
-              <SpotlightCard className="skill-card flex h-full flex-col rounded-[22px] p-6 sm:p-7">
+              <SpotlightCard className="skill-card flex h-full flex-col rounded-[22px] p-6 sm:p-7 !overflow-visible">
                 <div
                   className={`flex flex-1 ${
                     full
@@ -140,9 +143,7 @@ const Skills = () => {
                     }`}
                   >
                     {items.map((item) => (
-                      <li key={item} className="chip">
-                        {item}
-                      </li>
+                      <SkillChip key={item} label={item} proof={proofFor(item, content)} />
                     ))}
                   </ul>
                 </div>

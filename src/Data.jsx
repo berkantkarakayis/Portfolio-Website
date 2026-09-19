@@ -241,6 +241,88 @@ export const experience = [
   },
 ];
 
+/* ------------------------------------------------------------------ */
+/*  Journey milestones (chronological; date is "YYYY", "YYYY-MM")      */
+/* ------------------------------------------------------------------ */
+
+export const milestones = [
+  {
+    id: "degree-start",
+    date: "2021-09",
+    kind: "education",
+    title: "Started Computer Programming",
+    detail: "Namık Kemal University, Tekirdağ. Algorithms and software fundamentals alongside real work.",
+  },
+  {
+    id: "nevera-intern",
+    date: "2021-10",
+    kind: "work",
+    title: "First production code at Nevera Tech",
+    detail: "Part-time front end developer: responsive React / TypeScript interfaces from design mockups.",
+  },
+  {
+    id: "degree-done",
+    date: "2023-06",
+    kind: "education",
+    title: "Associate's degree completed",
+    detail: "Graduated while already shipping features in production codebases.",
+  },
+  {
+    id: "nevera-fulltime",
+    date: "2024-01",
+    kind: "work",
+    title: "Front End Developer, full time",
+    detail: "Owned complete features across client web apps; consolidated duplicated UI into a shared component set.",
+  },
+  {
+    id: "mobile-apps",
+    date: "2024",
+    kind: "ship",
+    title: "Mobile apps in the stores",
+    detail: "React Native (Expo) apps for several clients, from concept to App Store and Google Play release.",
+    projectId: "private-admin",
+  },
+  {
+    id: "pixupplay",
+    date: "2024-12",
+    kind: "work",
+    title: "Full-Stack Developer at Pixupplay",
+    detail: "Game engine, multiplayer servers and live sports graphics for a multi-brand iGaming platform.",
+  },
+  {
+    id: "engine",
+    date: "2025",
+    kind: "ship",
+    title: "One engine, 70+ games",
+    detail: "Shared HTML5 Canvas engine with provably fair RNG; a new game is mostly configuration.",
+    projectId: "fast-games-api",
+  },
+  {
+    id: "livetracker",
+    date: "2025",
+    kind: "ship",
+    title: "Live match graphics on TV",
+    detail: "LiveTracker renders live events for six sports over socket.io and Redis pub/sub, catching up in about a second.",
+    projectId: "genius-tracker",
+  },
+  {
+    id: "platform",
+    date: "2025",
+    kind: "ship",
+    title: "Multi-brand casino platform",
+    detail: "Config-driven React + TypeScript frontends, Fastify gateway, gRPC services, Kafka events, ClickHouse analytics.",
+    projectId: "pixup-play",
+  },
+  {
+    id: "native",
+    date: "2026",
+    kind: "ship",
+    title: "Native Swift apps",
+    detail: "MyAgentsBar for macOS and Pofu for iOS, built and released independently.",
+    projectId: "my-agents-bar",
+  },
+];
+
 export const education = [
   {
     id: "nku",

@@ -15,6 +15,7 @@ import { useContent } from "@/i18n/content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
+// import { Journey } from "@/components/resume/Journey";
 
 const shapeOne = "/assets/shape-1.webp";
 
@@ -146,6 +147,9 @@ const Resume = () => {
   return (
     <section className="section scroll-mt-20 bg-second" id="resume">
       <SectionHeading title={t("title")} kicker={t("kicker")} accent={t("accent")} />
+
+      {/* Journey timeline — parked for now. Re-enable by restoring <Journey /> and its import. */}
+      {/* <Journey /> */}
 
       <div className="container grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:gap-12">
         {/* Experience timeline */}

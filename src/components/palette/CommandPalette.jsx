@@ -12,19 +12,21 @@ import { scrollToSection } from "@/hooks/useActiveSection";
 import { emitTrack } from "@/lib/analytics/emit";
 import { buildCommands, pushRecent, readRecent, score } from "./commands";
 
-export const PALETTE_OPEN_EVENT = "palette:open";
-export const THEME_TOGGLE_EVENT = "theme:toggle";
+import { PALETTE_OPEN_EVENT, THEME_TOGGLE_EVENT } from "./events";
+
+export { PALETTE_OPEN_EVENT, THEME_TOGGLE_EVENT };
 const GROUP_ORDER = ["recent", "navigate", "actions", "skills", "socials"];
 const MAX_SKILLS_WHEN_EMPTY = 0;
 
 const isTyping = (el) => el instanceof Element && el.closest("input, textarea, select, [contenteditable]");
+
 
 /**
  * ⌘K / Ctrl+K command palette: navigation, actions, skills search, socials.
  * Opens from the keyboard, the header button (via a window event) or the
  * Hacker Mode command bar. Fully keyboard driven.
  */
-export const CommandPalette = () => {
+export const CommandPalette = ({ defaultOpen = false }) => {
   const t = useTranslations("palette");
   const tNav = useTranslations("nav");
   const tc = useTranslations("common");
@@ -33,10 +35,11 @@ export const CommandPalette = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [open, setOpen] = useState(false);
+  // Client-only component (loaded via next/dynamic without SSR), so window is safe here.
+  const [open, setOpen] = useState(defaultOpen);
   const [query, setQuery] = useState("");
   const [index, setIndex] = useState(0);
-  const [recent, setRecent] = useState([]);
+  const [recent, setRecent] = useState(() => (typeof window === "undefined" ? [] : readRecent()));
   const [toast, setToast] = useState(null);
   const inputRef = useRef(null);
   const listRef = useRef(null);
@@ -93,7 +96,8 @@ export const CommandPalette = () => {
     setIndex(0);
   }, []);
 
-  // Global shortcuts + header/other triggers.
+  // Once mounted the palette owns the shortcuts (the trigger stops listening):
+  // ⌘K / Ctrl K toggles, "/" opens, Escape closes, the open event toggles.
   useEffect(() => {
     const onKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
@@ -103,9 +107,11 @@ export const CommandPalette = () => {
       } else if (e.key === "/" && !open && !isTyping(e.target) && !e.metaKey && !e.ctrlKey) {
         e.preventDefault();
         openPalette();
+      } else if (e.key === "Escape" && open) {
+        close();
       }
     };
-    const onOpen = () => openPalette();
+    const onOpen = () => (open ? close() : openPalette());
     window.addEventListener("keydown", onKey);
     window.addEventListener(PALETTE_OPEN_EVENT, onOpen);
     return () => {
@@ -117,9 +123,12 @@ export const CommandPalette = () => {
   useEffect(() => {
     if (!open) return undefined;
     document.body.classList.add("no-scroll");
-    const id = requestAnimationFrame(() => inputRef.current?.focus());
+    const focus = () => inputRef.current?.focus({ preventScroll: true });
+    const id = requestAnimationFrame(focus);
+    const retry = setTimeout(focus, 120);
     return () => {
       cancelAnimationFrame(id);
+      clearTimeout(retry);
       document.body.classList.remove("no-scroll");
     };
   }, [open]);
@@ -223,6 +232,7 @@ export const CommandPalette = () => {
                   aria-label={t("placeholder")}
                   aria-activedescendant={results.flat[index] ? `palette-item-${index}` : undefined}
                   aria-controls="palette-list"
+                  autoFocus
                   role="combobox"
                   aria-expanded="true"
                   autoComplete="off"

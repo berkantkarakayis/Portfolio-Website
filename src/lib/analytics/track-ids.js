@@ -22,6 +22,8 @@ export const TRACK_LABELS = {
   "back-to-top": "Back to top",
   "systems-tab": "Systems → tab",
   "palette-open": "Command palette opened",
+  "skill-proof": "Skill → proof card",
+  "journey-nav": "Journey → arrows",
   palette: "Command palette → run",
 };
 

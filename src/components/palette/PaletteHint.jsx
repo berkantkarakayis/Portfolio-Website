@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, m } from "framer-motion";
 import { LuCommand, LuX } from "react-icons/lu";
-import { PALETTE_OPEN_EVENT } from "./CommandPalette";
+import { PALETTE_OPEN_EVENT } from "./events";
 import { useShortcutLabel } from "./useShortcutLabel";
 
 const SEEN_KEY = "palette_hint_seen";

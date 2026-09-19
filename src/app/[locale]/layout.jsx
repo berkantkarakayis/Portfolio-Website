@@ -14,7 +14,7 @@ import { Analytics } from "@/components/analytics/Analytics";
 // latin-ext covers Turkish glyphs (ş, ğ, İ, ı) in both languages.
 const jost = Jost({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700"], // 500 was used once; two fewer font files to download
   display: "swap",
   variable: "--font-jost",
 });

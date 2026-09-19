@@ -50,6 +50,7 @@ const CONTENT_KEYS = [
   "heroStats",
   "skillGroups",
   "experience",
+  "milestones",
   "education",
   "certificates",
   "languages",

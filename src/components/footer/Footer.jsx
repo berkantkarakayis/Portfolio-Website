@@ -90,7 +90,7 @@ const Footer = () => {
           {t("builtWith")} <SiNextdotjs aria-hidden="true" title="Next.js" /> Next.js &amp;{" "}
           <SiTailwindcss aria-hidden="true" title="Tailwind CSS" /> Tailwind
         </p>
-        <p className="basis-full text-center text-[11px] font-medium text-[color:var(--muted-color)]">
+        <p className="basis-full text-center text-[11px] font-semibold text-[color:var(--muted-color)]">
           {t("privacyNote")}
         </p>
       </div>

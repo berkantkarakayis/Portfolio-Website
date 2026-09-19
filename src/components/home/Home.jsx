@@ -16,7 +16,7 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 import { RotatingText } from "@/components/ui/RotatingText";
 import { CountUp } from "@/components/ui/CountUp";
 import { scrollToSection } from "@/hooks/useActiveSection";
-import { PALETTE_OPEN_EVENT } from "@/components/palette/CommandPalette";
+import { PALETTE_OPEN_EVENT } from "@/components/palette/events";
 import { useShortcutLabel } from "@/components/palette/useShortcutLabel";
 
 const shapeOne = "/assets/shape-1.webp";

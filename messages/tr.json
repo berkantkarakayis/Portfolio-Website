@@ -71,7 +71,15 @@
     "accent": "Araç Kutum",
     "stackLabel": "Teknoloji yığını",
     "logosLabel": "Teknoloji logoları",
-    "watermark": "Yetenekler"
+    "watermark": "Yetenekler",
+    "proof": {
+      "chipLabel": "{skill}: {count} proje, {years} yıl",
+      "since": "{years} yıl · {since}'den beri",
+      "recent": "Üretimde kullanıldı",
+      "projects": "{count} proje",
+      "usedAt": "Kullanıldığı yer:",
+      "more": "+{count} daha"
+    }
   },
   "portfolio": {
     "title": "Portfolyo",
@@ -104,7 +112,19 @@
     "languages": "Diller",
     "downloadFull": "CV'nin tamamını indir",
     "present": "Günümüz",
-    "watermark": "Özgeçmiş"
+    "watermark": "Özgeçmiş",
+    "journey": {
+      "title": "Yolculuk",
+      "sub": "Kilometre taşları, eskiden yeniye. Yana kaydır.",
+      "kinds": {
+        "work": "Rol",
+        "education": "Eğitim",
+        "ship": "Yayında"
+      },
+      "prev": "Öncesi",
+      "next": "Sonrası",
+      "present": "şimdi"
+    }
   },
   "services": {
     "title": "Birlikte Çalışalım",
@@ -447,6 +467,48 @@
       "retainer": {
         "label": "Aylık anlaşma",
         "note": "Sürekli ürün geliştirme"
+      }
+    },
+    "milestones": {
+      "degree-start": {
+        "title": "Bilgisayar Programcılığına başladım",
+        "detail": "Namık Kemal Üniversitesi, Tekirdağ. Gerçek işle eş zamanlı algoritma ve yazılım temelleri."
+      },
+      "nevera-intern": {
+        "title": "Nevera Tech'te ilk üretim kodu",
+        "detail": "Yarı zamanlı front end geliştirici: tasarım mockup'larından duyarlı React / TypeScript arayüzler."
+      },
+      "degree-done": {
+        "title": "Ön lisans tamamlandı",
+        "detail": "Üretim kod tabanlarında özellik geliştirirken mezun oldum."
+      },
+      "nevera-fulltime": {
+        "title": "Tam zamanlı Front End Geliştirici",
+        "detail": "Müşteri web uygulamalarında tam özellik sahipliği; tekrarlanan arayüzleri ortak bileşen setine dönüştürdüm."
+      },
+      "mobile-apps": {
+        "title": "Mobil uygulamalar mağazalarda",
+        "detail": "Birden fazla müşteri için konseptten App Store ve Google Play yayınına React Native (Expo) uygulamaları."
+      },
+      "pixupplay": {
+        "title": "Pixupplay'de Full-Stack Geliştirici",
+        "detail": "Çok markalı bir iGaming platformu için oyun motoru, multiplayer sunucular ve canlı spor grafikleri."
+      },
+      "engine": {
+        "title": "Tek motor, 70+ oyun",
+        "detail": "Provably fair RNG'li ortak HTML5 Canvas motoru; yeni oyun çoğunlukla konfigürasyon."
+      },
+      "livetracker": {
+        "title": "TV'de canlı maç grafikleri",
+        "detail": "LiveTracker altı spor için canlı olayları socket.io ve Redis pub/sub ile render eder, yaklaşık bir saniyede yetişir."
+      },
+      "platform": {
+        "title": "Çok markalı casino platformu",
+        "detail": "Config-driven React + TypeScript arayüzler, Fastify gateway, gRPC servisler, Kafka olayları, ClickHouse analitiği."
+      },
+      "native": {
+        "title": "Native Swift uygulamaları",
+        "detail": "macOS için MyAgentsBar ve iOS için Pofu, bağımsız olarak geliştirilip yayınlandı."
       }
     }
   },

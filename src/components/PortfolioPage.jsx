@@ -5,7 +5,10 @@ import { LazyMotion } from "framer-motion";
 import Header from "@/components/header/Header";
 import Home from "@/components/home/Home";
 import Skills from "@/components/skills/Skills";
-import Systems from "@/components/systems/Systems";
+import dynamic from "next/dynamic";
+
+// Below-the-fold and heavy (SVG diagrams + copy for three systems): fetched when scrolled near.
+const Systems = dynamic(() => import("@/components/systems/Systems"), { ssr: false });
 import Portfolio from "@/components/portfolio/Portfolio";
 import Resume from "@/components/resume/Resume";
 import WorkWithMe from "@/components/services/WorkWithMe";
@@ -13,7 +16,8 @@ import Contact from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
 import { BackToTop } from "@/components/ui/BackToTop";
 import { HackerModeProvider } from "@/components/hacker/HackerModeProvider";
-import { CommandPalette } from "@/components/palette/CommandPalette";
+import { PaletteTrigger } from "@/components/palette/PaletteTrigger";
+import { LazySection } from "@/components/ui/LazySection";
 import { PaletteHint } from "@/components/palette/PaletteHint";
 
 // Loaded on demand so the animation runtime stays out of the initial bundle.
@@ -118,12 +122,14 @@ export default function PortfolioPage() {
         <Skills />
         <Portfolio />
         <Resume />
-        <Systems />
+        <LazySection id="systems" className="section bg-third" minHeight="70vh">
+          <Systems />
+        </LazySection>
         <WorkWithMe />
         <Contact />
         <Footer />
         <BackToTop />
-        <CommandPalette />
+        <PaletteTrigger />
         <PaletteHint />
       </main>
       </HackerModeProvider>

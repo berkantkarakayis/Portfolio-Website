@@ -12,7 +12,7 @@ import { LanguageSwitcher } from "@/components/header/LanguageSwitcher";
 import { useActiveSection, scrollToSection } from "@/hooks/useActiveSection";
 import { useMultiTap } from "@/hooks/useMultiTap";
 import { useHackerMode } from "@/components/hacker/HackerModeProvider";
-import { PALETTE_OPEN_EVENT, THEME_TOGGLE_EVENT } from "@/components/palette/CommandPalette";
+import { PALETTE_OPEN_EVENT, THEME_TOGGLE_EVENT } from "@/components/palette/events";
 import { useShortcutLabel } from "@/components/palette/useShortcutLabel";
 
 const shapeOne = "/assets/shape-1.webp";
