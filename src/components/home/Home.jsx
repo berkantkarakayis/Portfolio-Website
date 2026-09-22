@@ -268,8 +268,8 @@ const Home = ({ introDone }) => {
                   key={id}
                   className={`z-20 flex h-[76px] w-[232px] items-center justify-center gap-4 rounded-full border-2 border-[color:var(--border-color)] bg-container px-5 shadow-soft lg:absolute lg:h-20 lg:w-60 ${
                     i === 0
-                      ? "lg:bottom-1/4 lg:-left-6 xl:-left-10"
-                      : "lg:bottom-14 lg:-right-2 xl:-right-6"
+                      ? "lg:bottom-1/4 lg:-left-6 2xl:-left-10"
+                      : "lg:bottom-14 lg:-right-2 2xl:-right-6"
                   } ${
                     introDone
                       ? i === 0

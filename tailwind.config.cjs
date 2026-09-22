@@ -3,6 +3,12 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   corePlugins: {
     preflight: false,
+    // The layout uses the hand-written `.container` in index.css (a flat
+    // 1300px max-width). Tailwind's own `.container` was shadowing it with a
+    // stepped max-width (1280px up to 1536px, then 1536px), which made the
+    // side gutters jump around and collapse to the 20px padding on wide
+    // screens.
+    container: false,
   },
   theme: {
     extend: {

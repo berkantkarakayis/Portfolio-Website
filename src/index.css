@@ -60,6 +60,7 @@
 
   /* layout */
   --container-pad: 20px;
+  --container-max: 1300px;
   --section-pad: 220px;
 }
 
@@ -243,7 +244,7 @@ img {
 
 .container {
   width: 100%;
-  max-width: 1300px;
+  max-width: var(--container-max);
   padding-inline: var(--container-pad);
   margin-inline: auto;
 }
@@ -443,12 +444,16 @@ img {
   z-index: 1;
 }
 
+/* The rails sit centred in the gutter left over by .container, so they never
+   creep into the content column. A viewport-relative offset (the old 3%) put
+   the 30px end caps on top of the copy on every screen narrower than ~1370px.
+   Capped so they stay close to the content on ultra-wide displays. */
 .deco__right {
-  right: 3%;
+  right: min(calc((100% - var(--container-max)) / 4), 110px);
 }
 
 .deco__left {
-  left: 3%;
+  left: min(calc((100% - var(--container-max)) / 4), 110px);
 }
 
 .section__deco::before,
@@ -886,6 +891,14 @@ img {
 #RESPONSIVE
 \*--------------------------------------------------*/
 
+/* Below this the gutter is narrower than the rail's 30px end caps, so there is
+   no room to draw them outside the container without overlapping the content. */
+@media screen and (max-width: 1399px) {
+  .section__deco {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .bg__title {
     font-size: clamp(13.625rem, 8.5417rem + 5.5238vw, 19.875rem);
@@ -893,10 +906,6 @@ img {
 }
 
 @media screen and (max-width: 992px) {
-  .section__deco {
-    display: none;
-  }
-
   .bg__title {
     font-size: clamp(6rem, 6.5vw, 11rem);
   }
